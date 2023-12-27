@@ -41,3 +41,5 @@ yad.conf
 zoom.conf
 zoomus.conf
 obsidian
+nvim/test
+tmux/plugins/tpm
