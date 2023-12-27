@@ -1,0 +1,14 @@
+line-length = 88 
+ignore-init-module-imports = true
+cache-dir = "~/.cache/ruff"
+output-format = "pylint"
+
+[lint]
+select = ["I", "F"]
+
+[format]
+quote-style = "single"
+
+skip-magic-trailing-comma = false
+
+line-ending = "auto"
