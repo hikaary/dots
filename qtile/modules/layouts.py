@@ -23,7 +23,6 @@ floating_layout = layout.Floating(
         Match(title='mpv'),
         Match(wm_class='pot'),
         Match(title='feh'),
-        Match(wm_class='io.github.alainm23.planify.quick-add'),
     ],
     **layout_theme,
 )

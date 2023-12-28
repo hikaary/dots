@@ -94,6 +94,7 @@ local plugins = {
       model = "codellama:7b-python",
     },
   },
+
   -- UI
   {
     "folke/noice.nvim",
@@ -108,7 +109,6 @@ local plugins = {
     enabled = true,
   },
 
-  --
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },

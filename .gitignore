@@ -43,3 +43,5 @@ zoomus.conf
 obsidian
 nvim/test
 tmux/plugins/tpm
+com.pot-app.desktop/logs
+unity3d
