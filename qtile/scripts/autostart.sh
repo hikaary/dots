@@ -17,3 +17,4 @@ xautolock -time 10 -locker \
 "slock" \
 -detectsleep &
 systemctl start lowbattery &
+sudo sing-box run -c ~/yandex.disk/sing-box/config.json &

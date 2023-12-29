@@ -89,7 +89,6 @@ keys = [
     Key([mod, 'shift'], 'P', lazy.spawn(Variables.sstool), desc='Take screenshot'),
     Key([mod, 'shift'], 'q', lazy.function(show_power_menu)),
     Key([mod], 'v', lazy.function(Variables.toggle_vpn)),
-    Key([mod], 'g', lazy.spawn(Variables.add_planify_task)),
 ]
 
 for group in groups:

@@ -9,7 +9,7 @@ if Variables.monitors < 3:
     screens = [
         Screen(
             top=init_bar(),
-            wallpaper=Variables.qconf + 'images/wallpaper.png',
+            wallpaper=Variables.qconf + 'images/wallpaper.jpg',
             wallpaper_mode='fill',
         ),
     ]

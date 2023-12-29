@@ -1,9 +1,9 @@
 import subprocess
 
+from libqtile import qtile
 from libqtile.bar import Bar
 from qtile_extras import widget
 
-from .custom_widgets.vpn import XrayProxy
 from .variables import Colors, Variables
 
 widget_defaults = dict(
@@ -13,15 +13,24 @@ widget_defaults = dict(
     foreground=Colors.widget_foreground,
 )
 
-sep = widget.Sep(padding=10, linewidth=2)
+sep = widget.Sep(padding=8, linewidth=2)
+
+
+def search():
+    qtile.cmd_spawn('rofi -show drun')
+
+
+def power():
+    qtile.cmd_spawn('sh -c ~/.config/rofi/scripts/power')
 
 
 def init_bar():
     widgets = [
-        widget.Spacer(length=20),
+        widget.Spacer(length=10),
         widget.Memory(
             format='{MemUsed: .2f}{mm}',
             measure_mem='G',
+            font='JetBrains Mono Bold',
         ),
         sep,
         widget.CurrentLayoutIcon(
@@ -30,7 +39,10 @@ def init_bar():
             use_mask=True,
         ),
         sep,
-        widget.Prompt(bell_style='visual'),
+        widget.Prompt(
+            bell_style='visual',
+            font='JetBrains Mono Bold',
+        ),
         widget.Spacer(),
         widget.GroupBox(
             highlight_method='text',
@@ -45,31 +57,33 @@ def init_bar():
         ),
         widget.Spacer(),
         sep,
-        XrayProxy(
-            scale=0.58,
-            images=['proxy-on', 'proxy-off'],
-            systemd='sing-box',
-            theme_path=Variables.qconf + 'icons',
-        ),
-        sep,
         widget.WiFiIcon(
             padding_y=9,
             foreground=Colors.widget_foreground,
             active_colour=Colors.widget_foreground,
         ),
         sep,
-        widget.Clock(format='%Y-%m-%d %a %H:%M'),
-        widget.Spacer(length=20),
+        widget.Clock(
+            format='%Y-%m-%d',
+            font='JetBrains Mono Bold',
+        ),
+        sep,
+        widget.Clock(
+            format='%I:%M %p',
+            foreground=Colors.widget_foreground,
+            font='JetBrains Mono Bold',
+        ),
+        widget.Spacer(length=5),
     ]
+
     if Variables.battery:
         widgets.insert(-3, widget.UPowerWidget())
 
     return Bar(
         widgets=widgets,
         margin=calculate_margin(),
-        size=32,
+        size=30,
         background=Colors.bar_background,
-        opacity=0.7,
     )
 
 

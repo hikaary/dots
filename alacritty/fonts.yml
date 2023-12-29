@@ -1,24 +1,13 @@
 font:
   normal:
-    family: "Fira Code Nerd Font"
-    style: Regular
+    family: "JetBrainsMono Nerd Font"
   bold:
-    family: "Fira Code Nerd Font"
-    style: Bold
+    family: "JetBrainsMono Nerd Font"
+
   italic:
-    family: "Fira Code Nerd Font"
-    style: Italic
+    family: "JetBrainsMono Nerd Font"
+
   bold_italic:
-    family: "Fira Code Nerd Font"
-    style: Bold Italic
-  size: 11
-  offset:
-    x: 0
-    y: 0
-  glyph_offset:
-    x: 0
-    y: 0
-    
-  fallback:
-    - family: "Noto Color Emoji"
-    
+    family: "JetBrainsMono Nerd Font"
+
+  size: 13

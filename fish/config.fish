@@ -29,7 +29,6 @@ set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "nvim"                 # $EDITOR use Emacs in terminal
 set VISUAL "nvim"              # $VISUAL use Emacs in GUI mode
 
-alias ls='nnn -de'
 alias v "nvim"
 alias cat "gat"
 alias s "doas"

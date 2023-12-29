@@ -1,3 +1,5 @@
+import os
+import signal
 import subprocess
 from dataclasses import dataclass
 from os import path
@@ -20,14 +22,26 @@ def get_monitors_count():
 
 
 def toggle_vpn(_=None):
-    status = subprocess.call(['systemctl', 'is-active', '--quiet', 'sing-box'])
-    action = 'start' if status else 'stop'
-    subprocess.Popen(
-        [
-            Variables.qconf + 'scripts/vpn.sh',
-            action,
-        ]
-    )
+    if Variables.VPN_PID is None:
+        vpn = subprocess.Popen(
+            [
+                # 'doas',
+                # '/bin/sing-box',
+                # 'run',
+                # '-c',
+                # '~/Yandex.Disk/sing-box/config.json',
+                # '~/.config/qtile/scripts/vpn.sh'
+                Variables.qconf + 'scripts/vpn.sh'
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+        Variables.VPN_PID = vpn.pid
+        subprocess.run(['dunstify', 'vpn', 'enable'])
+    else:
+        os.kill(Variables.VPN_PID, signal.SIGTERM)
+        Variables.VPN_PID = None
+        subprocess.run(['dunstify', 'vpn', 'disable'])
 
 
 @dataclass
@@ -54,7 +68,6 @@ class Variables:
     bluetooth = qconf + 'scripts/bluetooth.sh'
     brightness = qconf + 'scripts/brightness.sh'
     sstool = 'flameshot gui'
-    add_planify_task = 'io.github.alainm23.planify.quick-add'
 
     autostart_sh = qconf + 'scripts/autostart.sh'
     app_groups = {
@@ -73,6 +86,8 @@ class Variables:
 
     toggle_vpn = toggle_vpn
 
+    VPN_PID: int | None = None
+
 
 @dataclass
 class Colors:
@@ -80,7 +95,7 @@ class Colors:
     border_normal = '#11111b'
 
     widget_foreground = '#cdd6f4'
-    bar_background = '#090d10'
+    bar_background = '#1d2021'
 
     widget_background_groups = '#343743'
     widget_inactive_groups = '#7f849c'

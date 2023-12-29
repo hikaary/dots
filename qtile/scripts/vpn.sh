@@ -1,4 +1,2 @@
 #!/bin/bash
-arg=$1
-command="sudo systemctl ${arg} sing-box"
-eval ${command}
+doas /bin/sing-box run -c Yandex.Disk/sing-box/config.json
