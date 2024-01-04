@@ -41,6 +41,13 @@ local plugins = {
 
   -- Install a plugin
   {
+    "antosha417/nvim-lsp-file-operations",
+    lazy = false,
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
@@ -48,31 +55,40 @@ local plugins = {
     end,
   },
   {
-    "folke/trouble.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("trouble").setup()
-    end,
-  },
-
-  {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    config = function()
-      require("peek").setup()
-    end,
-  },
-  {
-    "alexghergh/nvim-tmux-navigation",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-tmux-navigation").setup { disable_when_zoomed = true } -- defaults to false
-    end,
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
+    dependencies = {
+      {
+        "L3MON4D3/LuaSnip",
+        after = "nvim-cmp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function(_, opts)
+          require("plugins.configs.others").luasnip(opts)
+          require("luasnip.loaders.from_vscode").load {}
+        end,
+      },
+    },
   },
   {
     "tpope/vim-surround",
     event = "VeryLazy",
   },
+  { "phaazon/hop.nvim", opts = {} },
+  {
+    "NvChad/nvterm",
+    config = function()
+      require "custom.configs.extras.nvterm"
+    end,
+  },
+  {
+    "nacro90/numb.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("numb").setup()
+    end,
+  },
+  -- UI
+  --
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
@@ -81,21 +97,6 @@ local plugins = {
       "nvim-lua/plenary.nvim",
     },
   },
-
-  {
-    "dustinblackman/oatmeal.nvim",
-    cmd = { "Oatmeal" },
-    keys = {
-      { "<leader>om", mode = "n", desc = "Start Oatmeal session" },
-      { "<leader>om", mode = "v", desc = "Start Oatmeal session" },
-    },
-    opts = {
-      backend = "ollama",
-      model = "codellama:7b-python",
-    },
-  },
-
-  -- UI
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -107,22 +108,6 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
     enabled = true,
-  },
-
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    event = "BufReadPre",
-    config = function()
-      require "custom.configs.extras.todo"
-    end,
-  },
-  {
-    "nacro90/numb.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("numb").setup()
-    end,
   },
 }
 

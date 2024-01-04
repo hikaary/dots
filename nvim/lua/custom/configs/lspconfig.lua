@@ -33,14 +33,3 @@ lspconfig.pyright.setup {
     },
   },
 }
-
--- lspconfig.ruff_lsp.setup {
---   capabilities = capabilities,
---   on_attach = function(client, bufnr)
---     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
---   end,
---   settings = {
---     args = { "--config=~/.config/nvim/lua/custom/configs/ruff.toml" },
---     run = "onSave",
---   },
--- }

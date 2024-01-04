@@ -1,0 +1,21 @@
+import = ["/home/hikary/.config/alacritty/colors.toml", "/home/hikary/.config/alacritty/fonts.toml"]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1.0"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[window]
+opacity = 1
+
+[window.padding]
+x = 0
+y = 0

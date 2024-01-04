@@ -77,7 +77,7 @@ def init_bar():
     ]
 
     if Variables.battery:
-        widgets.insert(-3, widget.UPowerWidget())
+        widgets.insert(-5, widget.UPowerWidget())
 
     return Bar(
         widgets=widgets,
