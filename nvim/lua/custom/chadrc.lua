@@ -3,7 +3,6 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  -- theme = "github_dark",
   theme = "everforest_green",
   theme_toggle = { "everforest_green", "everforest" },
   hl_override = highlights.override,

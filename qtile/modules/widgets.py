@@ -69,7 +69,7 @@ def init_bar():
         ),
         sep,
         widget.Clock(
-            format='%I:%M %p',
+            format='%H:%M %p',
             foreground=Colors.widget_foreground,
             font='JetBrains Mono Bold',
         ),

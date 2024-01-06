@@ -65,3 +65,6 @@ micro
 slock
 com.pot-app.desktop
 google-chrome
+qtile/modules/__pycache__
+qtile/__pycache__
+PortProton.conf
