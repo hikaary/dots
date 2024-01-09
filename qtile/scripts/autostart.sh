@@ -1,20 +1,16 @@
 #!/bin/sh
 
+kanshi & 
 
 dunst &
-yandex-disk start &
-pot &
-/home/hikary/dev/sync.sh &
 firefox &
-# discord &
 webcord &
-sudo nekoray -many &
-iwgtk &
 keepassxc &
 obsidian &
-planify & 
-xautolock -time 10 -locker \
-"slock" \
--detectsleep &
-systemctl start lowbattery &
-sudo sing-box run -c ~/yandex.disk/sing-box/config.json &
+gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice" &
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots &
+swayidle -w \
+            timeout 600 'swaylock --screenshots --clock --indicator
+  --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 103019 --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --fade-in 0.2' \
+      timeout 1000 'systemctl suspend' \
+

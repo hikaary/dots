@@ -8,6 +8,7 @@ layout_theme = {
     'margin': 8,
     'border_focus': Colors.border_focus,
     'border_normal': Colors.border_normal,
+    'border_radius': 8,
 }
 
 floating_layout = layout.Floating(

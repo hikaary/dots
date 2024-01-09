@@ -1,21 +1,26 @@
+import os
+
+from libqtile import qtile
 from libqtile.backend.wayland.inputs import InputConfig
-from libqtile.config import Click, Drag
-from libqtile.lazy import lazy
+from modules import *  # noqa
 
-from modules import *
+if qtile.core.name == 'wayland':
+    os.environ['XDG_SESSION_DESKTOP'] = 'qtile:wlroots'
+    os.environ['XDG_CURRENT_DESKTOP'] = 'qtile:wlroots'
 
-mouse = [
-    Drag(
-        [mod],
-        "Button1",
-        lazy.window.set_position_floating(),
-        start=lazy.window.get_position(),
+wl_input_rules = {
+    'type:keyboard': InputConfig(
+        kb_layout='us, ru',
+        kb_repeat_rate=60,
+        kb_repeat_delay=220,
+        kb_options='grp:caps_toggle',
     ),
-    Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    'type:touchpad': InputConfig(
+        tap=True,
+        natural_scroll=True,
+        dwt=True,
     ),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
-]
+}
 
 dgroups_key_binder = None
 dgroups_app_rules = []
@@ -24,15 +29,10 @@ follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
 
-cursor_warp = False
+cursor_warp = True
 auto_fullscreen = True
-focus_on_window_activation = "smart"
+focus_on_window_activation = 'smart'
 reconfigure_screens = True
-
 auto_minimize = True
 
-wl_input_rules = {
-    "type:touchpad": InputConfig(tap=True, natural_scroll=True, dwt=True),
-}
-
-wmname = "Qtile"
+wmname = 'Qtile'

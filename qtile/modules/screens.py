@@ -16,13 +16,13 @@ if Variables.monitors < 3:
 else:
     screens = [
         Screen(
-            top=init_bar(),
             wallpaper=Variables.qconf + 'images/wallpaper.jpg',
-            wallpaper_mode='stretch',
+            wallpaper_mode='fill',
         ),
         Screen(
+            top=init_bar(),
             wallpaper=Variables.qconf + 'images/wallpaper.jpg',
-            wallpaper_mode='stretch',
+            wallpaper_mode='fill',
         ),
         Screen(
             wallpaper=Variables.qconf + 'images/wallpaper.jpg',

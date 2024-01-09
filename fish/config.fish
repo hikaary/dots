@@ -31,7 +31,7 @@ set VISUAL "nvim"              # $VISUAL use Emacs in GUI mode
 
 alias v "nvim"
 alias cat "gat"
-alias s "doas"
+alias s "sudo"
 alias t 'bpytop'
 alias ch 'cd ~/'
 alias ..='cd ..'

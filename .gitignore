@@ -68,3 +68,14 @@ google-chrome
 qtile/modules/__pycache__
 qtile/__pycache__
 PortProton.conf
+microsoft-edge/NativeMessagingHosts
+chromium/NativeMessagingHosts
+BraveSoftware/Brave-Browser/NativeMessagingHosts
+vivaldi/NativeMessagingHosts
+ranger/plugins/__pycache__
+ranger/plugins/ranger_devicons/__pycache__
+ranger/colorschemes/__pycache__/__init__.cpython-311.pyc
+ranger/colorschemes/__pycache__/default.cpython-311.pyc
+tmux/plugins
+nvim/lazy-lock.json
+qtile/modules/custom_widgets/__pycache__

@@ -1,4 +1,0 @@
-Invoking /home/hikary/.config/tmux/plugins/tpm/bin/install_plugins ...
-Already installed "tmux-resurrect"
-Already installed "tmux-continuum"
-Already installed "tmux-sessionist"

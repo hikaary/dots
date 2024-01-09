@@ -62,16 +62,16 @@ scratchpads = [
 
 
 groups_config: dict[int, dict] = {
-    1: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    2: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    3: {'screen': 2, 'layouts': layouts, 'layout': 'monadwide'},
-    4: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    5: {'screen': 1, 'layouts': layouts, 'layout': 'max'},
-    6: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    7: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    8: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    9: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    0: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
+    1: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
+    2: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
+    3: {'screen': 0, 'layouts': layouts, 'layout': 'monadwide'},
+    4: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
+    5: {'screen': 2, 'layouts': layouts, 'layout': 'max'},
+    6: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
+    7: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
+    8: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
+    9: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
+    0: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
 }
 
 
