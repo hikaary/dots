@@ -68,7 +68,7 @@ def init_bar():
             highlight_color=Colors.widget_foreground,
             this_current_screen_border=Colors.widget_foreground,
             foreground=Colors.widget_foreground,
-            active=Colors.widget_active_groups,
+            active=Colors.widget_inactive_groups,
             inactive=Colors.widget_inactive_groups,
         ),
         widget.Spacer(),

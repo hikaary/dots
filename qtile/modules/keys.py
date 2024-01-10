@@ -91,6 +91,12 @@ keys = [
         lazy.group['ScratchTG'].dropdown_toggle('main_app'),
         desc='Telegram',
     ),
+    Key(
+        [mod],
+        'm',
+        lazy.group['ScratchKeePass'].dropdown_toggle('main_app'),
+        desc='KeePass',
+    ),
     Key([mod], 'Return', lazy.spawn(Variables.terminal), desc='Launch terminal'),
     Key([mod, 'control'], 'tab', lazy.next_layout(), desc='Toggle between layouts'),
     Key([mod], 'q', lazy.window.kill(), desc='Kill focused window'),

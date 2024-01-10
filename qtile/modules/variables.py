@@ -31,7 +31,7 @@ class Variables:
     sstool = qconf + 'scripts/sstool'
 
     autostart_sh = qconf + 'scripts/autostart.sh'
-    resume_sh = qconf + 'scripts/kbl_load.sh'
+    load_settings_sh = qconf + 'scripts/load_settings.sh'
     app_groups = {
         1: ['firefox'],
         2: [''],
@@ -49,12 +49,11 @@ class Variables:
 
 @dataclass
 class Colors:
-    border_focus = '#89b4fa'
+    border_focus = '#83c092'
     border_normal = '#11111b'
 
-    widget_foreground = '#cdd6f4'
+    widget_foreground = '#D3C6AA'
     bar_background = '#1d2021'
 
     widget_background_groups = '#343743'
-    widget_inactive_groups = '#7f849c'
-    widget_active_groups = '#7f849c'
+    widget_inactive_groups = '#343743'

@@ -58,6 +58,20 @@ scratchpads = [
             ),
         ],
     ),
+    ScratchPad(
+        'ScratchKeePass',
+        [
+            DropDown(
+                'main_app',
+                'keepassxc',
+                height=0.8,
+                width=0.3,
+                x=-0.2,
+                y=0.1,
+                on_focus_lost_hide=False,
+            ),
+        ],
+    ),
 ]
 
 
