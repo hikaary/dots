@@ -1,0 +1,13 @@
+bito-cli
+debtap
+downgrade
+g-ls
+gat
+nekoray
+rate-mirrors
+swaylock-effects
+tableplus
+webcord
+xplorer-bin
+yandex-disk
+yay -S hiddify-next-bin
