@@ -1,24 +1,10 @@
 from libqtile.command import lazy
-from libqtile.config import Click, Drag, Key, ScratchPad
+from libqtile.config import Key, ScratchPad
 
 from .groups import groups
 from .variables import Variables
 
 mod = 'mod4'
-
-
-mouse = [
-    Drag(
-        [mod],
-        'Button1',
-        lazy.window.set_position_floating(),
-        start=lazy.window.get_position(),
-    ),
-    Drag(
-        [mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()
-    ),
-    Click([mod], 'Button2', lazy.window.bring_to_front()),
-]
 
 
 keys = [
@@ -93,6 +79,12 @@ keys = [
     ),
     Key(
         [mod],
+        'v',
+        lazy.group['ScratchVPN'].dropdown_toggle('main_app'),
+        desc='VPN',
+    ),
+    Key(
+        [mod],
         'm',
         lazy.group['ScratchKeePass'].dropdown_toggle('main_app'),
         desc='KeePass',
@@ -105,7 +97,7 @@ keys = [
     Key(['mod4'], 'd', lazy.spawncmd()),
     Key([mod], 's', lazy.spawn(Variables.bluetooth), desc='Launch Bluetooth'),
     Key([mod], 'c', lazy.layout.maximize(), desc='Toggle maximize'),
-    Key([mod, 'shift'], 'p', lazy.spawn(Variables.sstool), desc='Take screenshot'),
+    Key([mod, 'shift'], 'P', lazy.spawn(Variables.sstool), desc='Take screenshot'),
 ]
 
 for group in groups:

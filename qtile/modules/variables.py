@@ -24,7 +24,7 @@ class Variables:
 
     terminal = 'alacritty'
     float_terminal = terminal + ' --class float_terminal'
-    lock = qconf + 'scripts/lock.sh'
+    lock_sh = qconf + 'scripts/lock.sh'
     sleep = 'slock && systemctl suspend'
     rofi = home + '/.config/rofi/launchers/type-7/launcher.sh'
     bluetooth = qconf + 'scripts/bluetooth.sh'
@@ -33,7 +33,7 @@ class Variables:
     autostart_sh = qconf + 'scripts/autostart.sh'
     load_settings_sh = qconf + 'scripts/load_settings.sh'
     app_groups = {
-        1: ['firefox'],
+        1: ['brave'],
         2: [''],
         3: ['planify'],
         4: ['WebCord'],

@@ -72,6 +72,20 @@ scratchpads = [
             ),
         ],
     ),
+    ScratchPad(
+        'ScratchVPN',
+        [
+            DropDown(
+                'main_app',
+                'hiddify',
+                height=0.4,
+                width=0.2,
+                x=-0.01,
+                y=0.01,
+                on_focus_lost_hide=True,
+            ),
+        ],
+    ),
 ]
 
 

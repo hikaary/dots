@@ -3,7 +3,7 @@ gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice" &
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots &
 
 dunst &
-firefox &
+brave &
 webcord &
 obsidian &
 swayidle -w \

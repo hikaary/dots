@@ -79,3 +79,6 @@ ranger/colorschemes/__pycache__/default.cpython-311.pyc
 tmux/plugins
 nvim/lazy-lock.json
 qtile/modules/custom_widgets/__pycache__
+flutter
+BraveSoftware/Brave-Browser
+kioslaverc
