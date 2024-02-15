@@ -20,7 +20,6 @@ dotnet-sdk
 dunst
 efibootmgr
 fd
-firefox
 fish
 fzf
 git
@@ -103,3 +102,5 @@ xorg-xwayland
 xssstate
 xxkb
 zip
+firefox
+fprintd

@@ -11,9 +11,7 @@ if status is-interactive
       else  # single gzip
         gunzip $argv[1]
       end
-    case tgz  # same as tar.gz
-      tar -zxvf $argv[1]
-    case bz2  # tar compressed with bzip2
+    case tgz  # same as tar.gz tar -zxvf $argv[1] case bz2  # tar compressed with bzip2
       tar -jxvf $argv[1]
     case rar
       unrar x $argv[1]
@@ -47,12 +45,16 @@ alias hikary-update-all='export TMPFILE="$(mktemp)"; \
       && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
       && hikary-drop-caches \
       && yay -Syyu --noconfirm'
+alias l 'g --icon -no-total-size --time --size --title --owner'
+alias lh 'g --icon -no-total-size --time --size --title -show-hidden --owner'
+
+set TARGET_SESSION "dev"
+set ZELLIJ_LAYOUTS "$HOME/.config/zellij/layout.kdl"
+alias zj 'zellij --layout $ZELLIJ_LAYOUTS attach -c $TARGET_SESSION'
 
 bind \cq 'clear; commandline -f repaint'
 
 # Directory abbreviations
-abbr -a -g lh 'g --icon -no-total-size --time --size --title -show-hidden --owner'
-abbr -a -g l 'g --icon -no-total-size --time --size --title --owner'
 abbr -a -g d 'dirs'
 abbr -a -g h 'cd $HOME'
 abbr -a -g m 'micro'
@@ -79,12 +81,6 @@ abbr -a -g wloff 'rfkill block wlan'																			# Block wlan, killing wif
 abbr -a -g wlon 'rfkill unblock wlan'																		# Unblock wlan, start wifi connection
 																							# Launch firefox
 
-# Source plugins
-# Useful plugins: archlinux bang-bang cd colorman sudope vcs
-if test -d "$HOME/.local/share/omf/pkg/colorman/"
-	source ~/.local/share/omf/pkg/colorman/init.fish
-end
-
 # Make su launch fish
 function su
    command su --shell=/usr/bin/fish $argv
@@ -109,11 +105,11 @@ function __history_previous_command_arguments
   end
 end
 
-set fish_color_autosuggestion '#7d7d7d'
-set fish_color_command --bold brcyan
-set fish_color_error '#ff6c6b'
-set fish_color_param brwhite
-set fish_pager_color_selected_completion blue
+# set fish_color_autosuggestion '#7d7d7d'
+# set fish_color_command --bold brcyan
+# set fish_color_error '#ff6c6b'
+# set fish_color_param brwhite
+# set fish_pager_color_selected_completion blue
 set fish_greeting
 set fzf_preview_dir_cmd g --icon -no-total-size --time --size --title --owner
 set fzf_preview_file_cmd cat -n
@@ -140,3 +136,4 @@ export __GL_THREADED_OPTIMIZATIONS=0
 export VISUAL="nvim"
 export EDITOR=nvim lazygit
 starship init fish | source
+

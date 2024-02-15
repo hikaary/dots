@@ -36,7 +36,7 @@ scratchpads = [
         [
             DropDown(
                 'main_app',
-                'alacritty -e ymcli',
+                'alacritty -e "./start_player.sh"',
                 height=0.535,
                 width=0.5,
                 x=0.25,
@@ -66,7 +66,7 @@ scratchpads = [
                 'keepassxc',
                 height=0.8,
                 width=0.3,
-                x=-0.2,
+                x=0.6,
                 y=0.1,
                 on_focus_lost_hide=False,
             ),
@@ -80,9 +80,21 @@ scratchpads = [
                 'hiddify',
                 height=0.4,
                 width=0.2,
-                x=-0.01,
+                x=0.79,
                 y=0.01,
-                on_focus_lost_hide=True,
+            ),
+        ],
+    ),
+    ScratchPad(
+        'ScratchDiscord',
+        [
+            DropDown(
+                'main_app',
+                'ripcord',
+                height=0.8,
+                width=0.25,
+                x=0.1,
+                y=0.1,
             ),
         ],
     ),
@@ -92,27 +104,27 @@ scratchpads = [
 groups_config: dict[int, dict] = {
     1: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
     2: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    3: {'screen': 0, 'layouts': layouts, 'layout': 'monadwide'},
-    4: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
-    5: {'screen': 2, 'layouts': layouts, 'layout': 'max'},
+    3: {'screen': 2, 'layouts': layouts, 'layout': 'monadwide'},
+    4: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
+    5: {'screen': 1, 'layouts': layouts, 'layout': 'max'},
     6: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
     7: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    8: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
-    9: {'screen': 2, 'layouts': layouts, 'layout': 'monadtall'},
-    0: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
+    8: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
+    9: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
+    0: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
 }
 
 
-def get_screen_number(group_number: int) -> int:
-    if Variables.monitors < 3:
-        return 0
-
-    return groups_config[group_number]['screen']
+def get_screen_number(group_config: dict) -> int:
+    screen_number = group_config['screen']
+    if Variables.monitors > screen_number:
+        return screen_number
+    return 0
 
 
 groups: list[Group | ScratchPad] = []
 for group_number, group_config in groups_config.items():
-    screen = get_screen_number(group_number)
+    screen = get_screen_number(group_config)
 
     matches = [
         Match(wm_class=wm_class) for wm_class in Variables.app_groups[group_number]

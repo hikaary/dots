@@ -5,10 +5,9 @@ from .variables import Colors
 
 layout_theme = {
     'border_width': 1,
-    'margin': 8,
+    'margin': 15,
     'border_focus': Colors.border_focus,
     'border_normal': Colors.border_normal,
-    'border_radius': 8,
 }
 
 floating_layout = layout.Floating(
@@ -21,6 +20,8 @@ floating_layout = layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
+        Match(wm_class='telegram-desktop'),
+        Match(wm_class='org.telegram.desktop'),
     ],
     **layout_theme,
 )

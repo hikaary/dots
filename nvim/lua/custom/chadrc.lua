@@ -3,8 +3,8 @@ local M = {}
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "everforest_green",
-  theme_toggle = { "everforest_green", "everforest" },
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "everforest" },
   hl_override = highlights.override,
   transparency = true,
 

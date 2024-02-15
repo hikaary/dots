@@ -8,7 +8,7 @@ from .variables import Colors, Variables
 
 widget_defaults = dict(
     font='Fira Code Nerd Font',
-    fontsize=14,
+    fontsize=18,
     padding=4,
     foreground=Colors.widget_foreground,
 )
@@ -66,9 +66,9 @@ def init_bar():
             margin_x=12,
             borderwidth=0,
             highlight_color=Colors.widget_foreground,
-            this_current_screen_border=Colors.widget_foreground,
+            this_current_screen_border=Colors.this_current_screen_border,
             foreground=Colors.widget_foreground,
-            active=Colors.widget_inactive_groups,
+            active=Colors.widget_active_groups,
             inactive=Colors.widget_inactive_groups,
         ),
         widget.Spacer(),
@@ -103,7 +103,7 @@ def init_bar():
         widgets.insert(
             -5,
             widget.WiFiIcon(
-                padding_y=9,
+                padding_y=12,
                 foreground=Colors.widget_foreground,
                 active_colour=Colors.widget_foreground,
             ),
@@ -121,16 +121,15 @@ def init_bar():
             -5,
             widget.Image(
                 filename=Variables.qconf + 'icons/no-wifi.svg',
-                margin_y=5,
+                margin_y=7,
             ),
         )
 
     return Bar(
         widgets=widgets,
         margin=calculate_margin(),
-        size=30,
-        # background=Colors.bar_background,
-        background='#00000070',
+        size=40,
+        background=Colors.bar_background,
         opacity=0.8,
     )
 

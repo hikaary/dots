@@ -49,12 +49,12 @@ M.general = {
       opts = { nowait = true },
     },
 
-    ["<A-j>"] = {
+    ["<C-j>"] = {
       ":m .+1<CR>==",
       "Move line down",
       opts = { nowait = true, silent = true },
     },
-    ["<A-k>"] = {
+    ["<C-k>"] = {
       ":m .-2<CR>==",
       "Move line up",
       opts = { nowait = true, silent = true },
@@ -94,8 +94,8 @@ M.general = {
   },
 
   v = {
-    ["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move up with Alt-j", opts = { silent = true } },
-    ["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move up with Alt-k", opts = { silent = true } },
+    ["<C-j>"] = { ":m '>+1<CR>gv=gv", "Move up with Alt-j", opts = { silent = true } },
+    ["<C-k>"] = { ":m '<-2<CR>gv=gv", "Move up with Alt-k", opts = { silent = true } },
   },
 }
 

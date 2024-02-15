@@ -1,6 +1,0 @@
-profile {
-  output DP-1 mode 1920x1080@60Hz position 930,580 transform 90
-  output DP-2 mode 2560x1440 position 2010,1280
-  output HDMI-A-1 mode 1920x1080 position 2440,200
-}
-

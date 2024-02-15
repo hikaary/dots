@@ -2,6 +2,7 @@ line-length = 88
 ignore-init-module-imports = true
 cache-dir = "~/.cache/ruff"
 output-format = "pylint"
+extend-ignore = ["E402"]
 
 [lint]
 select = ["I", "F"]

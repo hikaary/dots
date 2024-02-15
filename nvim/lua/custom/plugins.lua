@@ -87,8 +87,16 @@ local plugins = {
       require("numb").setup()
     end,
   },
+
   -- UI
-  --
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
   {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",

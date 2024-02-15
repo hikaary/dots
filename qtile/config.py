@@ -16,9 +16,13 @@ wl_input_rules = {
         kb_options='grp:caps_toggle',
     ),
     'type:touchpad': InputConfig(
+        drag=False,
+        drag_lock=False,
         tap=True,
+        scroll_button='two_finger',
+        accel_profile='adaptive',
         natural_scroll=True,
-        dwt=True,
+        pointer_accel=0,
     ),
 }
 

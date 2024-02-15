@@ -1,4 +1,4 @@
-import = ["/home/hikary/.config/alacritty/colors.toml", "/home/hikary/.config/alacritty/fonts.toml"]
+import = ["/home/hikary/.config/alacritty/colors.toml", "/home/hikary/.config/alacritty/fonts.toml" ]
 live_config_reload = true
 
 [env]
