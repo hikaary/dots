@@ -36,8 +36,8 @@ return {
       require("FTerm").setup({
         border = "single",
         dimensions = {
-          height = 0.9,
-          width = 0.9,
+          height = 0.7,
+          width = 0.7,
           x = 0.5,
           y = 0.5,
         },
