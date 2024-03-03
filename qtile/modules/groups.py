@@ -5,11 +5,11 @@ from .variables import Variables
 
 scratchpads = [
     ScratchPad(
-        'ScratchTerm',
+        "ScratchTerm",
         [
             DropDown(
-                'main_app',
-                'alacritty',
+                "main_app",
+                "kitty",
                 height=0.5,
                 width=0.35,
                 x=0.62,
@@ -19,11 +19,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchAudio',
+        "ScratchAudio",
         [
             DropDown(
-                'main_app',
-                'alacritty -e pulsemixer',
+                "main_app",
+                "kitty -e pulsemixer",
                 height=0.5,
                 width=0.35,
                 x=0.05,
@@ -32,11 +32,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchPlayer',
+        "ScratchPlayer",
         [
             DropDown(
-                'main_app',
-                'alacritty -e "./start_player.sh"',
+                "main_app",
+                'kitty -e "./start_player.sh"',
                 height=0.535,
                 width=0.5,
                 x=0.25,
@@ -45,11 +45,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchTG',
+        "ScratchTG",
         [
             DropDown(
-                'main_app',
-                'telegram-desktop',
+                "main_app",
+                "telegram-desktop",
                 height=0.8,
                 width=0.25,
                 x=0.1,
@@ -59,11 +59,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchKeePass',
+        "ScratchKeePass",
         [
             DropDown(
-                'main_app',
-                'keepassxc',
+                "main_app",
+                "keepassxc",
                 height=0.8,
                 width=0.3,
                 x=0.6,
@@ -73,11 +73,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchVPN',
+        "ScratchVPN",
         [
             DropDown(
-                'main_app',
-                'hiddify',
+                "main_app",
+                "hiddify",
                 height=0.4,
                 width=0.2,
                 x=0.79,
@@ -86,11 +86,11 @@ scratchpads = [
         ],
     ),
     ScratchPad(
-        'ScratchDiscord',
+        "ScratchDiscord",
         [
             DropDown(
-                'main_app',
-                'ripcord',
+                "main_app",
+                "ripcord",
                 height=0.8,
                 width=0.25,
                 x=0.1,
@@ -102,21 +102,21 @@ scratchpads = [
 
 
 groups_config: dict[int, dict] = {
-    1: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    2: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    3: {'screen': 2, 'layouts': layouts, 'layout': 'monadwide'},
-    4: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    5: {'screen': 1, 'layouts': layouts, 'layout': 'max'},
-    6: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    7: {'screen': 1, 'layouts': layouts, 'layout': 'monadtall'},
-    8: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    9: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
-    0: {'screen': 0, 'layouts': layouts, 'layout': 'monadtall'},
+    1: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
+    2: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
+    3: {"screen": 2, "layouts": layouts, "layout": "monadwide"},
+    4: {"screen": 0, "layouts": layouts, "layout": "monadtall"},
+    5: {"screen": 1, "layouts": layouts, "layout": "max"},
+    6: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
+    7: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
+    8: {"screen": 0, "layouts": layouts, "layout": "monadtall"},
+    9: {"screen": 0, "layouts": layouts, "layout": "monadtall"},
+    0: {"screen": 0, "layouts": layouts, "layout": "monadtall"},
 }
 
 
 def get_screen_number(group_config: dict) -> int:
-    screen_number = group_config['screen']
+    screen_number = group_config["screen"]
     if Variables.monitors > screen_number:
         return screen_number
     return 0
@@ -134,9 +134,9 @@ for group_number, group_config in groups_config.items():
         name=str(group_number),
         screen_affinity=screen,
         matches=matches,
-        layouts=group_config['layouts'],
-        layout=group_config['layout'],
-        label='',
+        layouts=group_config["layouts"],
+        layout=group_config["layout"],
+        label="",
     )
 
     groups.append(Group(**group_kwargs))  # type: ignore

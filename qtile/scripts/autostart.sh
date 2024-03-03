@@ -11,4 +11,5 @@ discord &
 
 swayidle -w \
       timeout 500 '~/.config/qtile/scripts/lock.sh'  
+      timeout 1000 'systemctl suspend'  
 
