@@ -15,6 +15,9 @@ map("v", "<C-j>", ":m .+1<CR>==", opts)
 map("v", "<C-k>", ":m .-2<CR>==", opts)
 map("n", "<leader>fe", "")
 
+-- buff
+map("n", "<leader>x", "<cmd>bd<CR>")
+
 map("n", "<C-c>", "<cmd> %y+ <CR>")
 
 -- nvimtree
@@ -22,7 +25,7 @@ map("n", "<C-e>", "<cmd> NvimTreeToggle <CR>")
 map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>")
 
 -- Split window
-map("n", "ss", ":split<Return>", opts)
+map("n", "sh", ":split<Return>", opts)
 map("n", "sv", ":vsplit<Return>", opts)
 
 -- Move window
@@ -38,5 +41,5 @@ map("n", "<C-S-k>", "<C-w>+")
 map("n", "<C-S-j>", "<C-w>-")
 
 -- Term
-map("n", "<C-f>", '<CMD>lua require("FTerm").toggle()<CR>')
-map("t", "<C-f>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+map("n", "<C-f>", '<CMD>lua require("nvterm.terminal").toggle("float")<CR>')
+map("t", "<C-f>", '<CMD>lua require("nvterm.terminal").toggle("float")<CR>')

@@ -31,3 +31,8 @@ vim.opt.list = true
 vim.opt.wrap = false
 vim.g.indent_blankline_show_current_context = false
 vim.opt.formatoptions:append({ "r" })
+
+vim.api.nvim_set_hl(0, "NormalFloat", {
+  fg = "none",
+  bg = "none",
+})

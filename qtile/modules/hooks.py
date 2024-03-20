@@ -24,7 +24,7 @@ def resize_telegram_viewer(window):
         return
 
     wm_class = window.get_wm_class()
-    if wm_class and wm_class[0] == 'org.telegram.desktop':
+    if wm_class and wm_class[0] == "org.telegram.desktop":
         window.enable_floating()
         window.toggle_maximize()
 
@@ -37,3 +37,6 @@ def screen_change(event):
 @hook.subscribe.screen_change
 def screen_change_final(event):
     lazy.reload_config()
+
+
+Popen(Variables.qconf + "scripts/wal.sh")

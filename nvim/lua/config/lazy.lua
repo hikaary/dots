@@ -31,7 +31,7 @@ require("lazy").setup({
     version = false,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   performance = {
     cache = {
       enabled = true,
@@ -45,6 +45,7 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
+        "shfmt",
       },
     },
   },

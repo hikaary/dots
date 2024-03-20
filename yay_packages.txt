@@ -19,3 +19,5 @@ ymcli-git
 way-displays
 lightdm-theme-neon-git
 web-greeter
+vesktop-bin
+pywal-git

@@ -69,7 +69,7 @@ return {
           local center_x = (screen_w - window_w) / 2
           local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
           return {
-            border = "rounded",
+            border = "none",
             relative = "editor",
             row = center_y,
             col = center_x,

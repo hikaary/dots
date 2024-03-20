@@ -104,3 +104,5 @@ xxkb
 zip
 firefox
 fprintd
+imagemagick
+jq

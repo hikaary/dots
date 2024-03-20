@@ -1,4 +1,5 @@
 import os
+import json
 from dataclasses import dataclass
 from os import path
 
@@ -83,13 +84,13 @@ class Variables:
         1: ["firefox"],
         2: [""],
         3: ["planify", "firefox"],
-        4: ["WebCord", "discord"],
+        4: ["WebCord", "discord", "besktop"],
         5: ["firefox", ""],
-        6: ["nekoray", "iwgtk", ""],
+        6: ["iwgtk", ""],
         7: [],
         8: ["keepassxc"],
         9: ["obsidian"],
-        0: [""],
+        0: ["nekoray", "xwaylandvideobridge"],
     }
     monitors = len(qtile.core.outputs)
 
@@ -106,15 +107,31 @@ class Variables:
 #     widget_inactive_groups = '#343743'
 
 
-@dataclass
-class Colors:
-    border_focus = "#b4befe"
-    border_normal = "#11111b"
+# @dataclass
+# class Colors:
+#     border_focus = "#b4befe"
+#     border_normal = "#11111b"
+#
+#     widget_foreground = "#cdd6f4"
+#     bar_background = "#11111b"
+#
+#     widget_background_groups = "#a6e3a1"
+#     widget_inactive_groups = "#6c7086"
+#     widget_active_groups = "#89b4fa"
+#     this_current_screen_border = "#a6e3a1"
 
-    widget_foreground = "#cdd6f4"
-    bar_background = "#11111b"
 
-    widget_background_groups = "#a6e3a1"
-    widget_inactive_groups = "#6c7086"
-    widget_active_groups = "#89b4fa"
-    this_current_screen_border = "#a6e3a1"
+class PywalColors:
+    def __init__(self):
+        wal_colors_path = os.path.expanduser("~/.cache/wal/colors.json")
+        with open(wal_colors_path) as f:
+            wal_colors = json.load(f)
+
+        self.focus = wal_colors["special"]["foreground"]  # Акцентный цвет
+        self.unfocus = wal_colors["special"]["background"]  # Фоновый цвет
+        self.active = wal_colors["colors"]["color4"]  # Активный элемент
+        self.inactive = wal_colors["colors"]["color2"]  # Неактивный элемент
+        self.highlight = wal_colors["colors"]["color1"]  # Выделение
+
+
+Colors = PywalColors()

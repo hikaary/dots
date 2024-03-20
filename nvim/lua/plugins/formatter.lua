@@ -8,6 +8,7 @@ return {
         lua = { "stylua" },
         python = { "ruff_format", "ruff_fix" },
         typst = { "prettypst_formatter" },
+        json = { "fixjson" },
       },
       formatters = {
         prettypst_formatter = {

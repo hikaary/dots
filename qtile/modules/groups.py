@@ -36,11 +36,13 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                'kitty -e "./start_player.sh"',
-                height=0.535,
-                width=0.5,
-                x=0.25,
-                y=0.25,
+                # 'kitty -e "./start_player.sh"',
+                # "'LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'",
+                "spotify",
+                height=0.4,
+                width=0.3,
+                x=0.65,
+                y=0.05,
             ),
         ],
     ),
@@ -82,19 +84,7 @@ scratchpads = [
                 width=0.2,
                 x=0.79,
                 y=0.01,
-            ),
-        ],
-    ),
-    ScratchPad(
-        "ScratchDiscord",
-        [
-            DropDown(
-                "main_app",
-                "ripcord",
-                height=0.8,
-                width=0.25,
-                x=0.1,
-                y=0.1,
+                on_focus_lost_hide=True,
             ),
         ],
     ),
@@ -104,7 +94,7 @@ scratchpads = [
 groups_config: dict[int, dict] = {
     1: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
     2: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
-    3: {"screen": 2, "layouts": layouts, "layout": "monadwide"},
+    3: {"screen": 2, "layouts": layouts, "layout": "max"},
     4: {"screen": 0, "layouts": layouts, "layout": "monadtall"},
     5: {"screen": 1, "layouts": layouts, "layout": "max"},
     6: {"screen": 1, "layouts": layouts, "layout": "monadtall"},
