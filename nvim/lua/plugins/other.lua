@@ -96,4 +96,13 @@ return {
       })
     end,
   },
+  -- {
+  --   "Wansmer/langmapper.nvim",
+  --   lazy = false,
+  --   priority = 100000,
+  --   config = function()
+  --     require("langmapper").setup({})
+  --     require("langmapper").automapping({ global = true, buffer = true })
+  --   end,
+  -- },
 }

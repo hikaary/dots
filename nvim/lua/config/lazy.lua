@@ -24,7 +24,6 @@ require("lazy").setup({
       },
     },
     { import = "plugins" },
-    { import = "lazyvim.plugins.extras.lang.python" },
   },
   defaults = {
     lazy = false,

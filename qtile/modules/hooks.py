@@ -30,13 +30,6 @@ def resize_telegram_viewer(window):
 
 
 @hook.subscribe.screen_change
-def screen_change(event):
+def screen_change(_):
     Variables.monitors = get_screens_count()
-
-
-@hook.subscribe.screen_change
-def screen_change_final(event):
     lazy.reload_config()
-
-
-Popen(Variables.qconf + "scripts/wal.sh")

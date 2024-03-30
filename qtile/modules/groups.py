@@ -36,8 +36,6 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                # 'kitty -e "./start_player.sh"',
-                # "'LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'",
                 "spotify",
                 height=0.4,
                 width=0.3,

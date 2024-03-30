@@ -18,18 +18,6 @@ widget_defaults = dict(
 sep = widget.Sep(padding=8, linewidth=2)
 
 
-def get_weather_token():
-    with open(Variables.home + "/.weather_token.txt", "r") as token_file:
-        return token_file.read().strip()
-
-
-weather_token = get_weather_token()
-
-
-def search():
-    qtile.cmd_spawn("rofi -show drun")
-
-
 def get_active_connection():
     result = subprocess.run(["ip", "route", "show"], capture_output=True, text=True)
     output = result.stdout
@@ -88,18 +76,15 @@ def init_bar():
             foreground=Colors.active,
         ),
         sep,
-        # widget.Weather(
-        #     location="LOCATION_CODE",
-        #     format="{main_temp} °{units_temperature} {weather_details}",
-        #     api_key=weather_token,
-        # ),
-        sep,
-        widget.CurrentLayoutIcon(
-            scale=0.55,
-            foreground=Colors.active,
-            use_mask=True,
+        widget.Wttr(
+            lang="ru",
+            location={
+                "Moscow": "Moscow",
+            },
+            format="%C %t %f",
+            units="m",
+            update_interval=30,
         ),
-        sep,
         widget.Prompt(
             bell_style="visual",
             font="JetBrains Mono Bold",

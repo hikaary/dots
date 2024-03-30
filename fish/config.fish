@@ -23,11 +23,33 @@ if status is-interactive
     end
 end
 
-set TERM xterm-256color # Sets the terminal type
-set EDITOR nvim # $EDITOR use Emacs in terminal
-set VISUAL nvim # $VISUAL use Emacs in GUI mode
+function load_env --description 'Load environment variables from a .env file'
+    set -l env_file_path $argv[1]
+    if test -z "$env_file_path"
+        set env_file_path ".env"
+    end
+
+    if test -f $env_file_path
+        for line in (cat $env_file_path)
+            set -l key_value (string split "=" $line)
+            if count $key_value >1
+                if string match -qr "^[a-zA-Z_]" -- $key_value[1]
+                    set -l trimmed_value (string trim -c \'\" $key_value[2])
+                    set -gx $key_value[1] $trimmed_value
+                    echo "Loaded: "$key_value[1]"="$trimmed_value
+                end
+            end
+        end
+    else
+        echo "The file "$env_file_path" does not exist."
+    end
+end
+
+set TERM xterm-256color
 set PYENV_ROOT "/home/hikary/.pyenv/"
-export PATH="$HOME/.cargo/bin:$PATH"
+set -gx EDITOR nvim
+set FZF_ALT_C_COMMAND "fd --type d"
+set FZF_DEFAULT_COMMAND "fd --type f"
 
 alias v nvim
 alias cat gat

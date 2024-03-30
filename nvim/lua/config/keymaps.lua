@@ -41,5 +41,7 @@ map("n", "<C-S-k>", "<C-w>+")
 map("n", "<C-S-j>", "<C-w>-")
 
 -- Term
-map("n", "<C-f>", '<CMD>lua require("nvterm.terminal").toggle("float")<CR>')
-map("t", "<C-f>", '<CMD>lua require("nvterm.terminal").toggle("float")<CR>')
+map("n", "<C-f>", "<cmd>lua _toggle_console()<CR>", { noremap = true, silent = true })
+map("t", "<C-f>", "<cmd>lua _toggle_console()<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")

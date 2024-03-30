@@ -17,21 +17,18 @@ temp_dir=$(mktemp -d)
 # Получаем список активных мониторов
 monitors=$(way-displays -g | grep 'name:' | awk '{print $2}' | tr -d "'")
 
-# Для каждого монитора создаем скриншот и применяем блюр
 for monitor in $monitors; do
 	screenshot_path="$temp_dir/$monitor.png"
 	grim -o "$monitor" "$screenshot_path"
 	convert "$screenshot_path" -blur 0x8 "$screenshot_path"
 done
 
-# Формируем аргументы для swaylock, используя цвета из pywal
 swaylock_args=()
 for monitor in $monitors; do
 	screenshot_path="$temp_dir/$monitor.png"
 	swaylock_args+=(--image "$monitor:$screenshot_path")
 done
 
-# Формируем аргументы для swaylock, используя цвета из pywal
 swaylock_args+=(
 	--inside-color "${color0}88"
 	--ring-color "$color1"

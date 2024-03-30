@@ -23,6 +23,7 @@ floating_layout = layout.Floating(
         Match(wm_class="telegram-desktop"),
         Match(wm_class="org.telegram.desktop"),
         Match(wm_class="nekoray"),
+        Match(wm_class="hiddify"),
     ],
     **layout_theme,
 )

@@ -29,25 +29,25 @@ def adjust_keyboard_backlight(action):
     else:
         new_value = max_brightness if current == 0 else 0
 
-    os.system(f"echo {new_value} | sudo tee {backlight_path}")
+    os.popen(f"echo {new_value} | sudo tee {backlight_path}")
 
 
 def adjust_brightness(action):
-    os.system(f"brightnessctl set {action}")
+    os.popen(f"brightnessctl set {action}")
     current_brightness = int(os.popen("brightnessctl get").read().rstrip())
     max_brightness = int(os.popen("brightnessctl max").read().rstrip())
     brightness_percentage = (current_brightness / max_brightness) * 100
-    os.system(f'notify-send "Brightness: {brightness_percentage:.0f}%"')
+    os.popen(f'notify-send "Brightness: {brightness_percentage:.0f}%"')
 
 
 def adjust_volume(action):
-    os.system(f"amixer -q set Master {action}")
+    os.popen(f"amixer -q set Master {action}")
     if action == "toggle":
         status = "Muted" if "off" in os.popen("amixer get Master").read() else "Unmuted"
-        os.system(f'notify-send "Volume: {status}"')
+        os.popen(f'notify-send "Volume: {status}"')
     else:
         volume = os.popen("amixer get Master | grep -oP '\[.*?%'").read().split("[")[1]
-        os.system(f'notify-send "Volume: {volume}"')
+        os.popen(f'notify-send "Volume: {volume}"')
 
 
 def get_screens_count():
@@ -84,7 +84,7 @@ class Variables:
         1: ["firefox"],
         2: [""],
         3: ["planify", "firefox"],
-        4: ["WebCord", "discord", "besktop"],
+        4: ["WebCord", "discord", "vesktop"],
         5: ["firefox", ""],
         6: ["iwgtk", ""],
         7: [],
@@ -93,32 +93,6 @@ class Variables:
         0: ["nekoray", "xwaylandvideobridge"],
     }
     monitors = len(qtile.core.outputs)
-
-
-# @dataclass
-# class Colors:
-#     border_focus = '#83c092'
-#     border_normal = '#11111b'
-#
-#     widget_foreground = '#D3C6AA'
-#     bar_background = '#1d2021'
-#
-#     widget_background_groups = '#343743'
-#     widget_inactive_groups = '#343743'
-
-
-# @dataclass
-# class Colors:
-#     border_focus = "#b4befe"
-#     border_normal = "#11111b"
-#
-#     widget_foreground = "#cdd6f4"
-#     bar_background = "#11111b"
-#
-#     widget_background_groups = "#a6e3a1"
-#     widget_inactive_groups = "#6c7086"
-#     widget_active_groups = "#89b4fa"
-#     this_current_screen_border = "#a6e3a1"
 
 
 class PywalColors:

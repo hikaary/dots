@@ -3,25 +3,23 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {
+        basedpyright = {
+          enabled = true,
           settings = {
-            python = {
+            basedpyright = {
               analysis = {
                 typeCheckingMode = "basic",
-                diagnosticMode = "openFilesOnly",
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                reportOptionalMemberAccess = false,
-                reportOptionalSubscript = false,
-                diagnosticSeverityOverrides = {
-                  reportPrivateImportUsage = "none",
-                  reportUndefinedVariable = "none",
-                },
-                maxLineLength = 88,
+                maxLineLength = 80,
+
+                reportMissingTypeStubs = "error",
+                reportUnknownVariableType = "error",
+                reportUnknownArgumentType = "error",
+                reportUnusedCallResult = "error",
               },
             },
           },
         },
+        pyright = { enabled = false },
       },
       setup = {
         ruff_lsp = function()
