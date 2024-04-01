@@ -36,7 +36,7 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                "spotify",
+                "kitty -e ncspot",
                 height=0.4,
                 width=0.3,
                 x=0.65,

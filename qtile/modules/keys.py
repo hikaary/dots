@@ -160,30 +160,16 @@ keys.extend(
             ],
             name="Brightness",
         ),
-    ]
-)
-
-
-# spotify  player
-keys.extend(
-    [
-        KeyChord(  # type: ignore
+        Key(
             [mod],
             "p",
-            [
-                Key(
-                    [],
-                    "a",
-                    lazy.group["ScratchPlayer"].dropdown_toggle("main_app"),
-                    desc="Music player",
-                ),
-                Key([], "n", lazy.spawn("spt playback -n")),
-                Key([], "t", lazy.spawn("spt playback -t")),
-            ],
-            name="Spotify",
+            lazy.group["ScratchPlayer"].dropdown_toggle("main_app"),
+            desc="Music player",
         ),
     ]
 )
+
+
 # float settings
 
 keys.extend(

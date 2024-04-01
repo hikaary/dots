@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Путь к файлу с цветами pywal
 wal_colors="$HOME/.cache/wal/colors.sh"
 
 # Загрузка цветов из pywal
@@ -11,10 +10,8 @@ else
 	exit 1
 fi
 
-# Создаем временную директорию для скриншотов
 temp_dir=$(mktemp -d)
 
-# Получаем список активных мониторов
 monitors=$(way-displays -g | grep 'name:' | awk '{print $2}' | tr -d "'")
 
 for monitor in $monitors; do
@@ -53,7 +50,5 @@ swaylock_args+=(
 	--font='Hack Nerd Font'            # Шрифт
 )
 
-# Запускаем swaylock с аргументами
 swaylock "${swaylock_args[@]}"
-# Очищаем временную директорию
 rm -r "$temp_dir"

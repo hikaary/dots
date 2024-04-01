@@ -7,6 +7,9 @@ import psutil
 from libqtile import qtile
 
 
+import subprocess
+
+
 def is_battery_present():
     battery = psutil.sensors_battery()
     return battery is not None
@@ -29,29 +32,51 @@ def adjust_keyboard_backlight(action):
     else:
         new_value = max_brightness if current == 0 else 0
 
-    os.popen(f"echo {new_value} | sudo tee {backlight_path}")
+    # Используем subprocess.run вместо os.popen
+    subprocess.run(
+        ["sudo", "tee", backlight_path], input=str(new_value).encode(), check=True
+    )
 
 
 def adjust_brightness(action):
-    os.popen(f"brightnessctl set {action}")
-    current_brightness = int(os.popen("brightnessctl get").read().rstrip())
-    max_brightness = int(os.popen("brightnessctl max").read().rstrip())
-    brightness_percentage = (current_brightness / max_brightness) * 100
-    os.popen(f'notify-send "Brightness: {brightness_percentage:.0f}%"')
+    subprocess.run(["brightnessctl", "set", action], check=True)
+    current_brightness = subprocess.run(
+        ["brightnessctl", "get"], capture_output=True, text=True
+    ).stdout.strip()
+    max_brightness = subprocess.run(
+        ["brightnessctl", "max"], capture_output=True, text=True
+    ).stdout.strip()
+    brightness_percentage = (int(current_brightness) / int(max_brightness)) * 100
+    subprocess.run(["notify-send", f"Brightness: {brightness_percentage:.0f}%"])
 
 
 def adjust_volume(action):
-    os.popen(f"amixer -q set Master {action}")
+    subprocess.run(f"amixer -q set Master {action}", shell=True)
     if action == "toggle":
-        status = "Muted" if "off" in os.popen("amixer get Master").read() else "Unmuted"
-        os.popen(f'notify-send "Volume: {status}"')
+        result = subprocess.run(
+            "amixer get Master", capture_output=True, text=True, shell=True
+        )
+        status = "Muted" if "off" in result.stdout else "Unmuted"
+        subprocess.run(["notify-send", f"Volume: {status}"])
     else:
-        volume = os.popen("amixer get Master | grep -oP '\[.*?%'").read().split("[")[1]
-        os.popen(f'notify-send "Volume: {volume}"')
+        result = subprocess.run(
+            "amixer get Master | grep -oP '\\[.*?%'",
+            capture_output=True,
+            text=True,
+            shell=True,
+        )
+        volume = result.stdout.split("[")[1]
+        subprocess.run(["notify-send", f"Volume: {volume}"])
 
 
 def get_screens_count():
-    items = os.popen("way-displays -g | grep -E \"  'eDP-|  'DP-\"").read().split("\n")
+    result = subprocess.run(
+        "way-displays -g | grep -E \"  'eDP-|  'DP-\"",
+        capture_output=True,
+        text=True,
+        shell=True,
+    )
+    items = result.stdout.split("\n")
     return len(items) - 1
 
 

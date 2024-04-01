@@ -106,3 +106,4 @@ firefox
 fprintd
 imagemagick
 jq
+ncspot
