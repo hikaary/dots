@@ -32,7 +32,6 @@ def adjust_keyboard_backlight(action):
     else:
         new_value = max_brightness if current == 0 else 0
 
-    # Используем subprocess.run вместо os.popen
     subprocess.run(
         ["sudo", "tee", backlight_path], input=str(new_value).encode(), check=True
     )
@@ -101,6 +100,7 @@ class Variables:
     brightness_sh = qconf + "scripts/brightness.sh"
     sleep = "slock && systemctl suspend"
     rofi = home + "/.config/rofi/launchers/type-7/launcher.sh"
+    rofi_wifi = 'ROFI_COMMAND="rofi -dmenu -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi" rofi-connman'
     bluetooth = qconf + "scripts/bluetooth.sh"
     sstool = qconf + "scripts/sstool"
 
@@ -112,10 +112,10 @@ class Variables:
         4: ["WebCord", "discord", "vesktop"],
         5: ["firefox", ""],
         6: ["iwgtk", ""],
-        7: [],
+        7: ["EasyEffects"],
         8: ["keepassxc"],
         9: ["obsidian"],
-        0: ["nekoray", "xwaylandvideobridge"],
+        0: ["easyeffects", "xwaylandvideobridge"],
     }
     monitors = len(qtile.core.outputs)
 

@@ -107,3 +107,4 @@ fprintd
 imagemagick
 jq
 ncspot
+easyeffects

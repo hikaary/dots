@@ -1,3 +1,5 @@
+import os
+import subprocess
 from libqtile.command import lazy
 from libqtile.config import Key, KeyChord, ScratchPad
 
@@ -102,6 +104,12 @@ keys = [
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
     Key([mod], "d", lazy.spawncmd()),
     Key([mod], "s", lazy.spawn(Variables.bluetooth), desc="Launch Bluetooth"),
+    Key(
+        [mod],
+        "w",
+        lazy.function(lambda _: os.popen(Variables.rofi_wifi)),
+        desc="Launch wifi manager",
+    ),
     Key([mod], "c", lazy.layout.maximize(), desc="Toggle maximize"),
     Key([mod, "shift"], "P", lazy.spawn(Variables.sstool), desc="Take screenshot"),
 ]

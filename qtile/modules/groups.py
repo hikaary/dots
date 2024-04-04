@@ -118,6 +118,9 @@ for group_number, group_config in groups_config.items():
         Match(wm_class=wm_class) for wm_class in Variables.app_groups[group_number]
     ]
 
+    if not group_number:
+        matches.append(Match(title="Easy Effects"))
+
     group_kwargs = dict(
         name=str(group_number),
         screen_affinity=screen,

@@ -64,7 +64,7 @@ alias .5='cd ../../../../..'
 alias hikary-drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
 alias hikary-update-all='export TMPFILE="$(mktemp)"; \
     sudo true; \
-    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+    rate-mirrors --save=$TMPFILE artix \
       && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
       && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
       && hikary-drop-caches \

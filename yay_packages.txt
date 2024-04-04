@@ -2,7 +2,6 @@ debtap
 downgrade
 g-ls
 gat
-nekoray
 rate-mirrors
 tableplus
 xplorer-bin
@@ -14,3 +13,6 @@ auto-cpufreq
 way-displays
 vesktop-bin
 pywal-git
+lsp-plugins
+calf
+rofi-connman

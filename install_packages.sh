@@ -2,6 +2,7 @@
 
 echo "Установка yay..."
 
+sudo pacman -S --noconfirm go
 # Установка yay
 rm -rf yay
 git clone https://aur.archlinux.org/yay.git
