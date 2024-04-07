@@ -94,7 +94,7 @@ class Variables:
     adjust_volume = adjust_volume
     adjust_keyboard_backlight = adjust_keyboard_backlight
 
-    terminal = "kitty"
+    terminal = "env -u WAYLAND_DISPLAY alacritty"
     float_terminal = terminal + " --class float_terminal"
     lock_sh = qconf + "scripts/lock.sh"
     brightness_sh = qconf + "scripts/brightness.sh"
@@ -108,7 +108,7 @@ class Variables:
     app_groups = {
         1: ["firefox"],
         2: [""],
-        3: ["planify", "firefox"],
+        3: ["planify", "firefox", "min"],
         4: ["WebCord", "discord", "vesktop"],
         5: ["firefox", ""],
         6: ["iwgtk", ""],

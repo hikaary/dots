@@ -7,6 +7,7 @@ way-displays &
 easyeffects & 
 dunst &
 firefox &
+min-browser & 
 obsidian &
 vesktop &
 nekoray &

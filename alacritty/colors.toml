@@ -1,27 +1,3 @@
-# [colors.bright]
-# black = "#2b3339"
-# blue = "#83c092"
-# yellow = "#dbbc7f"
-# green = "#7393b3"
-# red = "#e67e80"
-# cyan = "#95d1c9"
-# magenta = "#ecafcc"
-# white = "#B5BCC9"
-#
-# [colors.normal]
-# black = "#2b3339"
-# blue = "#83c092"
-# yellow = "#dbbc7f"
-# green = "#7393b3"
-# red = "#e67e80"
-# cyan = "#95d1c9"
-# magenta = "#ecafcc"
-# white = "#B5BCC9"
-#
-# [colors.primary]
-# background = "#1E2128"
-# foreground = "#D3C6AA"
-#
 [colors.primary]
 background = "#1e1e2e"
 foreground = "#CDD6F4"

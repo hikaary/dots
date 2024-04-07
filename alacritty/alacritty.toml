@@ -1,4 +1,4 @@
-import = ["/home/hikary/.config/alacritty/colors.toml", "/home/hikary/.config/alacritty/fonts.toml" ]
+import = ["/home/hikary/.config/alacritty/catppuccin-macchiato.toml", "/home/hikary/.config/alacritty/fonts.toml" ]
 live_config_reload = true
 
 [env]
@@ -13,8 +13,14 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [window]
-opacity = 0.8
+opacity = 0.5
 
 [window.padding]
 x = 0
 y = 0
+
+[cursor]
+smooth_motion = true
+smooth_motion_factor = 0.3
+smooth_motion_spring = 0.9
+block_replace_shape = "block"

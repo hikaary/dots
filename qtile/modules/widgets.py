@@ -76,15 +76,15 @@ def init_bar():
             foreground=Colors.active,
         ),
         sep,
-        widget.Wttr(
-            lang="ru",
-            location={
-                "Moscow": "Moscow",
-            },
-            format="%C %t %f",
-            units="m",
-            update_interval=30,
-        ),
+        # widget.Wttr(
+        #     lang="ru",
+        #     location={
+        #         "Moscow": "Moscow",
+        #     },
+        #     format="%C %t %f",
+        #     units="m",
+        #     update_interval=30,
+        # ),
         widget.Prompt(
             bell_style="visual",
             font="JetBrains Mono Bold",

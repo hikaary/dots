@@ -113,3 +113,5 @@ spotify-tui
 spotifyd
 ncspot/userstate.cbor
 VirtualBox
+@proton/cli-nodejs
+Min

@@ -16,3 +16,4 @@ pywal-git
 lsp-plugins
 calf
 rofi-connman
+alacritty-smooth-cursor-git
