@@ -109,7 +109,6 @@ spotify
 vesktop
 GitKraken
 protonmail/bridge-v3
-spotify-tui
 spotifyd
 ncspot/userstate.cbor
 VirtualBox
@@ -118,3 +117,5 @@ Min
 Beeper
 Proton Mail
 proton-mail-viewer
+spotify-tui/.spotify_token_cache.json
+spotify-tui/client.yml
