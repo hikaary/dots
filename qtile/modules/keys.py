@@ -1,15 +1,29 @@
 import os
-import subprocess
 from libqtile.command import lazy
 from libqtile.config import Key, KeyChord, ScratchPad
 
 from .groups import groups
-from .variables import Variables
+from .variables import Colors, Variables
+from libqtile import extension
 
 mod = "mod4"
 
 
 keys = [
+    Key(
+        [mod],
+        "d",
+        lazy.run_extension(
+            extension.DmenuRun(
+                font="JetBrainsMono Nerd Font",
+                fontsize="12",
+                background=Colors.base,
+                foreground=Colors.active,
+                selected_background=Colors.inactive,
+                selected_foreground=Colors.active,
+            )
+        ),
+    ),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -102,7 +116,6 @@ keys = [
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
-    Key([mod], "d", lazy.spawncmd()),
     Key([mod], "s", lazy.spawn(Variables.bluetooth), desc="Launch Bluetooth"),
     Key(
         [mod],
@@ -111,7 +124,8 @@ keys = [
         desc="Launch wifi manager",
     ),
     Key([mod], "c", lazy.layout.maximize(), desc="Toggle maximize"),
-    Key([mod, "shift"], "P", lazy.spawn(Variables.sstool), desc="Take screenshot"),
+    Key([mod, "shift"], "p", lazy.spawn(Variables.sstool), desc="Take screenshot"),
+    Key([mod, "shift"], "l", lazy.spawn(Variables.lock_sh), desc="Lock"),
 ]
 
 # functions keys

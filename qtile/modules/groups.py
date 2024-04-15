@@ -9,7 +9,7 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                "kitty",
+                Variables.terminal,
                 height=0.5,
                 width=0.35,
                 x=0.62,
@@ -23,7 +23,7 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                "kitty -e pulsemixer",
+                Variables.terminal + " -e pulsemixer",
                 height=0.5,
                 width=0.35,
                 x=0.05,
@@ -36,10 +36,10 @@ scratchpads = [
         [
             DropDown(
                 "main_app",
-                "kitty -e ncspot",
-                height=0.4,
-                width=0.3,
-                x=0.65,
+                Variables.terminal + " -e spt",
+                height=0.8,
+                width=0.4,
+                x=0.55,
                 y=0.05,
             ),
         ],
@@ -114,9 +114,7 @@ groups: list[Group | ScratchPad] = []
 for group_number, group_config in groups_config.items():
     screen = get_screen_number(group_config)
 
-    matches = [
-        Match(wm_class=wm_class) for wm_class in Variables.app_groups[group_number]
-    ]
+    matches = [Match(title=wm_class) for wm_class in Variables.app_groups[group_number]]
 
     if not group_number:
         matches.append(Match(title="Easy Effects"))

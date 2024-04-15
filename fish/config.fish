@@ -53,7 +53,7 @@ set FZF_DEFAULT_COMMAND "fd --type f"
 
 alias v nvim
 alias cat gat
-alias s sudo
+alias s doas
 alias t bpytop
 alias ch 'cd ~/'
 alias ..='cd ..'
@@ -74,7 +74,7 @@ alias lh 'g --icon -no-total-size --time --size --title -show-hidden --owner'
 
 set TARGET_SESSION dev
 set ZELLIJ_LAYOUTS "$HOME/.config/zellij/layout.kdl"
-alias zj 'zellij --layout $ZELLIJ_LAYOUTS attach -c $TARGET_SESSION'
+alias zj 'zellij --layout $ZELLIJ_LAYOUTS attach -c $TARGET_SESSION options --theme catppuccin-mocha'
 
 bind \cq 'clear; commandline -f repaint'
 

@@ -2,7 +2,6 @@
 
 wal_colors="$HOME/.cache/wal/colors.sh"
 
-# Загрузка цветов из pywal
 if [ -f "$wal_colors" ]; then
 	source "$wal_colors"
 else

@@ -357,12 +357,12 @@ error() {
 }
 
 # Check if bluetooth daemon is running. Start it if possible.
-if command_present systemctl; then
-    systemctl is-active --quiet bluetooth
+if command_present dinitctl; then
+    dinitctl status  bluetooth
     case $? in
         3)
             error "Bluetooth daemon is not running" "Start it to use this script"
-            systemctl start bluetooth || exit 3
+            dinitctl start bluetooth || exit 3
             ;;
         4)
             error "Bluetooth daemon is not present" "On Arch Linux install bluez and bluez-utils packages"

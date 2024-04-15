@@ -6,8 +6,8 @@ from .variables import Colors
 layout_theme = {
     "border_width": 1,
     "margin": 15,
-    "border_focus": Colors.focus,
-    "border_normal": Colors.unfocus,
+    "border_focus": Colors.Lavender,
+    "border_normal": Colors.Crust,
 }
 
 floating_layout = layout.Floating(
