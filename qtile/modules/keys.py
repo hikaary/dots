@@ -125,7 +125,7 @@ keys = [
     ),
     Key([mod], "c", lazy.layout.maximize(), desc="Toggle maximize"),
     Key([mod, "shift"], "p", lazy.spawn(Variables.sstool), desc="Take screenshot"),
-    Key([mod, "shift"], "l", lazy.spawn(Variables.lock_sh), desc="Lock"),
+    Key([mod, "shift"], "i", lazy.spawn(Variables.lock_sh), desc="Lock"),
 ]
 
 # functions keys

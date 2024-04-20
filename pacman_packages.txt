@@ -90,3 +90,4 @@ ncspot
 easyeffects
 swaylock
 xclip
+zenity

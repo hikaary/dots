@@ -12,7 +12,7 @@ qutebrowser &
 firefox & 
 obsidian &
 vesktop &
-spotifyd --config-path /home/hikary/.config/spotifyd --no-daemon &
+spotifyd --config-path /home/hikary/.config/spotifyd --no-daemon --proxy socks5://localhost:1080 &
 swayidle -w \
 	timeout 500 '~/.config/qtile/scripts/lock.sh' 
   # timeout 1000 'systemctl suspend'

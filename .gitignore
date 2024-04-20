@@ -119,3 +119,6 @@ Proton Mail
 proton-mail-viewer
 spotify-tui/.spotify_token_cache.json
 spotify-tui/client.yml
+fish/conf.d
+proxy.json
+vpn.json

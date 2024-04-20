@@ -1,15 +1,10 @@
 debtap
 downgrade
 g-ls
-gat
 rate-mirrors
-tableplus
-xplorer-bin
-hiddify-next-bin
 qtile-extras
 python-psutil
 python-dbus-next
-auto-cpufreq
 way-displays
 vesktop-bin
 pywal-git
@@ -18,3 +13,4 @@ calf
 rofi-connman
 alacritty-smooth-cursor-git
 qutebrowser
+sing-box
