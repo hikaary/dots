@@ -1,0 +1,21 @@
+import = ["/home/hikary/.config/alacritty/catppuccin-macchiato.toml", "/home/hikary/.config/alacritty/fonts.toml" ]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[window]
+opacity = 0.5
+
+[window.padding]
+x = 0
+y = 0
+
