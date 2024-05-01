@@ -161,3 +161,15 @@ export __GL_THREADED_OPTIMIZATIONS=0
 export VISUAL="nvim"
 export EDITOR=nvim lazygit
 starship init fish | source
+set dbus_data (dbus-launch --sh-syntax)
+for line in $dbus_data
+    set line (string replace 'export ' '' $line)
+    set line (string trim -c ';' $line)
+    set line (string replace "'" '' $line)
+    set line (string replace "'" '' $line)
+    set -l key (echo $line | cut -d'=' -f1)
+    set -l value (echo $line | cut -d'=' -f2- | string trim -c ';')
+    if not test $value = DBUS_SESSION_BUS_ADDRESS
+        set -gx $key $value
+    end
+end

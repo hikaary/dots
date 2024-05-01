@@ -12,5 +12,4 @@ lsp-plugins
 calf
 rofi-connman
 alacritty-smooth-cursor-git
-qutebrowser
-sing-box
+networkmanager-dmenu-bluetoothfix-git

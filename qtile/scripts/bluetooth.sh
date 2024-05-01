@@ -319,7 +319,7 @@ show_menu() {
 
 # dmenu command to pipe into. Extra arguments to dmenu-bluetooth are passed through to dmenu. This
 # allows the user to set fonts, sizes, colours, etc.
-DMENU_BLUETOOTH_LAUNCHER="rofi -dmenu -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi"
+DMENU_BLUETOOTH_LAUNCHER="wofi -c '~/.config/wofi/wofi' -s '~/.config/wofi/wofi.css' --show dmenu"
 run_dmenu() {
     $DMENU_BLUETOOTH_LAUNCHER -i -p "$DMENU_BLUETOOTH_PROMPT" "${dmenu_args[@]}"
 }

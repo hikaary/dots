@@ -3,7 +3,7 @@ from libqtile.command import lazy
 from libqtile.config import Key, KeyChord, ScratchPad
 
 from .groups import groups
-from .variables import Colors, Variables
+from .variables import Variables
 from libqtile import extension
 
 mod = "mod4"
@@ -17,10 +17,10 @@ keys = [
             extension.DmenuRun(
                 font="JetBrainsMono Nerd Font",
                 fontsize="12",
-                background=Colors.base,
-                foreground=Colors.active,
-                selected_background=Colors.inactive,
-                selected_foreground=Colors.active,
+                background="#24273a",
+                foreground="#cad3f5",
+                selected_background="#181926",
+                selected_foreground="#91d7e3",
             )
         ),
     ),
@@ -120,7 +120,7 @@ keys = [
     Key(
         [mod],
         "w",
-        lazy.function(lambda _: os.popen(Variables.rofi_wifi)),
+        lazy.function(lambda _: os.popen(Variables.wifi_manager)),
         desc="Launch wifi manager",
     ),
     Key([mod], "c", lazy.layout.maximize(), desc="Toggle maximize"),

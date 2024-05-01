@@ -99,17 +99,16 @@ class Variables:
     lock_sh = qconf + "scripts/lock.sh"
     brightness_sh = qconf + "scripts/brightness.sh"
     sleep = "slock && systemctl suspend"
-    rofi = home + "/.config/rofi/launchers/type-7/launcher.sh"
-    rofi_wifi = 'ROFI_COMMAND="rofi -dmenu -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi" rofi-connman'
+    wifi_manager = "networkmanager_dmenu"
     bluetooth = qconf + "scripts/bluetooth.sh"
     sstool = qconf + "scripts/sstool"
 
     autostart_sh = qconf + "scripts/autostart.sh"
     app_groups = {
-        1: ["qutebrowser"],
+        1: ["firefox"],
         2: [""],
-        3: ["planify", "firefox", "min", "Beeper"],
-        4: ["WebCord", "discord", "vesktop"],
+        3: ["planify", "Beeper"],
+        4: ["WebCord", "discord", "vesktop", "Vesktop"],
         5: ["firefox", ""],
         6: ["iwgtk", ""],
         7: ["EasyEffects"],

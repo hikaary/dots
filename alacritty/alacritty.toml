@@ -19,8 +19,3 @@ opacity = 0.5
 x = 0
 y = 0
 
-[cursor]
-smooth_motion = true
-smooth_motion_factor = 0.3
-smooth_motion_spring = 0.9
-block_replace_shape = "block"
