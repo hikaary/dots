@@ -173,3 +173,7 @@ for line in $dbus_data
         set -gx $key $value
     end
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

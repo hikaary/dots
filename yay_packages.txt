@@ -13,3 +13,5 @@ calf
 rofi-connman
 alacritty-smooth-cursor-git
 networkmanager-dmenu-bluetoothfix-git
+ttf-material-icons-git
+nerd-fonts-complete-mono-glyphs

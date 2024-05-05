@@ -1,4 +1,5 @@
 return {
+  { "elkowar/yuck.vim" },
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
