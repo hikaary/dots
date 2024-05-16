@@ -2,15 +2,17 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = require "configs.cmp",
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
     dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        after = "nvim-cmp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = function(_, opts)
-          require("luasnip.loaders.from_vscode").load {}
-        end,
-      },
+      "rafamadriz/friendly-snippets",
+      "fivethree-team/vscode-svelte-snippets",
     },
+    event = "InsertEnter",
+    after = "nvim-cmp",
   },
 }

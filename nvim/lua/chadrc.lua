@@ -2,8 +2,18 @@
 local M = {}
 
 M.ui = {
-  theme = "penumbra_dark",
-  transparency = true,
+  theme = "catppuccin",
+  statusline = {
+    order = {
+      "mode",
+      "file",
+      "git",
+      "%=",
+      "diagnostics",
+      "cwd",
+      "cursor",
+    },
+  },
 }
 
 return M

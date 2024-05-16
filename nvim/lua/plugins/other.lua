@@ -12,6 +12,7 @@ return {
         update_n_lines = "gzn", -- Update `n_lines`
       },
     },
+    lazy = false,
   },
   {
     "kdheepak/lazygit.nvim",
@@ -33,38 +34,7 @@ return {
   {
     "echasnovski/mini.comment",
     event = "VeryLazy",
-    opts = {
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-        end,
-      },
-    },
-  },
-  {
-    "michaelrommel/nvim-silicon",
-    lazy = true,
-    cmd = "Silicon",
-    init = function()
-      local wk = require "which-key"
-      wk.register({
-        ["<leader>sc"] = { ":Silicon<CR>", "Snapshot Code" },
-      }, { mode = "v" })
-    end,
-    config = function()
-      require("silicon").setup {
-        font = "JetBrainsMono Nerd Font=34; Noto Color Emoji=34",
-        theme = "Dracula",
-        background = "#94e2d5",
-        window_title = function()
-          return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
-        end,
-      }
-    end,
-  },
-  {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     opts = {
       options = {
         custom_commentstring = function()
@@ -76,5 +46,6 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
   },
 }

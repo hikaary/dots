@@ -3,15 +3,8 @@ downgrade
 g-ls
 rate-mirrors
 qtile-extras
-python-psutil
-python-dbus-next
 way-displays
 vesktop-bin
-pywal-git
-lsp-plugins
-calf
-rofi-connman
-alacritty-smooth-cursor-git
 networkmanager-dmenu-bluetoothfix-git
 ttf-material-icons-git
 nerd-fonts-complete-mono-glyphs

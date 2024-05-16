@@ -39,7 +39,14 @@ map("t", "<C-f>", "<cmd>lua _toggle_console()<CR>", opts)
 
 -- telescope
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
+map("n", "<leader>w", "<cmd> Telescope buffers <CR>")
+map("n", "<space>ss", "<cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>")
 
 map({ "n", "t" }, "<C-f>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm", float_opts = {} }
 end)
+
+map("n", "<leader>e", "<cmd>lua require('mini.files').open()<CR>")
+
+-- split
+map("n", "<leader>sv", "<cmd>:vsplit<CR>")
