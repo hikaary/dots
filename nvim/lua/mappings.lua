@@ -8,6 +8,7 @@ map("n", "<Leader>q", ":quit<Return>", opts)
 map("n", ";", ":")
 map("n", "<C-j>", ":m .+1<CR>==", opts)
 map("n", "<C-k>", ":m .-2<CR>==", opts)
+map("n", "<leader>h", "", opts)
 map("v", "<C-j>", ":m .+1<CR>==", opts)
 map("v", "<C-k>", ":m .-2<CR>==", opts)
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -40,7 +41,6 @@ map("t", "<C-f>", "<cmd>lua _toggle_console()<CR>", opts)
 -- telescope
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>w", "<cmd> Telescope buffers <CR>")
-map("n", "<space>ss", "<cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>")
 
 map({ "n", "t" }, "<C-f>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm", float_opts = {} }
@@ -50,3 +50,11 @@ map("n", "<leader>e", "<cmd>lua require('mini.files').open()<CR>")
 
 -- split
 map("n", "<leader>sv", "<cmd>:vsplit<CR>")
+
+-- buffers
+map("n", "<leader>bn", ":enew<CR>", opts)
+
+map("n", "<S-h>", ":bprevious<CR>", opts)
+map("n", "<S-l>", ":bnext<CR>", opts)
+
+map("n", "<leader>q", ":bdelete<CR>", opts)

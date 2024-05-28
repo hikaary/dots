@@ -5,15 +5,14 @@ local servers = {
   awk_ls = {},
   bashls = {},
 
-  pyright = { enabled = false },
   basedpyright = {
     enabled = true,
     settings = {
       basedpyright = {
         analysis = {
-          typeCheckingMode = "basic",
+          ignore = { "*" },
           maxLineLength = 80,
-
+          typeCheckingMode = "basic",
           reportMissingTypeStubs = "error",
           reportUnknownVariableType = "error",
           reportUnknownArgumentType = "error",
@@ -33,18 +32,14 @@ for name, opts in pairs(servers) do
 end
 
 require("lspconfig").ruff_lsp.setup {
-  on_init = configs.on_init,
-  capabilities = configs.capabilities,
-  on_attach = function(client, _)
-    if client.name == "ruff_lsp" then
-      client.server_capabilities.hoverProvider = false
-    end
-  end,
+  init_options = {
+    settings = {
+      args = {
+        "--select=E,F,UP,N,I,ASYNC,S,PTH",
+        "--line-length=79",
+        "--respect-gitignore",
+        "--target-version=py311",
+      },
+    },
+  },
 }
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format { bufnr = args.buf }
-  end,
-})

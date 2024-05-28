@@ -9,6 +9,21 @@ return {
     },
     event = "VeryLazy",
     keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    config = function()
+      require("venv-selector").setup()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "VenvSelectActivated",
+        callback = function()
+          require "configs.ale"
+        end,
+      })
+    end,
+  },
+  {
+    "dense-analysis/ale",
+    config = function()
+      require "configs.ale"
+    end,
     lazy = false,
   },
   {
