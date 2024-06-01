@@ -36,7 +36,7 @@ local function ensure_tool(tool_name, callback)
       end)
     end)
 
-    vim.loop.read_start(stdout, function(err, data)
+    vim.loop.read_start(stdout, function(err, _)
       if err then
         vim.schedule(function()
           vim.notify("Error: " .. err, vim.log.levels.ERROR)
@@ -44,7 +44,7 @@ local function ensure_tool(tool_name, callback)
       end
     end)
 
-    vim.loop.read_start(stderr, function(err, data)
+    vim.loop.read_start(stderr, function(err, _)
       if err then
         vim.schedule(function()
           vim.notify("Error: " .. err, vim.log.levels.ERROR)
@@ -58,17 +58,12 @@ vim.g.ale_fixers = {
   python = { "ruff_format", "ruff" },
 }
 vim.g.ale_linters = {
-  python = { "pyre", "ruff" },
+  python = { "ruff" },
 }
 
 vim.g.ale_linters_explicit = 1
 vim.g.ale_fix_on_save = 1
-vim.g.ale_python_ruff_options =
-  "--select=E,F,UP,N,I,ASYNC,S,PTH --line-length=79 --respect-gitignore --target-version=py311"
-
-ensure_tool("pyre", function(path)
-  vim.g.ale_python_pyre_executable = path
-end)
+vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"
 
 ensure_tool("ruff", function(ruff_path)
   vim.g.ale_python_ruff_executable = ruff_path

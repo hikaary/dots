@@ -52,6 +52,7 @@ set FZF_ALT_C_COMMAND "fd --type d"
 set FZF_DEFAULT_COMMAND "fd --type f"
 
 alias v nvim
+alias ta 'tmux attach'
 alias cat gat
 alias s doas
 alias t bpytop
@@ -177,4 +178,3 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-tmux attach
