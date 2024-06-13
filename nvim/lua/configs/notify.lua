@@ -1,7 +1,9 @@
 local api = vim.api
 local stages = require "notify.stages.fade_in_slide_out" "top_down"
 local base = require "notify.render.base"
+require("notify").setup { background_colour = "#00000000" }
 return {
+  background_colour = "#00000000",
   render = function(bufnr, notif, highlights, config)
     local max_message_width = math.max(math.max(unpack(vim.tbl_map(function(line)
       return vim.fn.strchars(line)

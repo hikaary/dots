@@ -2,7 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = "decay",
+  transparency = true,
+  theme = "onedark",
   statusline = {
     order = {
       "mode",
@@ -13,6 +14,15 @@ M.ui = {
       "cwd",
       "cursor",
     },
+  },
+
+  tabufline = {
+    enabled = false,
+  },
+
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
   },
 }
 

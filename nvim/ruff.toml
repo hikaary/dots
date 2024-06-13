@@ -20,6 +20,7 @@ select = [
     "C4",  
     "UP", 
 ]
+ignore = ["B008"]
 
 [lint.flake8-annotations]
 mypy-init-return = true

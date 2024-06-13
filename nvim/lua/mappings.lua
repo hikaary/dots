@@ -9,14 +9,30 @@ map("n", ";", ":")
 map("n", "<C-j>", ":m .+1<CR>==", opts)
 map("n", "<C-k>", ":m .-2<CR>==", opts)
 map("n", "<leader>h", "", opts)
-map("v", "<C-j>", ":m .+1<CR>==", opts)
-map("v", "<C-k>", ":m .-2<CR>==", opts)
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
--- buffer
-map("n", "<leader>x", "<cmd>bd<CR>")
-map("n", "<C-c>", "<cmd> %y+ <CR>")
+-- move lines
+map("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)
+
+-- Harpoon
+local harpoon = require "harpoon"
+map("n", "<leader>a", function()
+  harpoon:list():add()
+end, { desc = "Harpoon Add buffer" })
+
+map("n", "<C-a>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon Quick Menu" })
+
+map("n", "<C-j>", function()
+  harpoon:list():prev()
+end, { desc = "Harpoon cycle backward buffer" })
+
+map("n", "<C-k>", function()
+  harpoon:list():next()
+end, { desc = "Harpoon cycle forward buffer" })
 
 -- split window
 map("n", "sh", ":split<Return>", opts)
@@ -58,3 +74,8 @@ map("n", "<S-h>", ":bprevious<CR>", opts)
 map("n", "<S-l>", ":bnext<CR>", opts)
 
 map("n", "<leader>q", ":bdelete<CR>", opts)
+
+-- Trouble.nvim
+map("n", "<leader>tr", function()
+  require("trouble.sources.telescope").open()
+end, { desc = "Trouble Telescope Open" })

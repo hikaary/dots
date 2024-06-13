@@ -69,4 +69,4 @@ imagemagick
 jq
 ncspot
 easyeffects
-alacritty
+foot

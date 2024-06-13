@@ -1,8 +1,3 @@
-local show_dotfiles = true
-local filter_hide = function(fs_entry)
-  return not (vim.startswith(fs_entry.name, ".") or vim.startswith(fs_entry.name, "__pycache__"))
-end
-
 return {
   {
     "echasnovski/mini.files",

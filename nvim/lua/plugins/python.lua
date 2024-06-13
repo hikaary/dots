@@ -20,13 +20,6 @@ return {
     end,
   },
   {
-    "dense-analysis/ale",
-    config = function()
-      require "configs.ale"
-    end,
-    lazy = false,
-  },
-  {
     "antosha417/nvim-lsp-file-operations",
     lazy = false,
     config = function()

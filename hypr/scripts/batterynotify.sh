@@ -2,7 +2,7 @@
 
 ScrDir=`dirname "$(realpath "$0")"`
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-batterynotify_conf=$ConfDir/hyprdots/batterynotify.conf
+batterynotify_conf=$ConfDir/hypr/battery.conf
 config_info() {
 cat <<  EOF
 
@@ -10,7 +10,6 @@ Edit $batterynotify_conf  for options.
 
       STATUS      THRESHOLD    INTERVAL
       Full        $battery_full_threshold          $notify Minutes
-      Critical    $battery_critical_threshold           $timer Seconds then '$execute_critical'
       Low         $battery_low_threshold           $interval Percent    then '$execute_low'
       Unplug      $unplug_charger_threshold          $interval Percent   then '$execute_unplug'
 
@@ -50,7 +49,6 @@ fn_percentage () {
                         while [ $count -gt 0 ] && [[ $battery_status == "Discharging"* ]]; do
                         for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status") ; done
                         if [[ $battery_status != "Discharging" ]] ; then break ; fi
-                            fn_notify "-t 5000 -r 69 " "CRITICAL" "Battery Critically Low" "$battery_percentage% is critically low. Device will execute $execute_critical in $((count/60)):$((count%60)) ."
                             count=$((count-1))
                             sleep 1
                         done
@@ -62,7 +60,6 @@ fn_percentage () {
 }
 fn_action () { #handles the $execute_critical command #? This is special as it will try to execute always
                   count=$(( timer > $mnt ? timer :  $mnt )) # reset count
-                  nohup $execute_critical
 }
 
 fn_status () {
@@ -186,7 +183,7 @@ battery_low_threshold=20
     #? Unplug charger threshold (default: 80%)
 unplug_charger_threshold=80
     #? Countdown timer before executing execute_critical (default: 120 seconds)
-timer=120
+timer=99999
     #? Notify interval for Battery Full Status (default: 1140 mins/ 1 day)
 notify=1140
     #? Notify interval on LOW and UNPLUG Status (default: 5%)

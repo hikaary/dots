@@ -54,9 +54,6 @@ local function ensure_tool(tool_name, callback)
   end
 end
 
-vim.g.ale_fixers = {
-  python = { "ruff_format", "ruff" },
-}
 vim.g.ale_linters = {
   python = { "ruff" },
 }
