@@ -34,7 +34,6 @@ python-iwlib
 python-poetry
 python-pywlroots
 qbittorrent
-qtile
 ripgrep
 wofi
 sddm

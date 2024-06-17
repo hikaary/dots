@@ -15,7 +15,6 @@ M.ui = {
       "cursor",
     },
   },
-
   tabufline = {
     enabled = false,
   },

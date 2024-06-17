@@ -2,7 +2,6 @@ debtap
 downgrade
 g-ls
 rate-mirrors
-qtile-extras
 way-displays
 vesktop-bin
 networkmanager-dmenu-bluetoothfix-git

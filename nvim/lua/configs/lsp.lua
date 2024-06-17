@@ -1,5 +1,10 @@
 local configs = require "nvchad.configs.lspconfig"
-
+local function get_python_root_dir(fname)
+  local util = require "lspconfig/util"
+  return util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git")(fname)
+    or util.path.dirname(fname)
+end
+vim.opt.exrc = true
 local servers = {
   html = {},
   awk_ls = {},
@@ -11,11 +16,22 @@ local servers = {
       basedpyright = {
         analysis = {
           maxLineLength = 79,
-          typeCheckingMode = "basic",
-          reportMissingTypeStubs = "error",
-          reportUnknownVariableType = "error",
-          reportUnknownArgumentType = "error",
-          reportUnusedCallResult = "error",
+          typeCheckingMode = "basic", -- off, basic, standard, strict, all
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          autoImportCompletions = true,
+          diagnosticsMode = "openFilesOnly", -- workspace, openFilesOnly
+          diagnosticSeverityOverrides = {
+            reportMissingTypeStubs = "error",
+            reportUnknownVariableType = "error",
+            reportUnknownArgumentType = "error",
+            reportUnusedCallResult = "error",
+            reportUnusedImports = true,
+            reportUnusedVariable = true,
+            reportUnusedClass = "warning",
+            reportUnusedFunction = "warning",
+            reportUndefinedVariable = true,
+          },
         },
       },
     },
@@ -29,16 +45,3 @@ for name, opts in pairs(servers) do
 
   require("lspconfig")[name].setup(opts)
 end
-
-require("lspconfig").ruff_lsp.setup {
-  init_options = {
-    settings = {
-      args = {
-        "--select=E,F,UP,N,I,ASYNC,S,PTH",
-        "--line-length=79",
-        "--respect-gitignore",
-        "--target-version=py311",
-      },
-    },
-  },
-}

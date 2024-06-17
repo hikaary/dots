@@ -46,9 +46,3 @@ require("conform").setup {
     return { lsp_fallback = true }
   end,
 }
-
-vim.g.ale_fixers = {
-  python = { "ruff_format", "ruff" },
-}
-vim.g.ale_fix_on_save = 1
-vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"

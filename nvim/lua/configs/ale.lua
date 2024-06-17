@@ -28,7 +28,6 @@ local function ensure_tool(tool_name, callback)
           vim.notify("Failed to install " .. tool_name .. " in the virtual environment", vim.log.levels.ERROR)
           callback(tool_name)
         else
-          vim.notify(tool_name .. " installed successfully", vim.log.levels.INFO)
           callback(tool_path)
           vim.cmd "ALEToggle"
           vim.cmd "ALEToggle"
@@ -54,14 +53,25 @@ local function ensure_tool(tool_name, callback)
   end
 end
 
+vim.g.ale_enabled = 1
+
 vim.g.ale_linters = {
   python = { "ruff" },
 }
 
-vim.g.ale_linters_explicit = 1
+vim.g.ale_fixers = {
+  python = { "ruff_format", "ruff" },
+}
 vim.g.ale_fix_on_save = 1
 vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"
+vim.g.ale_linters_explicit = 1
+vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"
 
-ensure_tool("ruff", function(ruff_path)
-  vim.g.ale_python_ruff_executable = ruff_path
+vim.g.ale_echo_msg_format = "[%linter%] %s [%severity%]"
+vim.g.ale_echo_msg_warning_str = "W"
+vim.g.ale_echo_msg_error_str = "E"
+vim.g.ale_use_neovim_diagnostics_api = 1
+
+ensure_tool("ruff", function(path)
+  vim.g.ale_python_ruff_executable = path
 end)

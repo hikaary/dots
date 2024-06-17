@@ -1,7 +1,9 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    opts = require "configs.cmp",
+    opts = function(_, opts)
+      require "configs.cmp"
+    end,
   },
   {
     "L3MON4D3/LuaSnip",
@@ -14,12 +16,5 @@ return {
     },
     event = "InsertEnter",
     after = "nvim-cmp",
-  },
-  {
-    "nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-    end,
   },
 }
