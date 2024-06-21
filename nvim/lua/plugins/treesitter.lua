@@ -3,6 +3,7 @@ return {
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", "nvim-treesitter/playground" },
   opts = {
     ensure_installed = {
+      "hyprlang",
       "astro",
       "bash",
       "c",

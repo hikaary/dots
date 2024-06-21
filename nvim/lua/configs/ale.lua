@@ -7,9 +7,6 @@ local function ensure_tool(tool_name, callback)
 
   local tool_path = venv_path .. "/bin/" .. tool_name
   if vim.fn.executable(tool_path) == 1 then
-    vim.schedule(function()
-      vim.notify(tool_name .. " is already installed", vim.log.levels.INFO)
-    end)
     callback(tool_path)
   else
     local handle
@@ -67,9 +64,6 @@ vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"
 vim.g.ale_linters_explicit = 1
 vim.g.ale_python_ruff_options = "--config ~/.config/nvim/ruff.toml"
 
-vim.g.ale_echo_msg_format = "[%linter%] %s [%severity%]"
-vim.g.ale_echo_msg_warning_str = "W"
-vim.g.ale_echo_msg_error_str = "E"
 vim.g.ale_use_neovim_diagnostics_api = 1
 
 ensure_tool("ruff", function(path)

@@ -12,6 +12,7 @@ return {
       opts.ensure_installed = {
         "stylua",
         "ruff-lsp",
+        "hyprls",
         "fixjson",
         "json-lsp",
       }

@@ -1,5 +1,4 @@
 return {
-  lazy = false,
   "hedyhli/outline.nvim",
   cmd = "Outline",
   init = function()
@@ -7,6 +6,5 @@ return {
   end,
   config = function()
     require("outline").setup {}
-    vim.cmd "Outline"
   end,
 }

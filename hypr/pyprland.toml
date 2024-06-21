@@ -1,0 +1,9 @@
+[pyprland]
+plugins = [
+  "hplugins.flash"
+]
+
+["hplugins.flash"]
+flash_opacity = 0.6
+duration = 0.1
+shrink_percentage = 100

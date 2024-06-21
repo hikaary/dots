@@ -2,9 +2,9 @@ debtap
 downgrade
 g-ls
 rate-mirrors
-way-displays
-vesktop-bin
-networkmanager-dmenu-bluetoothfix-git
 ttf-material-icons-git
 nerd-fonts-complete-mono-glyphs
 v2ray
+fuzzel
+iwd-dinit
+python-dbus 

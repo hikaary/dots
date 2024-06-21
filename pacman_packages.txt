@@ -35,7 +35,6 @@ python-poetry
 python-pywlroots
 qbittorrent
 ripgrep
-wofi
 sddm
 sddm-kcm
 speedtest-cli
@@ -69,3 +68,5 @@ jq
 ncspot
 easyeffects
 foot
+iwd
+discord

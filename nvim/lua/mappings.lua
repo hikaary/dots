@@ -4,7 +4,8 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- general
-map("n", "<Leader>q", ":quit<Return>", opts)
+map("n", "<leader>q", ":quit<Return>", opts)
+map("n", "q", ":quit<Return>", opts)
 map("n", ";", ":")
 map("n", "<C-j>", ":m .+1<CR>==", opts)
 map("n", "<C-k>", ":m .-2<CR>==", opts)
@@ -50,10 +51,11 @@ end)
 -- split
 map("n", "<leader>sv", "<cmd>:vsplit<CR>")
 
--- buffers
-map("n", "<leader>bn", ":enew<CR>", opts)
+--LSP
+--
+map("n", "<leader>lr", function()
+  return ":IncRename " .. vim.fn.expand "<cword>"
+end, { expr = true })
 
-map("n", "<S-h>", ":bprevious<CR>", opts)
-map("n", "<S-l>", ":bnext<CR>", opts)
-
-map("n", "<leader>q", ":bdelete<CR>", opts)
+map("n", "<leader>gd", ":Telescope lsp_definitions<CR>", opts)
+map("n", "gd", "", opts)

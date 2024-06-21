@@ -2,6 +2,8 @@ line-length = 88
 indent-width = 4
 fix = true
 unsafe-fixes = false
+output-format = "pylint"
+cache-dir = "~/.cache/ruff"
 
 [format]
 quote-style = "single"
