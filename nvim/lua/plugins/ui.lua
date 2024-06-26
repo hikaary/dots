@@ -1,22 +1,46 @@
 return {
   {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      require('catppuccin').setup {
+        flavour = 'mocha',
+        transparent_background = true,
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          treesitter = true,
+          notify = true,
+          mini = {
+            enabled = true,
+          },
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
+          },
+          which_key = true,
+          fidget = true,
+        },
+      }
+
+      vim.cmd.colorscheme 'catppuccin'
+    end,
   },
   {
     lazy = false,
-    "stevearc/dressing.nvim",
+    'stevearc/dressing.nvim',
     config = function()
-      require("dressing").setup {
+      require('dressing').setup {
         input = {
           enabled = true,
-          default_prompt = "Input",
+          default_prompt = 'Input',
           trim_prompt = true,
-          title_pos = "left",
+          title_pos = 'left',
           start_in_insert = true,
-          border = "rounded",
-          relative = "cursor",
+          border = 'rounded',
+          relative = 'cursor',
           prefer_width = 40,
           width = nil,
           max_width = { 140, 0.9 },
@@ -26,20 +50,20 @@ return {
           win_options = {
             wrap = false,
             list = true,
-            listchars = "precedes:…,extends:…",
+            listchars = 'precedes:…,extends:…',
             sidescrolloff = 0,
           },
 
           mappings = {
             n = {
-              ["<Esc>"] = "Close",
-              ["<CR>"] = "Confirm",
+              ['<Esc>'] = 'Close',
+              ['<CR>'] = 'Confirm',
             },
             i = {
-              ["<C-c>"] = "Close",
-              ["<CR>"] = "Confirm",
-              ["<Up>"] = "HistoryPrev",
-              ["<Down>"] = "HistoryNext",
+              ['<C-c>'] = 'Close',
+              ['<CR>'] = 'Confirm',
+              ['<Up>'] = 'HistoryPrev',
+              ['<Down>'] = 'HistoryNext',
             },
           },
 
@@ -54,7 +78,7 @@ return {
         select = {
           enabled = true,
 
-          backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+          backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' },
 
           trim_prompt = true,
 
@@ -74,15 +98,15 @@ return {
           },
 
           nui = {
-            position = "50%",
+            position = '50%',
             size = nil,
-            relative = "editor",
+            relative = 'editor',
             border = {
-              style = "rounded",
+              style = 'rounded',
             },
             buf_options = {
               swapfile = false,
-              filetype = "DressingSelect",
+              filetype = 'DressingSelect',
             },
             win_options = {
               winblend = 0,
@@ -95,13 +119,13 @@ return {
 
           builtin = {
             show_numbers = true,
-            border = "rounded",
-            relative = "editor",
+            border = 'rounded',
+            relative = 'editor',
 
             buf_options = {},
             win_options = {
               cursorline = true,
-              cursorlineopt = "both",
+              cursorlineopt = 'both',
             },
 
             width = nil,
@@ -112,9 +136,9 @@ return {
             min_height = { 10, 0.2 },
 
             mappings = {
-              ["<Esc>"] = "Close",
-              ["<C-c>"] = "Close",
-              ["<CR>"] = "Confirm",
+              ['<Esc>'] = 'Close',
+              ['<C-c>'] = 'Close',
+              ['<CR>'] = 'Confirm',
             },
 
             override = function(conf)
@@ -128,38 +152,5 @@ return {
         },
       }
     end,
-  },
-  {
-    "tzachar/highlight-undo.nvim",
-    opts = {},
-    event = "BufReadPre",
-  },
-  {
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup()
-    end,
-    event = "BufEnter",
-  },
-  {
-    "folke/twilight.nvim",
-    opts = {},
-  },
-  {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-    opts = {
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-        end,
-      },
-    },
-  },
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    lazy = false,
   },
 }

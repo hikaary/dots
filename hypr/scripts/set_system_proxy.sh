@@ -3,17 +3,12 @@
 V2RAY_CONFIG="/home/hikary/.config/v2ray/vpn.json"
 V2RAY_BLOCK_CONFIG="/home/hikary/.config/v2ray/block.json"
 
-notify() {
-    dunstify -u low -t 3000 "$1"
-    echo "$1"
-}
-
 set_proxy() {
     pkill -f "v2ray"
     
     v2ray run --config="$V2RAY_CONFIG" &
     
-    notify "Proxy enabled"
+    dunstify -a "v2ray" "Proxy enabled"
 }
 
 unset_proxy() {
@@ -21,7 +16,7 @@ unset_proxy() {
     
     v2ray run --config="$V2RAY_BLOCK_CONFIG" &
     
-    notify "Proxy disabled"
+    dunstify -a "v2ray" "Proxy disabled"
 }
 
 check_proxy() {

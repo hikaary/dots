@@ -15,6 +15,8 @@ map("i", "jk", "<ESC>")
 
 -- map("n", "<leader>e", "<cmd>lua require('mini.files').open()<CR>")
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 -- move lines
 map("v", "<C-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<C-k>", ":m '<-2<CR>gv=gv", opts)

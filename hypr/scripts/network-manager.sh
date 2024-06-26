@@ -13,9 +13,9 @@ function fuzzel_password() {
 function start_scan() {
     local interface=$(get_interface)
     if ! iwctl station "$interface" scan 2>&1 | grep -q "Operation already in progress"; then
-        notify-send "Wi-Fi" "Scanning started"
+        notify-send -a "Wi-Fi" "Scanning started"
     else
-        notify-send "Wi-Fi" "Scanning already in progress"
+        notify-send -a "Wi-Fi" "Scanning already in progress"
     fi
 }
 
@@ -70,7 +70,7 @@ function connect_or_disconnect() {
 
     if [[ "$ssid" == "$active_network" ]]; then
         iwctl station "$interface" disconnect
-        notify-send "Wi-Fi" "Disconnected from \"$ssid\""
+        notify-send -a "Wi-Fi" "Disconnected from \"$ssid\""
     else
         local is_saved=$(iwctl known-networks list | grep -q "$ssid" && echo "yes" || echo "no")
         
@@ -84,11 +84,11 @@ function connect_or_disconnect() {
                         iwctl known-networks "$ssid" forget
                         iwctl --passphrase "$psk" known-networks "$ssid" connect
                     else
-                        notify-send "Wi-Fi" "Failed to connect to \"$ssid\". Incorrect password."
+                        notify-send -a "Wi-Fi" "Failed to connect to \"$ssid\". Incorrect password."
                         return
                     fi
                 else
-                    notify-send "Wi-Fi" "Connection cancelled"
+                    notify-send -a "Wi-Fi" "Connection cancelled"
                     return
                 fi
             fi
@@ -99,11 +99,11 @@ function connect_or_disconnect() {
                 if [[ $connection_result != *"Operation failed"* ]]; then
                     iwctl --passphrase "$psk" known-networks "$ssid" connect
                 else
-                    notify-send "Wi-Fi" "Failed to connect to \"$ssid\". Incorrect password."
+                    notify-send -a "Wi-Fi" "Failed to connect to \"$ssid\". Incorrect password."
                     return
                 fi
             else
-                notify-send "Wi-Fi" "Connection cancelled"
+                notify-send -a "Wi-Fi" "Connection cancelled"
                 return
             fi
         fi
@@ -111,11 +111,11 @@ function connect_or_disconnect() {
         for i in {1..20}; do
             sleep 0.5
             if [[ "$(get_active_network)" == "$ssid" ]]; then
-                notify-send "Wi-Fi" "Connected to \"$ssid\""
+                notify-send -a "Wi-Fi" "Connected to \"$ssid\""
                 return
             fi
         done
-        notify-send "Wi-Fi" "Failed to connect to \"$ssid\""
+        notify-send -a "Wi-Fi" "Failed to connect to \"$ssid\""
     fi
 }
 
@@ -147,7 +147,7 @@ function get_saved_networks() {
 function remove_saved_network() {
     local network="$1"
     iwctl known-networks "$network" forget
-    notify-send "Wi-Fi" "Removed saved network \"$network\""
+    notify-send -a "Wi-Fi" "Removed saved network \"$network\""
 }
 
 function saved_networks_menu() {
@@ -185,7 +185,7 @@ function main_menu() {
         local ssid=$(echo "$selected" | awk '{print $2}')
         local interface=$(get_interface)
         iwctl station "$interface" disconnect
-        notify-send "Wi-Fi" "Disconnected from \"$ssid\""
+        notify-send -a "Wi-Fi" "Disconnected from \"$ssid\""
     else
         connect_or_disconnect "$ssid" "$active_network"
     fi

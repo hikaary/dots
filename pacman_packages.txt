@@ -70,3 +70,4 @@ easyeffects
 foot
 iwd
 discord
+dhclient

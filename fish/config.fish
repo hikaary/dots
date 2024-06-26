@@ -52,6 +52,8 @@ set FZF_ALT_C_COMMAND "fd --type d"
 set FZF_DEFAULT_COMMAND "fd --type f"
 
 alias v nvim
+alias y yazi
+alias zed zeditor
 alias ta 'tmux attach'
 alias cat gat
 alias s doas
@@ -160,7 +162,8 @@ end
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export __GL_THREADED_OPTIMIZATIONS=0
 export VISUAL="nvim"
-export EDITOR=nvim lazygit
+export EDITOR=nvim
+
 starship init fish | source
 set dbus_data (dbus-launch --sh-syntax)
 for line in $dbus_data
@@ -174,9 +177,5 @@ for line in $dbus_data
         set -gx $key $value
     end
 end
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
 
 fish_add_path /home/hikary/.spicetify
