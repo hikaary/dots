@@ -39,12 +39,6 @@ def main():
 
         # Проверка изменения статуса подключения
         if is_plugged != last_plugged_status:
-            message = (
-                "Зарядное устройство подключено"
-                if is_plugged
-                else "Зарядное устройство отключено"
-            )
-            send_notification(message)
             last_plugged_status = is_plugged
             last_notification = None  # Сброс последнего уведомления о батарее
 

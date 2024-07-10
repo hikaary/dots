@@ -15,9 +15,18 @@ autocmd('BufReadPost', {
   end,
 })
 
-autocmd('BufWritePre', {
+-- autocmd('BufWritePre', {
+--   pattern = '*',
+--   callback = function(args)
+--     require('conform').format { bufnr = args.buf }
+--   end,
+-- })
+
+autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', { clear = true }),
   pattern = '*',
-  callback = function(args)
-    require('conform').format { bufnr = args.buf }
+  desc = 'Highlight selection on yank',
+  callback = function()
+    vim.highlight.on_yank { timeout = 200, visual = true }
   end,
 })

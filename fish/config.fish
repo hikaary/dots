@@ -17,6 +17,8 @@ if status is-interactive
                 unrar x $argv[1]
             case zip
                 unzip $argv[1]
+            case 7z
+                7zz x $argv[1]
             case '*'
                 echo "unknown extension"
         end
@@ -52,8 +54,7 @@ set FZF_ALT_C_COMMAND "fd --type d"
 set FZF_DEFAULT_COMMAND "fd --type f"
 
 alias v nvim
-alias y yazi
-alias zed zeditor
+alias lg lazygit
 alias ta 'tmux attach'
 alias cat gat
 alias s doas
@@ -133,11 +134,6 @@ function __history_previous_command_arguments
     end
 end
 
-# set fish_color_autosuggestion '#7d7d7d'
-# set fish_color_command --bold brcyan
-# set fish_color_error '#ff6c6b'
-# set fish_color_param brwhite
-# set fish_pager_color_selected_completion blue
 set fish_greeting
 set fzf_preview_dir_cmd g --icon -no-total-size --time --size --title --owner
 set fzf_preview_file_cmd cat -n

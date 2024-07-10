@@ -1,0 +1,591 @@
+# Python snippets for COQ - Extended Edition
+
+# Basic Control Structures
+snippet if
+abbr if statement
+  if ${1:condition}:
+    ${0:pass}
+
+snippet ife
+abbr if/else statement
+  if ${1:condition}:
+    ${2:pass}
+  else:
+    ${0:pass}
+
+snippet elif
+abbr elif statement
+  elif ${1:condition}:
+    ${0:pass}
+
+snippet for
+abbr for loop
+  for ${1:item} in ${2:iterable}:
+    ${0:pass}
+
+snippet while
+abbr while loop
+  while ${1:condition}:
+    ${0:pass}
+
+snippet try
+abbr try/except
+  try:
+    ${1:pass}
+  except ${2:Exception} as ${3:e}:
+    ${0:pass}
+
+snippet with
+abbr with statement
+  with ${1:expression} as ${2:variable}:
+    ${0:pass}
+
+# Functions and Classes
+snippet def
+abbr function definition
+  def ${1:function_name}(${2:parameters}):
+    ${0:pass}
+
+snippet class
+abbr class definition
+  class ${1:ClassName}:
+    def __init__(self${2:, parameters}):
+      ${0:pass}
+
+snippet staticm
+abbr static method
+  @staticmethod
+  def ${1:method_name}(${2:parameters}):
+    ${0:pass}
+
+snippet classm
+abbr class method
+  @classmethod
+  def ${1:method_name}(cls${2:, parameters}):
+    ${0:pass}
+
+snippet prop
+abbr property
+  @property
+  def ${1:property_name}(self):
+    ${0:pass}
+
+# Imports
+snippet imp
+abbr import
+  import ${0:module}
+
+snippet frim
+abbr from import
+  from ${1:module} import ${0:submodule}
+
+# Comprehensions and Generators
+snippet lcomp
+abbr list comprehension
+  [${1:expression} for ${2:item} in ${3:iterable}${0}]
+
+snippet dcomp
+abbr dict comprehension
+  {${1:key}: ${2:value} for ${3:item} in ${4:iterable}${0}}
+
+snippet scomp
+abbr set comprehension
+  {${1:expression} for ${2:item} in ${3:iterable}${0}}
+
+snippet gen
+abbr generator expression
+  (${1:expression} for ${2:item} in ${3:iterable}${0})
+
+# Lambda and Higher-Order Functions
+snippet lambda
+abbr lambda function
+  lambda ${1:args}: ${0:expression}
+
+snippet map
+abbr map function
+  map(${1:function}, ${2:iterable})
+
+snippet filter
+abbr filter function
+  filter(${1:function}, ${2:iterable})
+
+snippet reduce
+abbr reduce function
+  from functools import reduce
+  reduce(${1:function}, ${2:iterable})
+
+# File Operations
+snippet open
+abbr file open
+  with open(${1:filename}, '${2:r}') as ${3:f}:
+    ${0:pass}
+
+snippet read
+abbr read file
+  with open(${1:filename}, 'r') as f:
+    ${2:content} = f.read()
+
+snippet write
+abbr write file
+  with open(${1:filename}, 'w') as f:
+    f.write(${2:content})
+
+# Testing
+snippet test
+abbr test function
+  def test_${1:function}():
+    assert ${2:condition}, "${0:Test failed}"
+
+snippet pytest
+abbr pytest function
+  import pytest
+
+  def test_${1:function}():
+    ${0:pass}
+
+# Logging
+snippet log
+abbr logging setup
+  import logging
+
+  logging.basicConfig(level=logging.${1:INFO}, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+  logger = logging.getLogger(__name__)
+
+snippet logi
+abbr log info
+  logger.info(${0:message})
+
+snippet logd
+abbr log debug
+  logger.debug(${0:message})
+
+snippet logw
+abbr log warning
+  logger.warning(${0:message})
+
+snippet loge
+abbr log error
+  logger.error(${0:message})
+
+# Asynchronous Programming
+snippet async
+abbr async function
+  async def ${1:function_name}(${2:parameters}):
+    ${0:pass}
+
+snippet await
+abbr await expression
+  await ${0:coroutine}
+
+snippet afor
+abbr async for loop
+  async for ${1:item} in ${2:async_iterable}:
+    ${0:pass}
+
+snippet awith
+abbr async with statement
+  async with ${1:expression} as ${2:variable}:
+    ${0:pass}
+
+# Type Hinting
+snippet typef
+abbr typed function
+  def ${1:function_name}(${2:param}: ${3:type}) -> ${4:return_type}:
+    ${0:pass}
+
+snippet typevar
+abbr typed variable
+  ${1:variable_name}: ${0:type}
+
+# Context Managers
+snippet contextm
+abbr context manager
+  from contextlib import contextmanager
+
+  @contextmanager
+  def ${1:context_manager}(${2:parameters}):
+    ${3:# Setup}
+    try:
+      yield ${4:value}
+    finally:
+      ${0:# Cleanup}
+
+# Decorators
+snippet dec
+abbr decorator
+  def ${1:decorator}(func):
+    def wrapper(*args, **kwargs):
+      ${2:# Do something before}
+      result = func(*args, **kwargs)
+      ${3:# Do something after}
+      return result
+    return wrapper
+
+# ArgParse
+snippet argparse
+abbr argument parser
+  import argparse
+
+  parser = argparse.ArgumentParser(description='${1:Description}')
+  parser.add_argument('${2:argument}', help='${3:Help text}')
+  args = parser.parse_args()
+
+# Database
+snippet sqlal
+abbr SQLAlchemy model
+  from sqlalchemy import Column, Integer, String
+  from sqlalchemy.ext.declarative import declarative_base
+
+  Base = declarative_base()
+
+  class ${1:ModelName}(Base):
+      __tablename__ = '${2:table_name}'
+
+      id = Column(Integer, primary_key=True)
+      ${0:name = Column(String)}
+
+# Web Development
+snippet flask
+abbr Flask app
+  from flask import Flask
+
+  app = Flask(__name__)
+
+  @app.route('/')
+  def ${1:home}():
+      return '${0:Hello, World!}'
+
+  if __name__ == '__main__':
+      app.run(debug=True)
+
+snippet django
+abbr Django view
+  from django.shortcuts import render
+  from django.http import HttpResponse
+
+  def ${1:view_name}(request):
+      return HttpResponse('${0:Hello, World!}')
+
+# Data Science
+snippet pd
+abbr pandas import
+  import pandas as pd
+
+snippet np
+abbr numpy import
+  import numpy as np
+
+snippet plt
+abbr matplotlib pyplot import
+  import matplotlib.pyplot as plt
+
+snippet sns
+abbr seaborn import
+  import seaborn as sns
+
+# Machine Learning
+snippet sklearn
+abbr scikit-learn imports
+  from sklearn.model_selection import train_test_split
+  from sklearn.metrics import accuracy_score, classification_report
+
+# Misc
+snippet main
+abbr main function
+  def main():
+      ${0:pass}
+
+  if __name__ == '__main__':
+      main()
+
+snippet docstring
+abbr function docstring
+  """
+  ${1:Short description}
+
+  ${2:Longer description}
+
+  Args:
+      ${3:arg1 (type): Description}
+
+  Returns:
+      ${4:return_type: Description}
+
+  Raises:
+      ${0:ExceptionType: Description}
+  """
+
+# Advanced Data Structures
+snippet defaultdict
+abbr collections defaultdict
+  from collections import defaultdict
+  ${1:d} = defaultdict(${2:int})
+
+snippet counter
+abbr collections Counter
+  from collections import Counter
+  ${1:c} = Counter(${2:iterable})
+
+snippet deque
+abbr collections deque
+  from collections import deque
+  ${1:d} = deque(${2:iterable}, maxlen=${3:None})
+
+snippet namedtuple
+abbr collections namedtuple
+  from collections import namedtuple
+  ${1:Name} = namedtuple('${1:Name}', [${2:'field1', 'field2'}])
+
+# Itertools
+snippet cycle
+abbr itertools cycle
+  from itertools import cycle
+  ${1:cycler} = cycle(${2:iterable})
+
+snippet combinations
+abbr itertools combinations
+  from itertools import combinations
+  ${1:combs} = combinations(${2:iterable}, ${3:r})
+
+snippet permutations
+abbr itertools permutations
+  from itertools import permutations
+  ${1:perms} = permutations(${2:iterable}, ${3:r})
+
+# Functional Programming
+snippet partial
+abbr functools partial
+  from functools import partial
+  ${1:new_func} = partial(${2:func}, ${3:arg1}, ${4:arg2})
+
+snippet lru_cache
+abbr functools lru_cache
+  from functools import lru_cache
+
+  @lru_cache(maxsize=${1:None})
+  def ${2:func_name}(${3:params}):
+      ${0:pass}
+
+# Advanced String Operations
+snippet fstring
+abbr f-string with date
+  from datetime import datetime
+  ${1:message} = f"Current time: {datetime.now():%Y-%m-%d %H:%M:%S}"
+
+snippet regex
+abbr regex pattern
+  import re
+  ${1:pattern} = re.compile(r'${2:regex_pattern}')
+  ${3:match} = ${1:pattern}.search(${4:text})
+
+# File and Directory Operations
+snippet walk
+abbr os walk
+  import os
+  for root, dirs, files in os.walk(${1:top_directory}):
+      ${0:pass}
+
+snippet mkdtemp
+abbr tempfile mkdtemp
+  import tempfile
+  ${1:temp_dir} = tempfile.mkdtemp()
+
+# Concurrency
+snippet thread
+abbr threading Thread
+  import threading
+
+  def ${1:worker}(${2:params}):
+      ${3:pass}
+
+  thread = threading.Thread(target=${1:worker}, args=(${4:},))
+  thread.start()
+
+snippet processpool
+abbr multiprocessing ProcessPool
+  from multiprocessing import Pool
+
+  def ${1:worker}(${2:params}):
+      ${3:pass}
+
+  with Pool(processes=${4:4}) as pool:
+      results = pool.map(${1:worker}, ${5:iterable})
+
+# Advanced OOP
+snippet abc
+abbr Abstract Base Class
+  from abc import ABC, abstractmethod
+
+  class ${1:AbstractClass}(ABC):
+      @abstractmethod
+      def ${2:abstract_method}(self):
+          pass
+
+snippet dataclass
+abbr Data Class
+  from dataclasses import dataclass
+
+  @dataclass
+  class ${1:ClassName}:
+      ${2:attribute1}: ${3:type}
+      ${4:attribute2}: ${5:type} = ${6:default_value}
+
+# Error Handling
+snippet custom_exception
+abbr Custom Exception Class
+  class ${1:CustomException}(Exception):
+      def __init__(self, ${2:message}):
+          self.message = ${2:message}
+          super().__init__(self.message)
+
+snippet context_exception
+abbr Exception with context manager
+  class ${1:ExceptionContext}:
+      def __enter__(self):
+          return self
+
+      def __exit__(self, exc_type, exc_value, traceback):
+          if exc_type is not None:
+              ${0:# Handle the exception}
+          return True  # Suppress the exception
+
+# Debugging
+snippet pdb
+abbr PDB debugger
+  import pdb; pdb.set_trace()
+
+snippet ipdb
+abbr iPDB debugger
+  import ipdb; ipdb.set_trace()
+
+# Profiling
+snippet timeit
+abbr timeit function
+  import timeit
+
+  def ${1:function_to_profile}():
+      ${2:pass}
+
+  execution_time = timeit.timeit(${1:function_to_profile}, number=${3:1000})
+  print(f"Execution time: {execution_time} seconds")
+
+snippet profile
+abbr cProfile profiler
+  import cProfile
+  import pstats
+
+  profiler = cProfile.Profile()
+  profiler.enable()
+
+  ${1:# Code to profile}
+
+  profiler.disable()
+  stats = pstats.Stats(profiler).sort_stats('cumulative')
+  stats.print_stats()
+
+# Advanced Typing
+snippet protocol
+abbr typing Protocol
+  from typing import Protocol
+
+  class ${1:ProtocolName}(Protocol):
+      def ${2:method_name}(self, ${3:param}: ${4:type}) -> ${5:return_type}:
+          ...
+
+snippet typevar_bound
+abbr typing TypeVar with bound
+  from typing import TypeVar
+
+  T = TypeVar('T', bound=${1:BaseClass})
+
+  def ${2:function_name}(arg: T) -> T:
+      ${0:pass}
+
+# Packaging
+snippet setup
+abbr setuptools setup
+  from setuptools import setup, find_packages
+
+  setup(
+      name='${1:package_name}',
+      version='${2:0.1.0}',
+      packages=find_packages(),
+      install_requires=[
+          '${3:dependency1}',
+          '${4:dependency2}',
+      ],
+  )
+
+# CLI with Click
+snippet click
+abbr Click CLI
+  import click
+
+  @click.command()
+  @click.option('--${1:option}', default=${2:default}, help='${3:Help text}')
+  def ${4:cli}(${1:option}):
+      click.echo(f'${5:Message}: {${1:option}}')
+
+  if __name__ == '__main__':
+      ${4:cli}()
+
+# Async Web Scraping
+snippet aiohttp
+abbr aiohttp session
+  import aiohttp
+  import asyncio
+
+  async def ${1:fetch}(${2:url}):
+      async with aiohttp.ClientSession() as session:
+          async with session.get(${2:url}) as response:
+              return await response.text()
+
+  asyncio.run(${1:fetch}('${3:https://example.com}'))
+
+# Data Validation
+snippet pydantic
+abbr Pydantic model
+  from pydantic import BaseModel, Field
+
+  class ${1:ModelName}(BaseModel):
+      ${2:field1}: ${3:str} = Field(..., description="${4:Field description}")
+      ${5:field2}: ${6:int} = Field(${7:default}, ge=${8:0})
+
+# Mocking for Tests
+snippet mock
+abbr unittest mock
+  from unittest.mock import Mock, patch
+
+  @patch('${1:module.class_or_function}')
+  def test_${2:function_name}(${3:mock_obj}):
+      ${3:mock_obj}.return_value = ${4:mock_return}
+      ${0:# Test code here}
+
+# Internationalization
+snippet gettext
+abbr gettext setup
+  import gettext
+
+  _ = gettext.gettext
+  gettext.bindtextdomain('${1:domain}', '${2:localedir}')
+  gettext.textdomain('${1:domain}')
+
+  print(_('${3:Translate this}'))
+
+# Environment Variables
+snippet dotenv
+abbr python-dotenv setup
+  from dotenv import load_dotenv
+  import os
+
+  load_dotenv()
+
+  ${1:VARIABLE} = os.getenv('${2:ENV_VARIABLE}')
+
+# Contextlib
+snippet suppress
+abbr contextlib suppress
+  from contextlib import suppress
+
+  with suppress(${1:Exception}):
+      ${0:# code that may raise the specified exception}

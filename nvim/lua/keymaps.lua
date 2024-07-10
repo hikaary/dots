@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+
 -- general
 map('n', '<leader>q', ':quit<Return>', opts)
 map('n', 'q', ':quit<Return>', opts)
@@ -14,7 +15,10 @@ map('i', 'jk', '<ESC>')
 map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'file copy whole' })
 map('n', '<Esc>', '<cmd>noh<CR>', { desc = 'general clear highlights' })
 
-map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
+-- map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
+-- map('n', '<leader>e', ':CHADopen<CR>', opts)
+-- map('n', '<leader>e', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
+map('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
 
 -- move lines
 map('v', '<C-j>', ":m '>+1<CR>gv=gv", opts)
@@ -31,6 +35,7 @@ map('n', 'sh', '<C-w>h')
 map('n', 'sk', '<C-w>k')
 map('n', 'sj', '<C-w>j')
 map('n', 'sl', '<C-w>l')
+
 
 -- resize window
 map('n', '<C-S-h>', '<C-w><')
@@ -60,4 +65,4 @@ map('n', '<leader>lr', function()
 end, { expr = true })
 
 -- Venv select
-map('n', '<leader>cv', '<cmd>:VenvSelect<cr>')
+map('n', '<leader>cv', "<cmd>lua require('swenv.api').pick_venv() <CR>")
