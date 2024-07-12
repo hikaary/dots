@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Wofi extension for BitWarden-cli
+set -e
 NAME="$(basename "$0")"
 VERSION="0.4"
 DEFAULT_CLEAR=5

@@ -98,9 +98,9 @@ return {
         ['ruff.enable'] = true,
         ['ruff.nativeServer'] = true,
         ['ruff.useDetectRuffCommand'] = true,
-        ['ruff.autoFixOnSave'] = true,
         ['ruff.nativeBinaryPath'] = '',
         ['ruff.organizeImports'] = true,
+        ['ruff.autoFixOnSave'] = true,
         ['ruff.fixAll'] = true,
         ['ruff.args'] = '--select=F401',
 
@@ -113,14 +113,7 @@ return {
           [vim.fn.stdpath('config') .. '/lua'] = true,
         },
 
-        ['languageserver'] = {
-          ['bash'] = {
-            ['command'] = 'bash-language-server',
-            ['args'] = { 'start' },
-            ['filetypes'] = { 'sh', 'bash' },
-            ['ignoredRootPaths'] = { '~' },
-          },
-        },
+        ['bashIde.shfmt.simplifyCode'] = true,
 
         ['json.format.enable'] = true,
         ['json.schemas'] = {},

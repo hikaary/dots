@@ -37,15 +37,15 @@ pacman_packages=(
 
 # Yay packages
 yay_packages=(
-    bitwarden-cli code dart-sass dbeaver debtap discord dmenu-bluetooth
-    docker docker-compose docker-dinit dotnet-runtime dotnet-sdk downgrade
+    bitwarden-cli dbeaver debtap dmenu-bluetooth
+    docker docker-compose docker-dinit downgrade
     eww-git floorp-bin fuzzel-git g-ls gat google-chrome nerd-fonts-complete-mono-glyphs
     obsidian-icon-theme otf-daddytimemono-git pyenv pyprland python-dbus-next
-    python-iwlib python-kitty python-poetry python-pynvim python-pywlroots
+    python-iwlib python-poetry
     rate-mirrors rustup sexpect spotify telegram-desktop ttf-daddytime-mono-nerd
     ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols v2ray
-    v2ray-dinit vencord-installer-bin vencord-installer-cli-bin watchman-bin
-    webcord xplorer-bin yay yazi
+    v2ray-dinit vesktop-bin watchman-bin
+    xplorer-bin waybar playerctl pamixer
 )
 
 # Update system
