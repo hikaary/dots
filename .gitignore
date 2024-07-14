@@ -113,7 +113,6 @@ spotifyd
 ncspot/userstate.cbor
 VirtualBox
 @proton/cli-nodejs
-Min
 Beeper
 Proton Mail
 proton-mail-viewer
@@ -134,3 +133,5 @@ spicetify
 Bitwarden CLI
 coc
 yandex-cloud
+Min/*
+!Min/userscripts/

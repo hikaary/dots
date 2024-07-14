@@ -8,7 +8,7 @@ set_proxy() {
     
     v2ray run --config="$V2RAY_CONFIG" &
     
-    dunstify -a "v2ray" "Proxy enabled"
+    notify-send -a "v2ray" "Proxy enabled"
 }
 
 unset_proxy() {
@@ -16,7 +16,7 @@ unset_proxy() {
     
     v2ray run --config="$V2RAY_BLOCK_CONFIG" &
     
-    dunstify -a "v2ray" "Proxy disabled"
+    notify-send -a "v2ray" "Proxy disabled"
 }
 
 check_proxy() {

@@ -7,8 +7,8 @@
     "margin-left": 0,
     "margin-right": 0,
     "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/playerctl", "custom/playerlabel"],
-    "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["network", "pulseaudio", "clock"],
+    "modules-center": ["cpu", "memory" ],
+    "modules-right": ["network","battery", "pulseaudio", "clock"],
     // Modules configuration
 	"clock": {
 		"format": " {:%H:%M}",
@@ -38,14 +38,14 @@
       "format": "{icon}",
       "return-type": "json",
       "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playername}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -f",
       "on-click-middle": "playerctl play-pause",
       "on-click": "playerctl previous",
       "on-click-right": "playerctl next",
       "format-icons": {
         "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
+      }
     },
 
     "custom/playerlabel": {
@@ -72,9 +72,7 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+	"format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
 	},
 
   "memory": {
@@ -137,11 +135,7 @@
     "on-click-right": "bash $HOME/.config/hypr/wall.sh"
   },
   "custom/launcher": {
-    "format": "󰈸",
-    "on-click": "bash $HOME/.config/rofi/launcher.sh",
-//    "on-click": "wofi --show drun -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css",
-    "on-click-right": "bash $HOME/.config/rofi/run.sh"  
-//    "on-click-right": "wofi --show run -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css"  
+    "format": "󰈸"
   },
 
   "custom/wf-recorder": {
@@ -159,5 +153,6 @@
     "on-click": "hyprpicker -a -f hex",
     "on-click-right": "hyprpicker -a -f rgb"
   },
+
   }
 }
