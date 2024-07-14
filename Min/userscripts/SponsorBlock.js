@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         SponsorBlock for Min Browser (Improved Visual)
+// @name         SponsorBlock for Min Browser (Overlaying Segments)
 // @namespace    http://tampermonkey.net/
-// @version      1.3
-// @description  Skip and visualize sponsor segments directly on YouTube video progress bar
+// @version      1.4
+// @description  Skip and visualize sponsor segments on top of YouTube video progress bar
 // @match        https://www.youtube.com/*
 // @grant        none
 // ==/UserScript==
@@ -36,14 +36,17 @@
         // Remove existing segment visualizations
         document.querySelectorAll('.sponsorblock-segment').forEach(el => el.remove());
 
+        // Create a container for our segments if it doesn't exist
+        let segmentContainer = document.querySelector('.sponsorblock-segment-container');
+        if (!segmentContainer) {
+            segmentContainer = document.createElement('div');
+            segmentContainer.className = 'sponsorblock-segment-container';
+            progressBar.appendChild(segmentContainer);
+        }
+
         sponsorSegments.forEach(segment => {
             const segmentElement = document.createElement('div');
             segmentElement.className = 'sponsorblock-segment';
-            segmentElement.style.position = 'absolute';
-            segmentElement.style.height = '100%';
-            segmentElement.style.backgroundColor = 'rgba(0, 255, 0, 0.7)';
-            segmentElement.style.pointerEvents = 'none';
-            segmentElement.style.zIndex = '1';
 
             const videoDuration = document.querySelector('video').duration;
             const startPercent = (segment.segment[0] / videoDuration) * 100;
@@ -52,7 +55,7 @@
             segmentElement.style.left = `${startPercent}%`;
             segmentElement.style.width = `${endPercent - startPercent}%`;
 
-            progressBar.appendChild(segmentElement);
+            segmentContainer.appendChild(segmentElement);
         });
     }
 
@@ -90,17 +93,29 @@
         }
     }
 
-    // Add CSS for better visibility
+    // Add CSS for better visibility and positioning
     const style = document.createElement('style');
     style.textContent = `
+        .sponsorblock-segment-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
         .sponsorblock-segment {
-            opacity: 0.7;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background-color: rgba(0, 255, 0, 0.7);
             transition: opacity 0.2s ease-in-out, height 0.2s ease-in-out, top 0.2s ease-in-out;
         }
         .ytp-progress-bar:hover .sponsorblock-segment {
             opacity: 1;
-            height: 200% !important;
-            top: -50% !important;
+            height: 200%;
+            top: -50%;
         }
     `;
     document.head.appendChild(style);
