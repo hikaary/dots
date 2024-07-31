@@ -1,78 +1,45 @@
+// -*- mode: jsonc -*-
 {
-    "position": "top",
-    "layer": "top",
-    "height": 16,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": ["custom/launcher", "hyprland/workspaces", "custom/playerctl", "custom/playerlabel"],
-    "modules-center": ["cpu", "memory" ],
-    "modules-right": ["network","battery", "pulseaudio", "clock"],
-    // Modules configuration
-	"clock": {
-		"format": " {:%H:%M}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": " {:%d/%m}"
+	"height": 40,
+	"width": 1880,
+	"margin-top": 10,
+
+	"modules-left": ["custom/menu", "hyprland/workspaces", "hyprland/window"],
+	"modules-center": ["battery", "custom/weather", "memory"],
+	"modules-right": ["hyprland/language", "pulseaudio", "clock", "custom/power"],
+
+	"custom/menu": {
+		"format": "{icon}",
+		"format-icons": "󰈸",
+		"escape": true,
+		"tooltip": false
 	},
-	
+
+	"battery": {
+		"states": {
+		    "good": 95,
+		    "warning": 30,
+		    "critical": 15
+		},
+		"format":"{icon} {capacity}%",
+		"format-charging": "{icon} ",
+		"format-plugged": "{capacity}% ",
+		"format-alt": "{icon} {time}",
+		"format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
+	},
 
 	"hyprland/workspaces": {
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
 		"format": "{icon}",
 		"on-click": "activate",
 		"format-icons": {
 			"urgent": "",
-			"active": "",
-			"default": "󰧞"
-	  },
-    "persistent_workspaces": {
-      "*": 10
-    }
-    },
-
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playername}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -f",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      }
-    },
-
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
-
-	"battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format":"{icon}  {capacity}%",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{icon} {time}",
-	"format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
+			"active": "",
+			"default": ""
+			},
+		"tooltip": false,
+	    "persistent_workspaces": {
+	      "*": 10
+	    }
 	},
 
   "memory": {
@@ -81,78 +48,104 @@
     "interval": 5
   },
 
-  "cpu": {
-    "format": "󰻠 {usage}%",
-    "format-alt": "󰻠 {avg_frequency} GHz",
-    "interval": 5
-  },
-
-  "disk": {
-    "format": "󰋊 {}%",
-    "format-alt": "󰋊 {used}/{total} GiB",
-    "interval": 5,
-    "path": "/"
-  },
-	
-	"network": {
-        	"format-wifi": "󰤨",
-        	"format-ethernet": " {ifname}: Aesthetic",
-        	"format-linked": " {ifname} (No IP)",
-        	"format-disconnected": "󰤭",
-        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
-          "tooltip-format": "{essid}",
-          "on-click-right": "nm-connection-editor"
+	"hyprland/window": {
+		"format": "{class}",
+		"separate-outputs": false,
 	},
+
+	"custom/cmus": {
+		"format": "{icon} {}",
+		"format-icons": {
+		"default": ["<span color='#89b4fa'></span>"]
+		},
+		"max-length": 45,
+		"interval": 1,
+		"exec": "cmus-remote -C \"format_print '%F'\"",
+		"exec-if": "pgrep cmus",
+		"on-click": "cmus-remote -u",
+		"on-scroll-up": "cmus-remote --next",
+		"on-scroll-down": "cmus-remote --prev",
+		"escape": true,
+		"tooltip": false
+	},
+
+	"custom/weather": {
+		"format": "{}",
+		"interval": 10,
+		"exec": "~/.config/waybar/weather.sh",
+		"tooltip": false
+	},
+
+	"custom/foot": {
+		"format": "<span color='#a6e3a1'></span>",
+		"on-click": "exec foot --title=home",
+		"tooltip": false
+	},
+
+	"custom/nemo": {
+		"format": "<span color='#89b4fa'>󰉋</span>",
+		"on-click": "exec nemo home/",
+		"tooltip": false
+	},
+
+
 
 	"tray": {
-		"icon-size": 16,
-		"spacing": 5
+		"icon-size": 18,
+		"spacing": 10
 	},
 
-	"backlight": {
-        // "device": "acpi_video1",
-	"format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-//	"on-scroll-up":,
-//	"on-scroll-down":,
+	"hyprland/language": {
+		"format": "<span color='#fab387'>󰌏</span> {}",
+		"format-en": "EN",
+		"format-ru": "RU",
 	},
-
+    
 	"pulseaudio": {
-		"format": "{icon} {volume}%",
-        	"format-muted": "󰝟",
+		"scroll-step": 5,
+		"format": "<span color='#fab387'>{icon}</span> {volume}%",
 		"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
+		"default": ["", "", ""]
 		},
-		"on-click": "bash ~/.config/waybar/scripts/volume mute",
-    "on-scroll-up": "bash ~/.config/waybar/scripts/volume up",
-    "on-scroll-down": "bash ~/.config/waybar/scripts/volume down",
-    "scroll-step": 5,
-		"on-click-right": "pavucontrol"
-  },
-  "custom/randwall": {
-    "format": "󰏘",
-    "on-click": "bash $HOME/.config/hypr/randwall.sh",
-    "on-click-right": "bash $HOME/.config/hypr/wall.sh"
-  },
-  "custom/launcher": {
-    "format": "󰈸"
-  },
-
-  "custom/wf-recorder": {
-		"format": "{}",
-		"interval": "once",
-		"exec": "echo ''",
-		"tooltip": "false",
-		"exec-if": "pgrep 'wf-recorder'",
-		"on-click": "exec ./scripts/wlrecord.sh",
-		"signal": 8
+		"on-click": "pavucontrol",
+		"tooltip": false
 	},
 
-  "custom/hyprpicker": {
-    "format": "󰈋",
-    "on-click": "hyprpicker -a -f hex",
-    "on-click-right": "hyprpicker -a -f rgb"
-  },
+	"clock": {
+		"format": "<span color='#fab387'></span> {:%H:%M}",
+		"tooltip-format": "<big><span color='#cdd6f4'>{:%Y %B}</span></big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "<span color='#eba0ac'></span> <span color='#cdd6f4'>{:%Y-%m-%d}</span>",
 
-  }
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#cdd6f4'><b>{}</b></span>",
+                              "days":       "<span color='#cdd6f4'><b>{}</b></span>",
+                              "weeks":      "<span color='#f5c2e7'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#f5c2e7'><b>{}</b></span>",
+                              "today":      "<span color='#eba0ac'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+		},
+
+	"custom/power": {
+		"format": "{icon}",
+		"format-icons": "",
+		"escape": true,
+		"tooltip": false
+	},
+
+	"escape": true,
+	"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+	}
 }

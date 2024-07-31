@@ -1,7 +1,3 @@
-## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
-##
-## Mako configuration file
-
 # GLOBAL CONFIGURATION OPTIONS
 max-history=100
 sort=-time
@@ -36,7 +32,7 @@ anchor=top-right
 
 background-color=#24273a
 text-color=#cad3f5
-border-color=#c6a0f6
+border-color=#cdd6f4
 progress-color=over #B4A1DB
 
 [urgency=low]
@@ -48,7 +44,7 @@ border-color=#B4A1DB
 default-timeout=5000
 
 [urgency=high]
-border-color=#D04E9D
+border-color=#cad3f5
 text-color=#D04E9D
 default-timeout=0
 

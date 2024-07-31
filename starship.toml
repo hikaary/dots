@@ -1,94 +1,107 @@
-## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
-## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
-## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+format = """
+$directory\
+$git_branch\
+$git_status\
+$character
+"""
+
+right_format = """
+$python\
+$nodejs\
+$rust\
+$golang\
+$docker_context\
+$kubernetes\
+$cmd_duration\
+"""
 
 palette = "catppuccin_mocha"
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
 
-# Setups
-add_newline = true
-format = "$directory$git_branch$character"
-right_format = """$git_status$cmd_duration"""
-
-# Other languages configurations:
-c.disabled = true
-cmake.disabled = true
-golang.disabled = true
-haskell.disabled = true
-java.disabled = true
-lua.disabled = true
-nodejs.disabled = true
-package.disabled = true
-perl.disabled = true
-python.disabled = true
-ruby.disabled = true
-rust.disabled = true
-
-[conda]
-format = ' [$symbol$environment](dimmed green) '
-
-# Prompt symbols 
 [character]
-error_symbol = "[](pink)"
-success_symbol = "[](green bold)"
-vicmd_symbol = "[](peach)"
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [directory]
-format = "[]($style)[ ](bg:base fg:pink)[$path](bg:base fg:lavender bold)[ ]($style)"
-style = "bg:none fg:base"
+style = "bold sapphire"
+read_only = " "
+truncation_length = 4
 truncate_to_repo = false
-truncation_length = 3
 
 [git_branch]
-format = "[]($style)[[ ](bg:base fg:green bold)$branch](bg:base fg:lavender)[ ]($style)"
-style = "bg:none fg:base"
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "bold mauve"
 
 [git_status]
-# $all status$ahead_behind
-ahead = "⇡${count}"
-behind = "⇣${count}"
-conflicted = "="
-deleted = "${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-format = "[]($style)[$all_status$ahead_behind](bg:base fg:yellow)[ ]($style)"
-modified = "!${count}"
-renamed = "»${count}"
-staged = "+${count}"
-stashed = ""
-style = "bg:none fg:base"
-untracked = "?${count}"
-up_to_date = ""
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold red"
+
+[python]
+format = '[$symbol$virtualenv($version )]($style)'
+symbol = " "
+style = "bold yellow"
+
+[nodejs]
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "bold green"
+
+[rust]
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "bold red"
+
+[golang]
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "bold cyan"
+
+[docker_context]
+format = '[$symbol$context]($style) '
+symbol = " "
+style = "bold blue"
+
+[kubernetes]
+format = '[$symbol$context( \($namespace\))]($style) '
+symbol = "☸ "
+style = "bold cyan"
 
 [cmd_duration]
-min_time = 1
-# duration & style 
-disabled = false
-format = "[]($style)[[神](bg:base fg:flamingo bold)$duration](bg:base fg:text)[ ]($style)"
-style = "bg:none fg:base"
+format = "[$duration]($style)"
+style = "yellow"
 
-[palettes.catppuccin_mocha]
-base = "#1e1e2e"
-blue = "#89b4fa"
-crust = "#11111b"
-flamingo = "#f2cdcd"
-green = "#a6e3a1"
-lavender = "#b4befe"
-mantle = "#181825"
-maroon = "#eba0ac"
-mauve = "#cba6f7"
-overlay0 = "#6c7086"
-overlay1 = "#7f849c"
-overlay2 = "#9399b2"
-peach = "#fab387"
-pink = "#f5c2e7"
-red = "#f38ba8"
-rosewater = "#f5e0dc"
-sapphire = "#74c7ec"
-sky = "#89dceb"
-subtext0 = "#a6adc8"
-subtext1 = "#bac2de"
-surface0 = "#313244"
-surface1 = "#45475a"
-surface2 = "#585b70"
-teal = "#94e2d5"
-text = "#cdd6f4"
-yellow = "#f9e2af"
+[time]
+disabled = true
+format = '[$time]($style)'
+style = "bold lavender"
+
+[os]
+disabled = true

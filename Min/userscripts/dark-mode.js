@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Universal Catppuccin Dark Mode for Min Browser
+// @name         Advanced Universal Catppuccin Dark Mode for Min Browser
 // @namespace    http://tampermonkey.net/
-// @version      2.1
-// @description  Advanced dark mode with Catppuccin Mocha theme, inspired by Dark Reader, with ignored sites
+// @version      4.1
+// @description  Advanced dark mode adhering to Catppuccin Mocha theme with support for glow, shadows, and transparency
 // @match        *://*/*
 // @run-at       document-start
 // @grant        none
@@ -18,11 +18,7 @@
         'claude.ai',
     ];
 
-    // Function to check if the current site should be ignored
-    function isIgnoredSite() {
-        return ignoredSites.some(site => location.hostname.includes(site));
-    }
-
+    // Catppuccin Mocha color palette
     const catppuccinMocha = {
         base: '#1e1e2e',
         mantle: '#181825',
@@ -52,6 +48,25 @@
         rosewater: '#f5e0dc'
     };
 
+    function getCurrentDomain() {
+        return location.hostname;
+    }
+
+    function isIgnoredSite() {
+        return ignoredSites.some(site => getCurrentDomain().includes(site));
+    }
+
+    function getDarkModeState() {
+        const domain = getCurrentDomain();
+        const state = localStorage.getItem(`catppuccin_dark_mode_${domain}`);
+        return state === null ? true : state === 'true';
+    }
+
+    function setDarkModeState(enabled) {
+        const domain = getCurrentDomain();
+        localStorage.setItem(`catppuccin_dark_mode_${domain}`, enabled);
+    }
+
     function hexToRGB(hex) {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
@@ -59,9 +74,12 @@
         return {r, g, b};
     }
 
-    function RGBToHSL({r, g, b}) {
-        r /= 255; g /= 255; b /= 255;
-        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    function rgbToHSL(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
         let h, s, l = (max + min) / 2;
 
         if (max === min) {
@@ -76,113 +94,163 @@
             }
             h /= 6;
         }
+
         return {h: h * 360, s: s * 100, l: l * 100};
     }
 
-    function HSLToRGB({h, s, l}) {
-        s /= 100; l /= 100;
-        const k = n => (n + h / 30) % 12;
-        const a = s * Math.min(l, 1 - l);
-        const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    function hslToRGB(h, s, l) {
+        h /= 360;
+        s /= 100;
+        l /= 100;
+        let r, g, b;
+
+        if (s === 0) {
+            r = g = b = l;
+        } else {
+            const hue2rgb = (p, q, t) => {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1/6) return p + (q - p) * 6 * t;
+                if (t < 1/2) return q;
+                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+            };
+
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = hue2rgb(p, q, h + 1/3);
+            g = hue2rgb(p, q, h);
+            b = hue2rgb(p, q, h - 1/3);
+        }
+
         return {
-            r: Math.round(255 * f(0)),
-            g: Math.round(255 * f(8)),
-            b: Math.round(255 * f(4))
+            r: Math.round(r * 255),
+            g: Math.round(g * 255),
+            b: Math.round(b * 255)
         };
     }
 
-    function modifyColor(color, backgroundIsDark) {
-        if (color.startsWith('rgba')) {
-            const [r, g, b, a] = color.match(/\d+(\.\d+)?/g).map(Number);
-            const hsl = RGBToHSL({r, g, b});
-            if (backgroundIsDark) {
-                hsl.l = Math.min(100, hsl.l + 40);
-            } else {
-                hsl.l = Math.max(0, hsl.l - 40);
-            }
-            const {r: newR, g: newG, b: newB} = HSLToRGB(hsl);
-            return `rgba(${newR}, ${newG}, ${newB}, ${a})`;
-        } else {
-            const hsl = RGBToHSL(hexToRGB(color));
-            if (backgroundIsDark) {
-                hsl.l = Math.min(100, hsl.l + 40);
-            } else {
-                hsl.l = Math.max(0, hsl.l - 40);
-            }
-            const {r, g, b} = HSLToRGB(hsl);
-            return `rgb(${r}, ${g}, ${b})`;
-        }
+    function mixColors(color1, color2, weight = 0.5) {
+        const w = 2 * weight - 1;
+        const a = 0;
+
+        const w1 = (((w * a === -1) ? w : (w + a) / (1 + w * a)) + 1) / 2;
+        const w2 = 1 - w1;
+
+        return {
+            r: Math.round(color1.r * w1 + color2.r * w2),
+            g: Math.round(color1.g * w1 + color2.g * w2),
+            b: Math.round(color1.b * w1 + color2.b * w2)
+        };
     }
 
-    function createCatppuccinStyle() {
-        return `
-            html, body, input, textarea, select, button {
-                background-color: ${catppuccinMocha.base} !important;
-                color: ${catppuccinMocha.text} !important;
-                border-color: ${catppuccinMocha.overlay0} !important;
-                transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+    function mapColor(color, isBackground = false) {
+        if (!color || color === 'transparent') return isBackground ? catppuccinMocha.base : catppuccinMocha.text;
+        
+        let rgb = color.startsWith('#') ? hexToRGB(color) : {
+            r: parseInt(color.split(',')[0].slice(4)),
+            g: parseInt(color.split(',')[1]),
+            b: parseInt(color.split(',')[2])
+        };
+
+        let hsl = rgbToHSL(rgb.r, rgb.g, rgb.b);
+
+        if (isBackground) {
+            hsl.l = Math.max(5, Math.min(30, hsl.l)); // Adjust lightness for dark mode
+            hsl.s = Math.min(hsl.s, 30); // Reduce saturation for backgrounds
+        } else {
+            hsl.l = Math.max(60, Math.min(90, hsl.l)); // Adjust lightness for text
+            hsl.s = Math.min(hsl.s, 70); // Slightly reduce saturation for text
+        }
+
+        let newRgb = hslToRGB(hsl.h, hsl.s, hsl.l);
+        let baseColor = isBackground ? hexToRGB(catppuccinMocha.base) : hexToRGB(catppuccinMocha.text);
+        let mixedColor = mixColors(newRgb, baseColor, 0.7); // Mix with Catppuccin colors
+
+        return `rgb(${mixedColor.r}, ${mixedColor.g}, ${mixedColor.b})`;
+    }
+
+    function adjustShadow(shadowValue) {
+        if (!shadowValue || shadowValue === 'none') return 'none';
+
+        const shadows = shadowValue.match(/([rgba]?\([^)]+\)|\S+)/g);
+        return shadows.map(shadow => {
+            const parts = shadow.split(' ');
+            const color = parts.find(part => part.startsWith('rgb') || part.startsWith('#'));
+            if (color) {
+                const mappedColor = mapColor(color, true);
+                return shadow.replace(color, mappedColor);
             }
-            a {
-                color: ${catppuccinMocha.blue} !important;
-                transition: color 0.3s ease !important;
+            return shadow;
+        }).join(', ');
+    }
+
+    function adjustGlow(glowValue) {
+        if (!glowValue || glowValue === 'none') return 'none';
+
+        const glows = glowValue.match(/([rgba]?\([^)]+\)|\S+)/g);
+        return glows.map(glow => {
+            const parts = glow.split(' ');
+            const color = parts.find(part => part.startsWith('rgb') || part.startsWith('#'));
+            if (color) {
+                const mappedColor = mapColor(color, false);
+                return glow.replace(color, mappedColor);
             }
-            a:hover {
-                color: ${catppuccinMocha.sapphire} !important;
-            }
-            :root {
-                --darkreader-neutral-background: ${catppuccinMocha.base};
-                --darkreader-neutral-text: ${catppuccinMocha.text};
-                --darkreader-selection-background: ${catppuccinMocha.surface2};
-                --darkreader-selection-text: ${catppuccinMocha.text};
-            }
-            html {
-                background-image: none !important;
-            }
-            html, body, body :not(iframe):not(div[style^="position:absolute;top:0;left:-"]) {
-                background-color: var(--darkreader-neutral-background) !important;
-                border-color: var(--darkreader-neutral-text) !important;
-                color: var(--darkreader-neutral-text) !important;
-                transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-            }
-            input, textarea, select, button {
-                background-color: ${catppuccinMocha.surface0} !important;
-            }
-            ::placeholder {
-                color: ${catppuccinMocha.overlay1} !important;
-            }
-            ::selection {
-                background-color: var(--darkreader-selection-background) !important;
-                color: var(--darkreader-selection-text) !important;
-            }
-            ::-moz-selection {
-                background-color: var(--darkreader-selection-background) !important;
-                color: var(--darkreader-selection-text) !important;
-            }
-        `;
+            return glow;
+        }).join(', ');
+    }
+
+    function adjustTransparency(color) {
+        if (!color.startsWith('rgba')) return color;
+
+        const parts = color.match(/[\d.]+/g);
+        if (parts.length === 4) {
+            const rgb = mapColor(`rgb(${parts[0]}, ${parts[1]}, ${parts[2]})`);
+            return rgb.replace('rgb', 'rgba').replace(')', `, ${parts[3]})`);
+        }
+        return color;
     }
 
     function modifyColors() {
         const elementsToModify = document.querySelectorAll('*');
-        const baseHSL = RGBToHSL(hexToRGB(catppuccinMocha.base));
-        const isDark = baseHSL.l < 50;
 
         elementsToModify.forEach(el => {
             const style = window.getComputedStyle(el);
             const backgroundColor = style.backgroundColor;
             const color = style.color;
+            const boxShadow = style.boxShadow;
+            const textShadow = style.textShadow;
 
             if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)' && backgroundColor !== 'transparent') {
-                el.style.setProperty('background-color', modifyColor(backgroundColor, isDark), 'important');
-                el.style.setProperty('transition', 'background-color 0.3s ease', 'important');
+                const mappedBg = adjustTransparency(mapColor(backgroundColor, true));
+                el.style.setProperty('background-color', mappedBg, 'important');
             }
+            
             if (color) {
-                el.style.setProperty('color', modifyColor(color, !isDark), 'important');
-                el.style.setProperty('transition', 'color 0.3s ease', 'important');
+                const mappedColor = adjustTransparency(mapColor(color));
+                el.style.setProperty('color', mappedColor, 'important');
+            }
+
+            if (boxShadow && boxShadow !== 'none') {
+                const adjustedBoxShadow = adjustShadow(boxShadow);
+                el.style.setProperty('box-shadow', adjustedBoxShadow, 'important');
+            }
+
+            if (textShadow && textShadow !== 'none') {
+                const adjustedTextShadow = adjustGlow(textShadow);
+                el.style.setProperty('text-shadow', adjustedTextShadow, 'important');
+            }
+
+            // Handle specific elements
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.style.setProperty('background-color', catppuccinMocha.surface0, 'important');
+                el.style.setProperty('color', catppuccinMocha.text, 'important');
+                el.style.setProperty('border-color', catppuccinMocha.overlay0, 'important');
             }
         });
     }
 
-    let darkModeEnabled = false;
+    let darkModeEnabled = getDarkModeState();
 
     function createOrUpdateStyle(css) {
         let style = document.getElementById('catppuccin-dark-mode-style');
@@ -202,11 +270,39 @@
         if (style) {
             style.remove();
         }
+        // Reset all element styles
+        document.querySelectorAll('*').forEach(el => {
+            el.style.removeProperty('background-color');
+            el.style.removeProperty('color');
+            el.style.removeProperty('border-color');
+            el.style.removeProperty('box-shadow');
+            el.style.removeProperty('text-shadow');
+        });
     }
 
     function applyDarkMode() {
         if (darkModeEnabled && !isIgnoredSite()) {
-            createOrUpdateStyle(createCatppuccinStyle());
+            createOrUpdateStyle(`
+                html, body {
+                    background-color: ${catppuccinMocha.base} !important;
+                    color: ${catppuccinMocha.text} !important;
+                }
+                a {
+                    color: ${catppuccinMocha.blue} !important;
+                }
+                a:hover {
+                    color: ${catppuccinMocha.sapphire} !important;
+                }
+                ::placeholder {
+                    color: ${catppuccinMocha.overlay1} !important;
+                }
+                ::-webkit-scrollbar {
+                    background-color: ${catppuccinMocha.mantle};
+                }
+                ::-webkit-scrollbar-thumb {
+                    background-color: ${catppuccinMocha.surface1};
+                }
+            `);
             modifyColors();
         } else {
             removeStyle();
@@ -215,6 +311,7 @@
 
     function toggleDarkMode() {
         darkModeEnabled = !darkModeEnabled;
+        setDarkModeState(darkModeEnabled);
         applyDarkMode();
         showStatus();
     }
@@ -238,30 +335,9 @@
         setTimeout(() => document.body.removeChild(status), 2000);
     }
 
-    function isSystemDarkModeEnabled() {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-
-    function runColorSchemeChangeDetector(callback) {
-        if (window.matchMedia) {
-            const matcher = window.matchMedia('(prefers-color-scheme: dark)');
-            matcher.addListener((e) => callback(e.matches));
-        }
-    }
-
-    function notifyOfColorScheme(isDark) {
-        console.log(`System color scheme changed to ${isDark ? 'dark' : 'light'}`);
-        darkModeEnabled = isDark;
-        applyDarkMode();
-    }
-
     // Initialize
     if (!isIgnoredSite()) {
-        darkModeEnabled = isSystemDarkModeEnabled();
         applyDarkMode();
-
-        // Watch for system color scheme changes
-        runColorSchemeChangeDetector(notifyOfColorScheme);
 
         // Add toggle hotkey (Ctrl+Alt+D)
         document.addEventListener('keydown', (e) => {
@@ -270,30 +346,30 @@
             }
         });
 
-        // Observe DOM changes to reapply styles if necessary
-        const observer = new MutationObserver((mutations) => {
-            if (darkModeEnabled) {
-                mutations.forEach(mutation => {
-                    if (mutation.type === 'childList') {
-                        mutation.addedNodes.forEach(node => {
-                            if (node.nodeType === 1) { // ELEMENT_NODE
-                                modifyColors();
-                            }
-                        });
-                    }
-                });
-            }
-        });
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        // Apply styles when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyDarkMode);
-        } else {
-            applyDarkMode();
+    // Observe DOM changes to reapply styles if necessary
+    const observer = new MutationObserver((mutations) => {
+        if (darkModeEnabled) {
+            mutations.forEach(mutation => {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) { // ELEMENT_NODE
+                            modifyColors();
+                        }
+                    });
+                }
+            });
         }
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Apply styles when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyDarkMode);
+    } else {
+        applyDarkMode();
     }
+}
 })();
