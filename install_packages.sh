@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Function to install yay
-install_yay() {
-    echo "Installing yay..."
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --noconfirm
+# Function to install paru
+install_paru() {
+    echo "Installing paru..."
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
     cd ..
-    rm -rf yay
+    rm -rf paru
 }
 
 pacman_packages=(
@@ -19,7 +20,7 @@ pacman_packages=(
     gst-plugin-pipewire htop hyprland hyprlock hyprpaper hyprshot imv
     inotify-tools iwd iwd-dinit jq kitty kvantum lazygit less libpulse
     libreoffice-fresh linux linux-firmware linux-headers lsp-plugins
-    lxappearance man-db mariadb mkinitcpio mpd mplayer mpv neofetch neovim
+    lxappearance man-db mariadb mkinitcpio mpd mplayer mpv fastfetch neovim
     net-tools netstat-nat noto-fonts-cjk noto-fonts-emoji npm ntfs-3g
     obs-studio opendoas pcsc-tools pipewire pipewire-alsa
     pipewire-docs pipewire-jack pipewire-pulse pipewire-pulse-dinit
@@ -34,29 +35,31 @@ pacman_packages=(
     xwaylandvideobridge xxkb zenity zip
 )
 
-yay_packages=(
-    bitwarden-cli dbeaver debtap dmenu-bluetooth
+paru_packages=(
+    bitwarden dbeaver debtap dmenu-bluetooth
     docker docker-compose docker-dinit downgrade
-    eww-git floorp-bin fuzzel-git g-ls gat google-chrome nerd-fonts-complete-mono-glyphs
+    eww-git floorp-bin g-ls gat google-chrome nerd-fonts-complete-mono-glyphs
     obsidian-icon-theme otf-daddytimemono-git pyenv pyprland python-dbus-next
     python-iwlib python-poetry
-    rate-mirrors rustup sexpect spotify telegram-desktop ttf-daddytime-mono-nerd
+    rate-mirrors rustup sexpect ttf-daddytime-mono-nerd
     ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols v2ray
     v2ray-dinit vesktop-bin watchman-bin
     xplorer-bin waybar pamixer
     catppuccin-gtk-theme-mocha papirus-folders-catppuccin-git
-    xxh-appimage
+    xxh-appimage bluetuith-bin impala graftcp ncspot
 )
 
 sudo pacman -Syu --noconfirm
 
 sudo pacman -S --needed --noconfirm ${pacman_packages[@]}
 
-if ! command -v yay &> /dev/null; then
-    install_yay
+if ! command -v paru &> /dev/null; then
+    install_paru
 fi
 
-yay -S --needed --noconfirm ${yay_packages[@]}
+paru -S --needed --noconfirm ${paru_packages[@]}
+
+sudo sh -c "curl -s https://raw.githubusercontent.com/materialgram/arch/x86_64/installer.sh | bash"    
 
 echo "All packages have been installed successfully!"
 

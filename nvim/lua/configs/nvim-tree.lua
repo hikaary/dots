@@ -3,7 +3,6 @@ dofile(vim.g.base46_cache .. "nvimtree")
 local nvtree = require "nvim-tree"
 local api = require "nvim-tree.api"
 
-
 local function custom_on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -24,9 +23,12 @@ local WIDTH_RATIO = 0.5
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    api.tree.open()
-  end
+    if vim.fn.argc() == 0 and vim.fn.line2byte "$" == -1 then
+      require("nvim-tree.api").tree.open()
+    end
+  end,
 })
+
 nvtree.setup {
   on_attach = custom_on_attach,
   update_focused_file = {

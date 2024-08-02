@@ -21,3 +21,24 @@ opacity = 0.9
 [window.padding]
 x = 20
 y = 0
+
+[keyboard]
+[[keyboard.bindings]]
+key = "Back"
+mods = "Control"
+chars = "\u001b\u007f"
+
+[[keyboard.bindings]]
+key = "С"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "С"
+mods = "Control"
+chars = "\u0003"
+
+[[keyboard.bindings]]
+key = "М"
+mods = "Control|Shift"
+action = "Paste"
