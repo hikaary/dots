@@ -36,17 +36,15 @@ else
     alias lh 'ls -lhA'
 end
 
-alias hikary-drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'
 alias x='xxh +s fish'
 
 function hikary-update-all
     set -l TMPFILE (mktemp)
-    sudo true
     rate-mirrors --save=$TMPFILE artix \
-    && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
-    && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
-    && hikary-drop-caches \
-    && yay -Syyu --noconfirm
+    && doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+    && doas mv $TMPFILE /etc/pacman.d/mirrorlist \
+    && aura -Ayu --noconfirm \
+    && aura -Ayu --noconfirm
 end
 
 # ===== Abbreviations =====
@@ -63,8 +61,8 @@ if status --is-interactive
     abbr -a -g shinei 'kill -9'
     abbr -a -g kv 'kill -9 (pgrep vlc)'
     abbr -a -g priv 'fish --private'
-    abbr -a -g sshon 'sudo systemctl start sshd.service'
-    abbr -a -g sshoff 'sudo systemctl stop sshd.service'
+    abbr -a -g sshon 'doas systemctl start sshd.service'
+    abbr -a -g sshoff 'doas systemctl stop sshd.service'
     abbr -a -g untar 'tar -zxvf'
     abbr -a -g genpass 'openssl rand -base64 20'
     abbr -a -g sha 'shasum -a 256'
@@ -135,6 +133,20 @@ function load_env --description 'Load environment variables from a .env file'
     end
 end
 
+function xxh_connect_setup
+    if test (count $argv) -eq 0
+        echo "Usage: xxh_connect_setup <hostname>"
+        return 1
+    end
+    set -l host $argv[1]
+    
+    # Connect to the host
+    if not xxh $host +s fish +if
+        echo "Failed to connect to the host. Exiting."
+        return 1
+    end
+end
+
 function su
     command su --shell=/usr/bin/fish $argv
 end
@@ -169,22 +181,6 @@ set fish_greeting  # Disable greeting
 # Check if starship is installed before running it
 if command -q starship
     starship init fish | source
-end
-
-# Set up D-Bus only if it's installed
-if command -q dbus-launch
-    set dbus_data (dbus-launch --sh-syntax)
-    for line in $dbus_data
-        set line (string replace 'export ' '' $line)
-        set line (string trim -c ';' $line)
-        set line (string replace "'" '' $line)
-        set line (string replace "'" '' $line)
-        set -l key (echo $line | cut -d'=' -f1)
-        set -l value (echo $line | cut -d'=' -f2- | string trim -c ';')
-        if not test $value = DBUS_SESSION_BUS_ADDRESS
-            set -gx $key $value
-        end
-    end
 end
 
 # Set PYENV_ROOT only if pyenv is installed

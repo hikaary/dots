@@ -1,19 +1,3 @@
--- local function show_line_diagnostics()
---   local opts = {
---     focusable = false,
---     close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
---     border = "rounded",
---     source = "always",
---     prefix = " ",
---   }
---   vim.diagnostic.open_float(nil, opts)
--- end
--- vim.api.nvim_create_autocmd("CursorHold", {
---   buffer = bufnr,
---   callback = function()
---     show_line_diagnostics()
---   end,
--- })
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 local on_attach = require("nvchad.configs.lspconfig").on_attach
@@ -73,3 +57,33 @@ lspconfig.basedpyright.setup {
     },
   },
 }
+
+lspconfig.ruff_lsp.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  init_options = {
+    settings = {
+      args = {
+        "--config=~/.config/nvim/ruff.toml",
+      },
+    },
+  },
+}
+
+local function show_line_diagnostics()
+  local opts = {
+    focusable = false,
+    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    border = "rounded",
+    source = "always",
+    prefix = " ",
+  }
+  vim.diagnostic.open_float(nil, opts)
+end
+vim.api.nvim_create_autocmd("CursorHold", {
+  buffer = bufnr,
+  callback = function()
+    show_line_diagnostics()
+  end,
+})

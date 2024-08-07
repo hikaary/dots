@@ -1,4 +1,3 @@
-// -*- mode: jsonc -*-
 {
 	"height": 40,
 	"width": 1880,
@@ -8,22 +7,16 @@
 	"modules-center": ["custom/weather", "memory"],
 	"modules-right": ["battery", "hyprland/language", "clock"],
 
-	"custom/menu": {
-		"format": "{icon}",
-		"format-icons": "󰈸",
-		"escape": true,
-		"tooltip": false
-	},
   "battery": {
       "states": {
-          "good": 95,
+          "good": 90,
           "warning": 30,
           "critical": 20
       },
       "format": "<span color='#fab387'>{icon}</span> {capacity}%",
       "rotate": 0,
-      "format-charging": " {capacity}%",
-      "format-plugged": " {capacity}%",
+      "format-charging": "<span color='#fab387'></span> {capacity}%",
+      "format-plugged": "<span color='#fab387'></span> {capacity}%",
       "format-alt": "{time} {icon}",
       "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
@@ -50,23 +43,7 @@
 
 	"hyprland/window": {
 		"format": "{class}",
-		"separate-outputs": false,
-	},
-
-	"custom/cmus": {
-		"format": "{icon} {}",
-		"format-icons": {
-		"default": ["<span color='#89b4fa'></span>"]
-		},
-		"max-length": 45,
-		"interval": 1,
-		"exec": "cmus-remote -C \"format_print '%F'\"",
-		"exec-if": "pgrep cmus",
-		"on-click": "cmus-remote -u",
-		"on-scroll-up": "cmus-remote --next",
-		"on-scroll-down": "cmus-remote --prev",
-		"escape": true,
-		"tooltip": false
+		"separate-outputs": false
 	},
 
 	"custom/weather": {
@@ -76,29 +53,10 @@
 		"tooltip": false
 	},
 
-	"custom/foot": {
-		"format": "<span color='#a6e3a1'></span>",
-		"on-click": "exec foot --title=home",
-		"tooltip": false
-	},
-
-	"custom/nemo": {
-		"format": "<span color='#89b4fa'>󰉋</span>",
-		"on-click": "exec nemo home/",
-		"tooltip": false
-	},
-
-
-
-	"tray": {
-		"icon-size": 18,
-		"spacing": 10
-	},
-
 	"hyprland/language": {
 		"format": "<span color='#fab387'>󰌏</span> {}",
 		"format-en": "EN",
-		"format-ru": "RU",
+		"format-ru": "RU"
 	},
     
 	"pulseaudio": {
@@ -145,7 +103,6 @@
 		"tooltip": false
 	},
 
-	"escape": true,
-	"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+	"escape": true
 	}
 }

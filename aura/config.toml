@@ -1,0 +1,29 @@
+[general]
+cpus = 16
+editor = "vi"
+doas = true
+language = "en-US"
+
+[aur]
+build = "/home/hikary/.cache/aura/builds"
+cache = "/home/hikary/.cache/aura/cache"
+clones = "/home/hikary/.cache/aura/packages"
+hashes = "/home/hikary/.cache/aura/hashes"
+chroot = []
+ignores = []
+git = false
+hotedit = false
+shellcheck = false
+diff = false
+delmakedeps = false
+clean = false
+warn_unknowns = true
+noconfirm = false
+nocheck = false
+skipdepcheck = false
+reverse = false
+
+[backups]
+snapshots = "/home/hikary/.cache/aura/snapshots"
+automatic = true
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+# Service script to unblock Wi-Fi and bring up wlan0
+
+rfkill unblock wifi
+ip link set wlan0 up
