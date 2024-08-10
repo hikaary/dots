@@ -1,9 +1,13 @@
 local conform = require "conform"
 
+conform.formatters.ruff_format = {
+  prepend_args = { "format", "--config", "~/.config/nvim/ruff.toml" },
+}
+
 conform.setup {
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "ruff_format", "ruff_fix", "ruff_organize_imports" },
+    python = { "ruff_organize_imports", "ruff_format" },
     javascript = { "prettier" },
     typescript = { "prettier" },
     json = { "prettier" },
@@ -15,8 +19,4 @@ conform.setup {
     timeout_ms = 500,
     lsp_fallback = true,
   },
-}
-
-conform.formatters.ruff = {
-  prepend_args = { "--config", "~/.config/nvim/ruff.toml" },
 }

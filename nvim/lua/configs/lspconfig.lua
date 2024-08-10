@@ -48,7 +48,7 @@ lspconfig.basedpyright.setup {
   settings = {
     basedpyright = {
       analysis = {
-        typeCheckingMode = "off",
+        typeCheckingMode = "basic",
         diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
         reportMissingImports = true,

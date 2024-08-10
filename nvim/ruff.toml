@@ -7,8 +7,8 @@ cache-dir = "~/.cache/ruff"
 [format]
 quote-style = "single"
 line-ending = "auto"
-indent-style = "tab"
-docstring-code-format = true
+indent-style = "space"
+docstring-code-format = false
 docstring-code-line-length = 20
 
 [lint]
@@ -35,6 +35,7 @@ ignore = [
   "D212",
   "RSE102",
   "S101",
+  "RET505",
 ]
 
 [lint.flake8-annotations]

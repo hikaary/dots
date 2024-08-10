@@ -19,7 +19,7 @@ def send_notification(message, urgency="normal"):
 
 def check_battery_level(percent, is_plugged, last_notification):
     if is_plugged:
-        return None
+        return
 
     if percent <= CRITICAL_BATTERY_LEVEL and last_notification != "critical":
         return (
@@ -28,7 +28,6 @@ def check_battery_level(percent, is_plugged, last_notification):
         )
     elif percent <= LOW_BATTERY_LEVEL and last_notification != "low":
         return (f"Низкий заряд батареи ({LOW_BATTERY_LEVEL}%)", "normal")
-    return None
 
 
 def main():
@@ -38,17 +37,19 @@ def main():
     while True:
         percent, is_plugged = get_battery_status()
 
+        # Проверка изменения статуса подключения
         if is_plugged != last_plugged_status:
             last_plugged_status = is_plugged
-            last_notification = None
+            last_notification = None  # Сброс последнего уведомления о батарее
 
+        # Проверка уровня батареи
         notification = check_battery_level(percent, is_plugged, last_notification)
         if notification:
             message, urgency = notification
             send_notification(message, urgency)
             last_notification = "critical" if urgency == "critical" else "low"
 
-        time.sleep(60)
+        time.sleep(60)  # Проверка каждую минуту
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ return {
       "TSInstall",
       "TSBufEnable",
       "TSBufDisable",
-      "TSModuleInfo"
+      "TSModuleInfo",
     },
     build = ":TSUpdate",
     opts = {
