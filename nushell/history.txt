@@ -1,0 +1,189 @@
+clear
+htop
+l
+which btm | length
+l
+$env
+v
+nvim 
+l
+fis
+l
+ls
+eza -l --icons --no-user --time-style=long-iso --git
+wezterm
+clear
+g --icon -no-total-size --time --size --title --owner
+g -no-total-size --time --size --title --owner
+g --time --size --title --owner
+g -
+g 
+ls
+g "--icon -no-total-size --time --size --title --owner"
+g --icon -no-total-size --time --size --title --owner
+g --help
+ls
+ls -la
+fis
+l
+fush
+clear
+l
+l -A
+l -a
+l
+clear
+l
+lh
+ls -la
+l
+k
+l
+ды
+ls
+l
+k
+l
+clear
+l
+clear
+l
+aura -A zoxide
+z 
+clear 
+z dev
+cd .cache/zoxide/
+l
+v init.nu
+z
+z dev/
+l
+..
+l
+clear
+z dev/
+l
+z twitch-vod/
+..
+l
+clear
+htop
+btm
+which btm | length
+h
+d
+dir
+x nexus
+lg
+z hise/dbots/
+l
+lg
+..
+l
+..
+l
+chsh /usr/bin/nu
+doas chsh /usr/bin/nu
+doas chsh -l /usr/bin/nu
+doas chsh -l /bin/nu
+chsh -l /bin/nu
+chsh -s /bin/nu
+clear
+aura -A mcfly
+hh
+mcfly
+mcfly init nushell | save -f ~/.cache/mcfly/init.nu
+mcfly search
+hh
+cd .cache/mcfly/
+l
+v init.nu
+hh
+$MCFLY_HISTFILE 
+$MCFLY_HISTFILE
+hh
+aura -A atuin
+..
+cd ..
+nu
+which fish
+aura -R fish-shell
+aura -R fish
+aura -S carapace
+aura -A carapace
+clear
+cd .cache/carapace/
+l
+v init.nu 
+delpkg fish 
+clear
+nu
+cd tests/
+l
+clear
+pip install tg
+tg
+pip install setuptools
+tg
+clear
+..
+poetry shell
+..
+l
+clear
+l
+la
+ls --help
+lh
+ls -la 
+aura -A gittui
+aura -A gitui
+la
+l
+x nexus
+ssh nexus
+nu
+wezterm ssh nexus
+wezterm ssh genshin 
+clear
+sdf
+clear
+sdfdsf
+ff
+f
+clear
+nu
+z dbots
+open 
+l
+open Dockerfile
+ssh nexus
+gitui
+..
+gitui
+l
+clear
+gitui --version 
+gitui 
+l
+v theme.ron
+..
+l
+rm -rf lazygit/
+v packages 
+v nushell/config.nu 
+gt
+rm -rf abaddon/
+gt
+rm armcord/ spotify-player/
+rm r armcord/ spotify-player/
+rm -r armcord/ spotify-player/
+gt
+gt
+v gitui/key_bindings.ron
+gt
+v gitui/key_bindings.ron
+gt
+v gitui/key_bindings.ron
+gt
+v .gitignore 

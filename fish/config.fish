@@ -36,6 +36,10 @@ else
     alias lh 'ls -lhA'
 end
 
+if command -q btm
+    alias htop btm
+end
+
 alias x='xxh +s fish'
 
 function hikary-update-all

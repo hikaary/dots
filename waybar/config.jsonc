@@ -6,7 +6,7 @@
 	"modules-left": ["hyprland/workspaces", "hyprland/window"],
 	"modules-center": ["custom/weather", "memory"],
 	"modules-right": ["battery", "hyprland/language", "clock"],
-
+    
   "battery": {
       "states": {
           "good": 90,

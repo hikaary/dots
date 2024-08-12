@@ -7,7 +7,7 @@ conform.formatters.ruff_format = {
 conform.setup {
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "ruff_organize_imports", "ruff_format" },
+    python = { "ruff_organize_imports", "ruff_format", "ruff_fix" },
     javascript = { "prettier" },
     typescript = { "prettier" },
     json = { "prettier" },

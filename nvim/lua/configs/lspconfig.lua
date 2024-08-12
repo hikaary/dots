@@ -1,89 +1,107 @@
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-local on_attach = require("nvchad.configs.lspconfig").on_attach
+local M = {}
+
 local lspconfig = require "lspconfig"
 
-local servers = {
-  "html",
-  "cssls",
-  "lua_ls",
-  "bashls",
-  "taplo",
-  "biome",
-}
+local function setup_server(server, config)
+  if not config then
+    return
+  end
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
+  if type(config) ~= "table" then
+    config = {}
+  end
+
+  config = vim.tbl_deep_extend("force", {
+    on_attach = function(client, bufnr)
+      -- Настройка Lspsaga
+      local keymap = vim.keymap.set
+      keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { buffer = bufnr })
+      keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = bufnr })
+      keymap("n", "gf", "<cmd>Lspsaga finder<CR>", { buffer = bufnr })
+      keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { buffer = bufnr })
+      keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { buffer = bufnr })
+    end,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  }, config)
+
+  lspconfig[server].setup(config)
 end
 
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = { version = "LuaJIT" },
-      diagnostics = { globals = { "vim" } },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-        maxPreload = 100,
-        preloadFileSize = 1000,
-      },
-      telemetry = { enable = false },
-      completion = { callSnippet = "Replace" },
-      hint = { enable = false },
-    },
-  },
-}
+function M.setup()
+  -- Настройка серверов
+  local servers = {
+    "html",
+    "cssls",
+    "lua_ls",
+    "bashls",
+    "taplo",
+    "biome",
+  }
 
-lspconfig.basedpyright.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    basedpyright = {
-      analysis = {
-        typeCheckingMode = "basic",
-        diagnosticMode = "openFilesOnly",
-        useLibraryCodeForTypes = true,
-        reportMissingImports = true,
-        reportUndefinedVariable = true,
-      },
-    },
-  },
-}
+  for _, server in ipairs(servers) do
+    setup_server(server, {})
+  end
 
-lspconfig.ruff_lsp.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  init_options = {
+  -- Специфичные настройки для некоторых серверов
+  setup_server("lua_ls", {
     settings = {
-      args = {
-        "--config=~/.config/nvim/ruff.toml",
+      Lua = {
+        runtime = { version = "LuaJIT" },
+        diagnostics = { globals = { "vim" } },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+          maxPreload = 100,
+          preloadFileSize = 1000,
+        },
+        telemetry = { enable = false },
+        completion = { callSnippet = "Replace" },
+        hint = { enable = false },
       },
     },
-  },
-}
+  })
 
-local function show_line_diagnostics()
-  local opts = {
-    focusable = false,
-    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-    border = "rounded",
-    source = "always",
-    prefix = " ",
-  }
-  vim.diagnostic.open_float(nil, opts)
+  setup_server("basedpyright", {
+    settings = {
+      basedpyright = {
+        analysis = {
+          typeCheckingMode = "basic",
+          diagnosticMode = "openFilesOnly",
+          useLibraryCodeForTypes = true,
+          reportMissingImports = true,
+          reportUndefinedVariable = true,
+        },
+      },
+    },
+  })
+
+  setup_server("ruff_lsp", {
+    init_options = {
+      settings = {
+        args = {
+          "--config=~/.config/nvim/ruff.toml",
+        },
+      },
+    },
+  })
+
+  -- Настройка автоматического показа диагностики
+  local function show_line_diagnostics()
+    local opts = {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = "rounded",
+      source = "always",
+      prefix = " ",
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+      show_line_diagnostics()
+    end,
+  })
 end
-vim.api.nvim_create_autocmd("CursorHold", {
-  buffer = bufnr,
-  callback = function()
-    show_line_diagnostics()
-  end,
-})
+
+return M
