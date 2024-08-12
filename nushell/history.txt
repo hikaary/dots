@@ -187,3 +187,6 @@ gt
 v gitui/key_bindings.ron
 gt
 v .gitignore 
+gt
+aura -A lazygit
+lazygit
