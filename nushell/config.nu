@@ -24,6 +24,7 @@ alias ld = lazydocker
 alias s = sudo
 alias t = bpytop
 alias removepkg = doas pacman -R 
+alias music = mgraftcp --socks5 127.0.0.1:1080 ncspot
 
 alias lh = ls -lh
 alias l = ls
@@ -33,18 +34,15 @@ def ls-all [] {
 }
 
 alias la = ls-all
-
-if (which btm | length) > 0 {
-    alias htop = btm
-}
+alias htop = btm
 
 alias x = xxh +s nu
 
 def hikary-update-all [] {
     let tmpfile = (mktemp)
     rate-mirrors --save=$tmpfile artix
-    sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
-    sudo mv $tmpfile /etc/pacman.d/mirrorlist
+    doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
+    doas mv $tmpfile /etc/pacman.d/mirrorlist
     aura -Ayu --noconfirm
     aura -Ayu --noconfirm
 }
@@ -75,18 +73,7 @@ def extract [name:string] {
   }
 }
 
-def xxh_connect_setup [host] {
-    if ($host | is-empty) {
-        echo "Usage: xxh_connect_setup <hostname>"
-        return 1
-    }
-    
-    let result = (do { xxh $host +s nu +if } | complete)
-    if $result.exit_code != 0 {
-        echo "Failed to connect to the host. Exiting."
-        return 1
-    }
-}
+$env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 
 # Set other configuration options
 $env.config =  {

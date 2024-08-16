@@ -38,6 +38,10 @@ ignore = [
   "RET505",
   "D105",
   "UP008",
+  "D106",
+  "ERA001",
+  "FBT001",
+  "FBT002",
 ]
 
 [lint.flake8-annotations]

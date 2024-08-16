@@ -2,19 +2,19 @@
 
 # Function to install aura
 install_aura() {
-    echo "Installing aura..."
-    git clone https://aur.archlinux.org/aura-bin.git
-    cd aura-bin
-    makepkg -s
-    # TODO complete install
-    cd ..
-    rm -rf aura-bin
-    aura -Scc --noconfirm
+  echo "Installing aura..."
+  git clone https://aur.archlinux.org/aura-bin.git
+  cd aura-bin
+  makepkg -s
+  # TODO complete install
+  cd ..
+  rm -rf aura-bin
+  aura -Scc --noconfirm
 }
 
 # Check if aura is installed, if not, install it
-if ! command -v aura &> /dev/null; then
-    install_aura
+if ! command -v aura &>/dev/null; then
+  install_aura
 fi
 
 # Read packages from the file
@@ -35,3 +35,5 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 mv ./.xxh ~/
 xxh +I xxh-plugin-fish-userconfig
 xxh +I xxh-plugin-fish-ohmyfish
+
+doas usermod -a -G video,audio,input,power,storage,optical,lp,scanner,dbus,adbusers,uucp $USER

@@ -25,9 +25,7 @@ graftcp
 htop
 hyprland
 hyprshot
-impala
 imv
-iwd-dinit
 lazydocker
 gitui
 lsp-plugins
@@ -47,7 +45,6 @@ opendoas
 otf-daddytimemono-git
 pamixer
 papirus-folders-catppuccin-git
-pipewire-pulse-dinit
 pulsemixer
 pyenv
 qbittorrent
@@ -76,3 +73,8 @@ bottom
 zoxide
 atuin
 carapace
+pipewire
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
+calf
