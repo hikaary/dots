@@ -1720,3 +1720,79 @@ l
 rm -rf bottom/
 l
 v packages 
+lazygit
+l
+speedtest 
+aura -S networkmanager nmcli
+aura -S networkmanager nmtui
+nmtui
+aura -S networkmanager-dinit
+doas dinitctl enable networkmanagerd
+doas dinitctl enable networkmanager
+cd /etc/dinit.d/
+l
+doas dinitctl enable NetworkManager 
+nmtui
+doas dinitctl catlog NetworkManager 
+doas dinitctl status NetworkManager 
+doas dinitctl start NetworkManager 
+nmtui
+cat NetworkManager 
+NetworkManager -n
+NetworkManager
+das NetworkManager
+doas NetworkManager
+doas dinitctl disable connmand 
+doas reboo
+waybar
+nmtui
+doas nmtui
+#/bin/sh<\n>unset COLORTERM<\n>TERM=xterm-old nmtui
+cd Downloads/
+v test
+chmod a+x *
+./test
+chmod a+x *
+..
+l
+cd materialgram/
+l
+ex VSTPlugins.zip
+extract VSTPlugins.zip
+l
+rm -rf VSTPlugins.zip
+l
+..
+mkdir vst
+mv Downloads/materialgram/*.dll vst/
+cd vs
+cd vst/
+l
+doas pacman -S wine carla carla-vst calf-ladspa calf-plugins<\n>
+aura -A   carla carla-vst calf-ladspa calf-plugins<\n>
+aura -A   carla calf-ladspa 
+aura -К  carla calf-ladspa 
+aura -R  carla calf-ladspa 
+aura -R  carla 
+..
+rm -rf vst/
+v packages 
+cd easyeffects/output/
+l
+..
+l
+cd input/
+l
+cd ..
+cd output/
+l
+v main.json 
+v sound.json
+hotp
+htop
+v loudness.json
+v sound.json 
+v loudness.json
+v sound.json 
+rm sound.json
+..
