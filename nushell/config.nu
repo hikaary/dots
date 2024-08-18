@@ -18,7 +18,7 @@ if (which fd | length) > 0 {
 
 # Aliases
 alias v = nvim
-alias gt = gitui
+alias lg = lazygit
 alias ta = tmux attach
 alias ld = lazydocker
 alias s = sudo

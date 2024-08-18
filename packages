@@ -27,7 +27,7 @@ hyprland
 hyprshot
 imv
 lazydocker
-gitui
+lazyzgit
 lsp-plugins
 lxappearance
 mako
@@ -50,8 +50,6 @@ pyenv
 qbittorrent
 rate-mirrors
 rsync
-sddm-dinit
-sddm-kcm
 speedtest-cli
 starship
 ttf-jetbrains-mono
@@ -78,3 +76,4 @@ pipewire-pulse
 pipewire-alsa
 pipewire-jack
 calf
+emptty

@@ -1658,3 +1658,65 @@ v power-save.sh
 gitui
 rm -r neofetch/
 removepkg neofetch
+gitui
+git push
+lazygit
+..
+aura -S lazygit
+v packages
+v 
+l
+l
+cd Furious/
+l
+cat Furious.conf
+..
+rm -rf Furious/
+l
+rm -rf sddm/
+aura -A emptty
+v .gitignore
+rm -rf xxh/
+l
+rm -rf tg
+rm -rf omg
+rm -rf omf
+l
+cd carapace/
+l
+..
+rm -rf carapace/
+l
+rm -rf fish/ g/
+l
+rm -rf atuin/
+rm -rf `Unknown Organization/`
+l
+rm -rf atuin/
+l
+cd aura/
+..
+cd atuin/
+l
+cat config.toml
+..
+l
+atuin
+l
+rm -rf alacritty/
+rm -rf gitui/
+l
+cd dconf/
+l
+cat user
+l
+..
+l
+dconf
+dconf list
+l
+rm -rf dconf/
+l
+rm -rf bottom/
+l
+v packages 
