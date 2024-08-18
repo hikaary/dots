@@ -960,3 +960,701 @@ chmod a+x *
 ./wifi-manager
 gitui
 rm -r neofetch/
+gitui
+git pish
+git push
+..
+cd viewer_api_v2/
+cd twitch_stats/
+v
+poetry add loguru
+pip install pydantic
+v
+l
+./power-save.sh
+doas ./power-save.sh
+removepkg sddm-dinit sddm sddm-kcm 
+status
+aura -S status
+clear
+doas mkdir -p /etc/sv/agetty-tty1/
+doas nvim /etc/sv/agetty-tty1/conf
+doas rm /etc/sv/
+doas rm -r /etc/sv/
+cd /etc/dinit.d/
+l
+doas nvim tty1
+doas reboot 
+reboot
+cd /etc/dinit.d/
+l
+cd boot.d/
+l
+doas rm iwd sddm
+l
+..
+l
+doas nvim tty1
+doas dinitctl catlog tty1
+doas dinitctl status tty1
+doas nvim tty1
+$env | table -e
+$env.DISPLAY
+v .config/nushell/config.nu 
+cd /etc/dinit.d/
+l
+cat v2ray 
+doas rm v2ray
+l
+cat tty1
+v
+v
+l
+cd Downloads/
+$env > env_nushell.txt<\n>
+env > env_nushell.txt<\n>
+touch env_nushell.txt
+env > env_nushell.txt<\n>
+$env > env_nushell.txt<\n>
+$env write env_nushell.txt<\n>
+$env | save env_nushell.txt<\n>
+$env
+doas reboo
+$env.DISPLAY
+clear
+cd /etc/dinit.d/
+l
+cd boot.d/
+l
+doas rm v2ray
+v
+v
+killall tmux
+killall tmux-session
+tmux attach-session 
+v
+cd tmux/
+l
+v tmux.conf 
+killall tmux-session
+tmux
+htop
+v tmux.conf 
+echo $DISPLAY<\n>
+$env.DISPLAY
+aura -A emptty
+doas pacman -S emptty
+doas pacman -Sy archlinux-keyring<\n>
+doas pacman-key --populate archlinux<\n>
+doas pacman -Sy archlinux-keyring<\n>
+doas rm /var/cache/pacman/pkg/archlinux-keyring-20240709-1-any.pkg.tar.zst 
+doas rm /var/cache/pacman/pkg/archlinux-keyring-20240709-1-any.pkg.tar.zst.sig 
+doas pacman-key --populate archlinux<\n>
+doas pacman -Sy archlinux-keyring<\n>
+doas pacman -Scc
+doas pacman -Syy
+doas pacman -S archlinux-keyring
+doas ntpd -qg
+hikary-update-all 
+doas pacman-key --refresh-keys
+doas pacman -S archlinux-keyring
+lsusb
+hikary-update-all 
+cd /etc/pacman.d/
+l
+doas touch mirrorlist
+lsusb
+v mirrorlist 
+pacman -Qo /etc/pacman.d/mirrorlist
+cat mirrorlist 
+doas pacman -S fprintd libfprint
+l
+v mirrorlist-backup 
+v mirrorlist-arch 
+v mirrorlist 
+doas pacman -Syy
+doas pacman-key --refresh-keys
+doas rm -rf /etc/pacman.d/gnupg
+doas pacman-key --init
+doas pacman-key --populate archlinux
+doas pacman -S fprintd libfprint
+doas pacman -Syy
+doas pacman -Scc
+doas pacman -Syy
+doas chronyd -q
+doas timedatectl set-ntp true
+doas rm -rf /etc/pacman.d/gnupg
+doas pacman-key --init<\n>doas pacman-key --populate artix<\n>doas pacman-key --populate archlinux
+cat /etc/pacman.d/mirrorlist
+doas pacman -Syy
+doas rm -R /var/lib/pacman/sync
+doas pacman -Syu
+clear
+doas pacman -S reflector
+..
+removepkg v2ray-dinit 
+doas pacman -S reflector
+find /var/cache/pacman/pkg/ -iname "*.part" -exec rm {} \;
+rm /var/lib/pacman/db.lck
+doas pacman -S reflector
+pacman -Q archlinux-keyring
+pacman-key --list-sigs 
+l
+doas pacman -Syu
+doas pacman -S reflector
+doas pacman -Su
+doas pacman -Sy artix-keyring
+time
+date
+date now
+doas pacman -S artix-keyring archlinux-keyring
+doas rm -rf /etc/pacman.d/gnupg<\n>doas rm -rf /var/cache/pacman/pkg/*
+doas pacman-key --init
+doas pacman -Sy artix-keyring
+doas rm -rf /etc/pacman.d/gnupg<\n>doas rm -rf /var/cache/pacman/pkg/*
+doas pacman-key --populate artix<\n>doas pacman-key --populate archlinux
+doas pacman-key --init
+doas pacman-key --populate artix<\n>doas pacman-key --populate archlinux
+cd /etc/pacman.d/
+l
+cd gnupg/
+l
+cat pubring.gpg 
+l
+rm -rf tmp.*
+l
+la
+l
+music
+doas pacman-key --refresh-keys
+doas pacman -U https://archive.artixlinux.org/repos/system/os/x86_64/artix-keyring-20240425-2-any.pkg.tar.zst
+doas pacman -Syu
+doas pacman -Sy artix-keyring
+doas pacman -Sy
+doas pacman -S archlinux-keyring
+doas  rm -r /etc/pacman.d/gnupg
+doas pacman-key --init
+doas  pacman-key --populate archlinux artix
+doas pacman -Scc
+doas  pacman -Syyu
+clear
+вщфы rm -fr /var/lib/pacman/sync
+doas rm -fr /var/lib/pacman/sync
+doas  pacman -Syyu
+cd /etc/pacman.d/
+l
+rm mirrorlist
+doas rm mirrorlist
+rate-mirrors --save=mirrorlist artix
+doas rate-mirrors --save=mirrorlist artix
+cd Downloads/
+rate-mirrors --save=tmpfile artix
+д
+l
+mv tmpfile mirrorlist
+mv mirrorlist /etc/pacman.d/
+doas mv mirrorlist /etc/pacman.d/
+l
+doas pacman -Syyu
+pacman -Q gnupg
+doas pacman -U https://archive.artixlinux.org/repos/system/os/x86_64/gnupg-2.4.4-1-x86_64.pkg.tar.zst
+cat /etc/pacman.d/gnupg/gpg.conf
+cat /etc/pacman.conf
+pacman -Qi archlinux-keyring
+doas pacman -Syy
+doas pacman -Syu
+clear
+doas pacman -S pacman
+doas pacman -Dk
+ncursesw6-config 
+doas pacman -S ncurses wezterm-git --overwrite '*'
+doas pacman -S ncurses wezterm--overwrite '*'
+doas pacman -S ncurses wezterm --overwrite '*'
+doas pacman -S ncurses wezterm --overwrite '*'
+alacritty
+tty
+doas pacman -S ncurses --overwrite '*'
+doas pacman -R ncursesw6-config 
+doas pacman -R ncurses
+doas pacman -S ncurses wezterm-git --overwrite '*'
+doas pacman -Dk
+doas pacman -S ncurses wezterm --overwrite '*'
+doas rm /usr/share/terminfo/w/wezterm
+doas pacman -S ncurses wezterm --overwrite '*'
+doas pacman -S wezterm
+doas pacman -R wezterm 
+doas pacman -R wezterm-git
+wezterm
+clear
+doas pacman -Dk
+doas pacman -S wezterm
+pacman -Qi archlinux-keyring
+doas pacman -Syu 
+doas pacman -Su 
+doas pacman -Sy
+aura -A wezterm-git
+doas pacman -Dk
+doas pacman -S fprintd libfprint
+l
+rm -rf gnupg/
+doas rm -rf gnupg/
+doas pacman -S fprintd libfprint
+doas pacman -Syyu
+doas pacman -Scc
+doas pacman -S fprintd libfprint
+l
+cat mirrorlist-arch 
+v mirrorlist-arch 
+doas pacman -Sy
+doas pacman -S fprintd libfprint
+pacman-key --init
+doas pacman-key --init
+doas pacman -S fprintd libfprint
+doas pacman-key --populate artix
+doas pacman -S fprintd libfprint
+doas pacman -S alacritty 
+doas pacman -S artix-keyring
+doas pacman -Scc
+doas pacman -S artix-keyring
+cd /etc/dinit.d/
+doas nvim tty1
+doas pacman -S artix-keyring
+cd /etc/dinit.d/
+l
+doas pacman -S ntp
+aura -A ntp
+aura -A ntp-git
+timedatectl list-timezones
+doas hwclock --show
+date
+date now
+date
+date now
+doas hwclock --show
+doas ntpdate pool.ntp.org
+doas date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+bas
+doas hwclock --systohc
+doas pacman -Syy
+doas pacman -Syu
+doas pacman -Syu emptty<\n>
+doas pacman -Syy
+doas pacman -Syyu
+doas pacman-key --refresh-keys --keyserver hkp://keyserver.ubuntu.com<\n>
+doas pacman -S gnupg<\n>
+doas pacman -S pinentry<\n>
+gpg-agent --daemon<\n>
+doas pacman -S pinentry<\n>
+doas nvim tty1
+cd /etc/dinit.d/
+doas nvim tty1
+doas reboo
+doas reboot
+v
+doas pacman -S pinentry<\n>
+cd /etc/dinit.d/
+l
+doas dinitctl catlog logind
+doas dinitctl catlog unblock-wifi 
+doas dinitctl --help
+doas dinitctl status unblock-wifi 
+doas dinitctl start unblock-wifi 
+doas dinitctl catlog unblock-wifi 
+doas dinitctl status unblock-wifi 
+doas nvim tty1
+doas nvim tty2
+cd /etc/dinit.d/
+doas nvim tty1
+cd /etc/dinit.d/
+doas nvim tty1
+doas reboot
+doas pacman -S pinentry<\n>
+aura -A emptty
+doas aura -A emptty
+cd /etc/pacman.d/
+l
+..
+cd ~
+doas nvim /etc/pacman.conf 
+doas pacman -S
+doas pacman -Sy
+aura -S emptty
+doas pacman -S archlinux-keyring
+aura -S emptty
+aura -S emptty-dinit
+emptty
+doas pacman -S archlinux-keyring
+v
+htop
+ps | where name == "emptty"<\n>
+ps | where name == "emptty"; (tty) == '/dev/tty1'
+cd /etc/dinit.d/
+doas nvim tty1
+doas pacman -S emptty-dinit
+doas nvim emptty
+doas dinitctl enable emptty
+doas nvim /etc/emptty/conf 
+l
+cd /etc/dinit.d/
+l
+v
+cat tty2
+doas nvim tty1
+l
+cd boot.d/
+l
+..
+l
+doas enable emptty 
+doas dinitd enable emptty 
+doas dinitctl enable emptty 
+doas emptty 
+doas dinitctl stop emptty 
+doas dinitctl disable emptty 
+doas emptty
+doas nvim /etc/emptty/conf 
+doas dinitctl enable emptty 
+doas reboot
+doas emptty
+doas nvim /etc/emptty/conf 
+doas emptty
+doas nvim /etc/emptty/conf 
+doas emptty
+doas dinitctl restart emptty
+doas dinitctl start emptty
+doas nvim /etc/emptty/conf 
+doas emptty
+killall materialgram 
+hyprctl clients -j
+cd Downloads/
+l
+imv мгту.jpg 
+cd Downloads/
+v NDA.txt
+l
+..
+l
+mv PFR_777000_0SZIE_20240801_552f33ba-5005-11ef-a821-e6f622f6bbe8.pdf Downloads/
+cd /etc/dinit.d/
+l
+v tty1 
+doas nvim tty1
+cd /etc/dinit.d/
+ls
+doas nvim tty1
+cd /etc/dinit.d/
+doas nvim tty1
+cd ~/.config/
+l
+cd nushell/
+l
+v config.nu 
+v /etc/dinit.d/tty1
+v config.nu 
+v /etc/dinit.d/tty1
+v .config/nushell/config.nu 
+clear
+doas nvim /etc/dinit.d/tty1
+ping www.google.com
+connmanctl
+ping www.google.com
+cd Downloads/
+git clone https://github.com/tvrzna/emptty
+cd emptty/
+make install-dinit
+doas make install-dinit
+cd /etc/dinit.d/
+v emptty 
+cd scripts/
+l
+v emptty 
+cd /etc/
+cd dinit.d/
+l
+v tty1 
+doas nvim tty1
+cd .config/
+mkdir emptty
+cd emptty/
+doas cp /etc/emptty/conf .
+cd .config/emptty/
+l
+mv conf emptty
+..
+mv emptty/ emptty1
+mv emptty1/emptty .
+rm -rf emptty1/
+v emptty 
+l
+la
+ls
+ls -la
+chown hikary emptty
+doas chown hikary emptty
+v emptty 
+v .config/emptty 
+doas restart emptty
+doas dinitctl restart emptty
+doas dinitctl start emptty
+emptty
+doas emptty
+v .config/emptty 
+mv .config/emptty .config/emptty2
+cd .config/
+mv emptty2 emptty
+v emptty 
+mv emptty emptty
+rm emptty
+v /etc/emptty/conf 
+doas nvim /etc/emptty/conf 
+doas emptty
+doas nvim /etc/emptty/conf 
+doas modprobe usbfs
+lsusb | grep 04f3:0c4b
+lsmod | grep usbhid
+sudo modprobe usbhid
+doas modprobe usbhid
+lsmod | grep usbhid
+fprintd
+fprint
+fprintd-verify
+doas dinitctl start fprintd
+aura -S fprint-dinit
+lsusb | grep 04f3:0c4b
+lsusb
+lsmod | grep -E "usbhid|usb_storage"
+which fprintd-enroll
+fprintd-enroll
+fprintd-list
+fprintd-list hikary
+fprintd-enroll
+aura -A  libfprint-elanmoc2-git
+doas pacman -S glib
+aura -A glib-2.0
+aura -A glib2
+aura -A glib-2.0
+aura -A  libfprint-elanmoc2-git
+aura -A glib2-devel
+aura -A  libfprint-elanmoc2-git
+fprintd-enroll
+lsmod | grep ideapad_laptop
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/name
+ls /sys/bus/platform/drivers/ideapad_acpi/
+ls -l /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/
+dmesg | grep -i fingerprint<\n>dmesg | grep -i elan
+вщфы dmesg | grep -i fingerprint<\n>dmesg | grep -i elan
+doas dmesg | grep -i fingerprint<\n>dmesg | grep -i elan
+doas dmesg | grep -i fingerprint<\n>doas dmesg | grep -i elan
+cat /proc/bus/input/devices | grep -i fingerprint<\n>cat /proc/bus/input/devices | grep -i elan
+lsmod | grep -i elan<\n>lsmod | grep -i fp
+lsusb -v | grep -i fingerprint<\n>lsusb -v | grep -i elan
+doas lsusb -v | grep -i fingerprint<\n>lsusb -v | grep -i elan
+doas lsusb -v | grep -i fingerprint<\n>doas lsusb -v | grep -i elan
+dinitctl list | grep fprintd
+journalctl -b | grep -i fingerprint<\n>journalctl -b | grep -i elan
+cat /proc/bus/input/devices | grep -i hid
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+echo 1 | doas tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+echo 1 | doas tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+doas echo 1 | doas tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+neofetch
+aura -A libfprint-2-tod1-goodix
+fprintd-list
+fprintd-list hikary
+fprintd-list
+aura -A libfprint-2-tod1-goodix
+fprintd-list hikary
+fprintd-list 
+fprintd-list hikary
+doas fprintd-list hikary
+v
+..
+cd viewer_api_v2/twitch_stats/
+..
+.....
+cd viewer_api_v2/api/
+uvicorn app.main:app
+cd viewer_api_v2/api/
+uvicorn app.main:app
+cd viewer_api_v2/api/
+uvicorn app.main:app
+imv мгту.jpg 
+uvicorn app.main:app
+poetry remove V
+poetry remove pydantic-settings
+uvicorn app.main:app
+poetry add pydantic
+poetry add pydantic-settings
+uvicorn app.main:app
+..
+l
+..
+l
+cd dev/viewer_api_v2/
+l
+cd twitch_stats/
+l
+..
+cp api/Dockerfile twitch_stats/
+cd twitch_stats/
+l
+v .env
+v docker-compose.yaml 
+v api/.env
+v .env
+v api/Dockerfile 
+..
+cd viewer_api_v2/
+v
+..
+l
+..
+l
+cd viewer_api/
+v Dockerfile 
+docker compose up --build -d db redis 
+docker compose up --build -d twitch_service
+docker compose up --build -d twitch
+v
+cd api/
+uvicorn app.main:app
+ping www.google.com
+doas dinitctl restart connmand
+rfkill unblock wifi
+rfkill unblock bluetooth
+ping www.google.com
+connmanctl
+doas ip link set wlan0 up
+doas rfkill unblock wifi
+rfkill list
+connmanctl
+iw dev wlan0 get power_save
+sudo iw dev wlan0 set power_save off
+cd Downloads/
+l
+rm -rf *
+cd materialgram/
+l
+mv Сканирование_20240816-2147.pdf паспорт.pdf
+notify 
+notify-send 
+notify-send  123
+playerctl pause
+playerctl play
+pulsemixer  --help
+cd scripts/
+chmod a+x *
+..
+brightnessctl get
+pactl list short sinks
+get_player_info
+cd Downloads/
+v install_packages.sh 
+ping www.google.com
+v install_packages.sh 
+v setup_system.sh 
+doas nvim /etc/doas.conf 
+cargo install tgt
+clear
+l
+l..
+..
+l
+yazi
+l
+cd Downloads/
+l
+cd materialgram/
+l
+open `Нью ивенты.csv`
+v config.nu
+l
+open паспорт.pdf
+clear
+open `Нью ивенты.csv`
+clear
+_clear
+clear
+cd dev/
+cd mal
+cd YouTube-View-Bot-NoBrowser/
+l
+z tmux/
+l
+..
+clear
+cd .config/tmux/
+z .config/tmux/
+l
+v tmux.conf 
+killall tmux-session
+killall tmux-servcer
+killall tmux-server
+killall tmux 
+l
+htop
+cd tmux/
+aura -A ani-cli
+ani
+ani-cli
+removepkg mpv ani-cli 
+connmanctl
+doas dinitctl restart connmand
+connmanctl
+cd /etc/dinit.d/
+l
+doas dinitctl start unblock-wifi 
+connmanctl
+ping www.google.com
+connmanctl agent on
+ping www.google.com
+l
+clear
+ping www.google.com
+clear
+v tmux/tmux.conf 
+cd tmux/
+zoom --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime
+zoom 
+XDG_CURRENT_DESKTOP=gnome zoom
+v .config/zoomus.conf 
+v .config/zoom.conf 
+XDG_CURRENT_DESKTOP=gnome zoom --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime
+XDG_CURRENT_DESKTOP=gnome QT_QPA_PLATFORM=wayland zoom
+XDG_CURRENT_DESKTOP=gnome MOZ_ENABLE_WAYLAND=trye zoom
+XDG_CURRENT_DESKTOP=gnome MOZ_ENABLE_WAYLAND=1 zoom
+v .config/zoomus.conf 
+v keybindings.conf
+v pyproject.toml 
+killall waybar
+cd waybar/
+l
+v config.jsonc
+Qclear
+clear
+v
+clear
+..
+....
+docker compose up --build -d game && docker compose push game
+docker compose up --build -d game ; docker compose push game
+echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+echo 0 >doas  /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+doas echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+bash
+ssh genshin 
+v tmux.conf 
+..
+powertop
+aura -S powertop
+powertop
+v power-save.sh 
+gitui
+rm -r neofetch/
+removepkg neofetch

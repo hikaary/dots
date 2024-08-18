@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function get_player_info() {
+    PLAYER_STATUS=$(playerctl status 2>/dev/null)
+    if [ $? -eq 0 ]; then
+        TITLE=$(playerctl metadata title)
+        ARTIST=$(playerctl metadata artist)
+        if [ "$PLAYER_STATUS" = "Stopped" ]; then
+            echo "$ARTIST - $TITLE"
+        else
+            echo "$PLAYER_STATUS: $ARTIST - $TITLE"
+        fi
+    else
+        echo "No active player"
+    fi
+}
+
+
+case $1 in
+    play-pause)
+        playerctl play-pause
+        notify-send "Player" "$(get_player_info)"
+        ;;
+    next)
+        playerctl next
+        notify-send "Player" "Next: $(get_player_info)"
+        ;;
+    previous)
+        playerctl previous
+        notify-send "Player" "Previous: $(get_player_info)"
+        ;;
+    volume-up)
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
+        notify-send "Volume" "Increased to $VOLUME"
+        ;;
+    volume-down)
+        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
+        notify-send "Volume" "Decreased to $VOLUME"
+        ;;
+    mute-toggle)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        MUTE_STATUS=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+        if [ "$MUTE_STATUS" = "yes" ]; then
+            notify-send "Volume" "Muted"
+        else
+            notify-send "Volume" "Unmuted"
+        fi
+        ;;
+esac

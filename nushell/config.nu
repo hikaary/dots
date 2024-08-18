@@ -44,7 +44,6 @@ def hikary-update-all [] {
     doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
     doas mv $tmpfile /etc/pacman.d/mirrorlist
     aura -Ayu --noconfirm
-    aura -Ayu --noconfirm
 }
 
 def extract [name:string] {
@@ -127,3 +126,5 @@ source ~/.cache/zoxide/init.nu
 source ~/.cache/starship/init.nu
 source ~/.cache/atuin/init.nu
 source ~/.cache/carapace/init.nu
+
+
