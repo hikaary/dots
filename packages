@@ -1,4 +1,5 @@
 7-zip
+xdg-desktop-portal-hyprland
 wezterm-git
 aura-git
 bibata-cursor-theme
@@ -8,8 +9,6 @@ bluetuith-bin
 bluez-dinit
 bluez-utils
 brightnessctl
-catppuccin-cursors-mocha
-catppuccin-gtk-theme-mocha
 connman-dinit
 dbeaver
 docker-compose
@@ -30,7 +29,7 @@ lazydocker
 lazyzgit
 lsp-plugins
 lxappearance
-mako
+swaync
 mariadb
 materialgram-bin
 mimalloc
@@ -44,7 +43,6 @@ noto-fonts-emoji
 opendoas
 otf-daddytimemono-git
 pamixer
-papirus-folders-catppuccin-git
 pulsemixer
 pyenv
 qbittorrent
@@ -79,3 +77,13 @@ calf
 emptty
 networkmanager-dinit
 networkmanager
+google-chrome
+uv
+python-setuptools
+socat
+tmpmail
+w3m
+xclip
+python-materialyoucolor-git
+dart-sass
+adw-gtk3

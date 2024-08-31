@@ -1,7 +1,7 @@
 {
     "input": {
         "autogain#0": {
-            "bypass": false,
+            "bypass": true,
             "input-gain": 0.0,
             "maximum-history": 15,
             "output-gain": 0.0,
@@ -883,7 +883,7 @@
             "curve-zone": -6.0,
             "dry": -100.0,
             "hpf-frequency": 100.0,
-            "hpf-mode": "off",
+            "hpf-mode": "24 dB/oct",
             "hysteresis": true,
             "hysteresis-threshold": -14.0,
             "hysteresis-zone": -16.0,

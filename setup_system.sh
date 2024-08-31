@@ -36,6 +36,15 @@ install_aura() {
   aura -Scc --noconfirm
 }
 
+install_icon_theme() {
+  echo ":: Installing Tela icons..."
+  mkdir -p /tmp/install
+  cd /tmp/install
+  git clone https://github.com/vinceliuice/Tela-icon-theme
+  cd Tela-icon-theme
+  ./install.sh "nord"
+}
+
 # Install doas if not present
 if ! command_exists doas; then
   install_doas
@@ -70,5 +79,15 @@ rm -rf emptty
 
 # Enable emptty
 dinitctl enable emptty
+
+# Dont
+doas cp -r $HOME/.config/setup/google-sans /usr/share/fonts
+doas fc-cache -f -v
+
+# Colors
+python -O .config/material-colors/generate.py --color "#0000FF"
+
+#Discord
+ln -f ~/.cache/material/material-discord.css ~/.config/vesktop/settings/quickCss.css
 
 echo "Setup completed successfully!"

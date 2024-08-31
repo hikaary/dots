@@ -6,7 +6,7 @@ end
 
 -- Основные настройки
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 13.0
+config.font_size = 12.0
 config.color_scheme = "Catppuccin Mocha"
 config.term = "xterm-256color"
 config.scrollback_lines = 10000
@@ -55,6 +55,14 @@ config.keys = {
 		mods = "CTRL",
 		action = wezterm.action.Multiple({
 			wezterm.action.SendString("clear"),
+			wezterm.action.SendKey({ key = "Enter" }),
+		}),
+	},
+	{
+		key = "u",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.Multiple({
+			wezterm.action.SendString("CTRL|SHIFT"),
 			wezterm.action.SendKey({ key = "Enter" }),
 		}),
 	},

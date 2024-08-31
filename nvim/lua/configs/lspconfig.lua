@@ -78,9 +78,9 @@ function M.setup()
   setup_server("ruff_lsp", {
     init_options = {
       settings = {
-        args = {
-          "--config=~/.config/nvim/ruff.toml",
-        },
+        -- args = {
+        --   "--config=~/.config/nvim/ruff.toml",
+        -- },
       },
     },
   })

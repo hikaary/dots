@@ -17,7 +17,7 @@ if (which fd | length) > 0 {
 }
 
 # Aliases
-alias v = nvim
+alias v = mgraftcp --socks5 127.0.0.1:1080 nvim
 alias lg = lazygit
 alias ta = tmux attach
 alias ld = lazydocker
@@ -25,6 +25,11 @@ alias s = sudo
 alias t = bpytop
 alias removepkg = doas pacman -R 
 alias music = mgraftcp --socks5 127.0.0.1:1080 ncspot
+alias venv-source = overlay use .venv/bin/activate.nu
+
+def req-generate [] {
+  uv pip freeze | uv pip compile - -o requirements.txt 
+}
 
 alias lh = ls -lh
 alias l = ls
@@ -36,14 +41,20 @@ def ls-all [] {
 alias la = ls-all
 alias htop = btm
 
-alias x = xxh +s nu
-
 def hikary-update-all [] {
-    let tmpfile = (mktemp)
-    rate-mirrors --save=$tmpfile artix
-    doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
-    doas mv $tmpfile /etc/pacman.d/mirrorlist
-    aura -Ayu --noconfirm
+    let tmpfile = (mktemp -p /tmp | str trim)  # Создаем временный файл в /tmp и убираем лишние пробелы
+    rate-mirrors --save=($tmpfile) artix
+    if ($tmpfile | path exists) { 
+        doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
+        doas mv $tmpfile /etc/pacman.d/mirrorlist
+        if not ($tmpfile | path exists) {  # Проверяем, что файл успешно перемещен
+            aura -Ayu --noconfirm
+        } else {
+            echo "Ошибка: не удалось переместить временный файл"
+        }
+    } else {
+        echo "Ошибка: временный файл не был создан"
+    }
 }
 
 def extract [name:string] {
@@ -72,7 +83,6 @@ def extract [name:string] {
   }
 }
 
-$env.PATH = ($env.PATH | split row (char esep) | prepend $"(pyenv root)/shims")
 
 # Set other configuration options
 $env.config =  {

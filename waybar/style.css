@@ -132,6 +132,16 @@ button:hover {
   color: @yellow;
 }
 
+#custom-notification {
+  padding: 0 5;
+  margin: 5;
+  border: none;
+  border-radius: 5;
+}
+#custom-notification:hover {
+  color: @yellow;
+}
+
 #battery {
   padding: 2 15;
   margin: 5;

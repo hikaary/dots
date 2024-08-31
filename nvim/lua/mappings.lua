@@ -5,6 +5,8 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+map("n", "<leader>pa", "", opts)
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- general
@@ -52,9 +54,9 @@ map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
 
 -- Term
-map({ "n", "t" }, "<C-f>", function()
-  require("nvterm.terminal").toggle "float"
-end)
+-- map({ "n", "t" }, "<C-f>", function()
+--   require("nvterm.terminal").toggle "float"
+-- end)
 
 -- split
 map("n", "<leader>sv", "<cmd>:vsplit<CR>")
@@ -70,3 +72,33 @@ end, { expr = true, silent = true })
 map("i", "<S-Tab>", function()
   return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
 end, { expr = true, silent = true })
+
+-- AI
+
+-- Переключить текущий чат
+map("n", "<leader>pc", ":PrtChatToggle<CR>", opts)
+
+-- Открыть поиск по чатам
+map("n", "<leader>pf", ":PrtChatFinder<CR>", opts)
+
+-- Сгенерировать докстринг для функции под курсором
+map(
+  "v",
+  "<leader>pd",
+  ":PrtRewrite Сгенерируй докстринг для функции. Описание пиши на русском. Не забывай про кавычки Вот пример докстринга: def func(arg1, arg2): Тут описание :param arg1: Описание arg1. :type arg1: int :param arg2: Описание arg2. :type arg2: int :raise: ValueError if arg1 is больше to arg2 :return: Описание того, что возвращается :rtype: bool <CR>",
+  opts
+)
+
+-- Исправить ошибку в текущей строке
+map("v", "<leader>pf", ":PrtRewrite Исправь ошибку<CR>", opts)
+
+-- Сгенерировать юнит-тесты для текущей функции
+map("v", "<leader>pt", ":PrtRewrite Сгенерируй юнит-тесты (pytest)<CR>", opts)
+
+-- Оптимизация
+map(
+  "v",
+  "<leader>po",
+  ":PrtRewrite Оптимизируй этот код для лучшей производительности<CR>",
+  opts
+)
