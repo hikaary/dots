@@ -6,7 +6,6 @@ return {
     require("parrot").setup {
       providers = {
         anthropic = {
-          -- Using GPG for decryption:
           api_key = io.open(vim.fn.expand "$HOME" .. "/anthropic_api_key.txt"):read("*all"):gsub("\n", ""),
           endpoint = "https://api.anthropic.com/v1/messages",
           topic_prompt = "Вы отвечаете только 3-4 словами, резюмируя прошедший разговор.",
