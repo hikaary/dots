@@ -1,6 +1,0 @@
-[default]
-path = "~/.config/wallpapers"
-apply-shadow = true
-duration = "30m"
-sorting = "random"
-recursive = true

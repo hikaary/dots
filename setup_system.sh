@@ -81,7 +81,7 @@ rm -rf emptty
 dinitctl enable emptty
 
 # Dont
-doas cp -r $HOME/.config/setup/google-sans /usr/share/fonts
+doas cp -r $HOME/.config/fonts/google-sans /usr/share/fonts
 doas fc-cache -f -v
 
 # Colors

@@ -1,0 +1,6 @@
+{
+  "browser": "google-chrome-stable",
+  "editor": "nvim",
+  "filemanager": "nemo",
+  "terminal": "alacritty"
+}

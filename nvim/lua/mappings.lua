@@ -73,7 +73,7 @@ map("i", "<S-Tab>", function()
   return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>"
 end, { expr = true, silent = true })
 
--- AI
+-- parrot (AI)
 
 -- Переключить текущий чат
 map("n", "<leader>pc", ":PrtChatToggle<CR>", opts)
@@ -89,6 +89,13 @@ map(
   opts
 )
 
+-- Добавить логи в выделенный код
+map(
+  "v",
+  "<leader>pl",
+  ":PrtRewrite Добавь логи в этот код, используя logger. Не изменяй существующий код, только добавь логи. Не добавляй импорты или другие изменения. Логи должны быть информативными и помогать в отладке. Используй разные уровни логирования (debug, info, warning, error) в зависимости от контекста. Вот пример того, как нужно добавлять логи: logger.debug('Начало выполнения функции example_function') logger.info(f'Получено значение: {value}') logger.warning('Предупреждение: достигнут лимит попыток') logger.error(f'Ошибка при обработке данных: {str(e)}') <CR>",
+  opts
+)
 -- Исправить ошибку в текущей строке
 map("v", "<leader>pf", ":PrtRewrite Исправь ошибку<CR>", opts)
 

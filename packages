@@ -5,7 +5,6 @@ aura-git
 bibata-cursor-theme
 bitwarden
 blueman
-bluetuith-bin
 bluez-dinit
 bluez-utils
 brightnessctl
@@ -29,7 +28,6 @@ lazydocker
 lazyzgit
 lsp-plugins
 lxappearance
-swaync
 mariadb
 materialgram-bin
 mimalloc
@@ -55,16 +53,13 @@ unrar
 unzip
 v2ray
 vesktop-bin
-waybar
 wget
 wpaperd
 xxh-appimage
 zip
-tofi
 tmux
 poetry
 python-pip
-ncspot
 bottom
 zoxide
 atuin
@@ -87,3 +82,10 @@ xclip
 python-materialyoucolor-git
 dart-sass
 adw-gtk3
+bun-bin
+gnome-bluetooth-3.0
+ags
+ttf-material-symbols-variable-git 
+network-manager-applet
+python-setproctitle
+swww
