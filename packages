@@ -89,3 +89,6 @@ ttf-material-symbols-variable-git
 network-manager-applet
 python-setproctitle
 swww
+bitwarden-cli
+qutebrowser
+cliphist
