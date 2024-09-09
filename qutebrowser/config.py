@@ -15,13 +15,23 @@ if os.path.exists(config.configdir / 'theme.py'):
     import theme
 
     theme.setup(c, 'mocha', True)
+
 # Настройка прокси
 c.content.proxy = 'http://127.0.0.1:1081'
 c.qt.args = ['enable-features=UseOzonePlatform', 'ozone-platform-hint=auto']
 
-# Хоткеи для сессий
-config.bind('<Ctrl-Shift-s>', 'session-save')
-config.bind('<Ctrl-Shift-o>', 'session-load')
+# Настройка сайтов
+c.content.javascript.clipboard = 'access'
+c.zoom.default = '120%'
+c.fonts.web.size.default = 18
+c.fonts.web.size.default_fixed = 15
+config.set('content.javascript.enabled', True, 'https://*.youtube.com/*')
+config.set('content.blocking.enabled', False, 'https://*.youtube.com/*')
+c.content.blocking.hosts.lists = [
+    'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
+    'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext',
+    'https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/youtube/all',
+]
 
 # Быстрые команды для сохранения и загрузки нескольких сессий
 config.bind(',s1', 'session-save session1')
@@ -30,16 +40,10 @@ config.bind(',s3', 'session-save session3')
 config.bind(',l1', 'session-load session1')
 config.bind(',l2', 'session-load session2')
 config.bind(',l3', 'session-load session3')
+config.bind('<Ctrl-e>', 'set-cmd-text :open {url:pretty}')
 
 # Функция для "закрепления" вкладки (перемещение в начало)
 config.bind('<Ctrl-Shift-p>', 'tab-give')
-
-# Быстрый перевод выделенного текста в визуальном режиме
-config.bind(
-    'T',
-    'open -t https://translate.google.com/?sl=auto&tl=ru&text={primary}',
-    mode='v',
-)
 
 # Перевод всей страницы
 config.bind(
@@ -48,8 +52,8 @@ config.bind(
 
 # Настройки отображения вкладок
 c.tabs.show = 'always'
-c.tabs.position = 'top'
-c.tabs.new_position.unrelated = 'next'
+c.tabs.position = 'bottom'
+c.tabs.new_position.unrelated = 'last'
 
 # Настройка стартовой страницы
 c.url.default_page = 'https://www.google.com/'
@@ -68,7 +72,7 @@ c.content.blocking.enabled = True
 
 # Настройка шрифтов
 c.fonts.default_family = '"Product Sans"'
-c.fonts.default_size = '13pt'
+c.fonts.default_size = '16pt'
 
 # Предпочтительная цветовая схема
 c.colors.webpage.preferred_color_scheme = 'dark'

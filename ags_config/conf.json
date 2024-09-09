@@ -1,8 +1,1 @@
-{
-  "always_show_battery": false,
-  "show_taskbar": true,
-  "show_battery_percent": true,
-  "weather": "e434b5435a979de6e155570590bee89b",
-  "weather_location_id": "Moscow"
-}
-
+{"always_show_battery":true,"show_taskbar":true,"show_battery_percent":true,"weather":"e434b5435a979de6e155570590bee89b","weather_location_id":"Moscow"}

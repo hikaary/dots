@@ -1,5 +1,5 @@
 {
-  "browser": "google-chrome-stable",
+  "browser": "qutebrowser",
   "editor": "nvim",
   "filemanager": "nemo",
   "terminal": "alacritty"
