@@ -47,7 +47,6 @@ qbittorrent
 rate-mirrors
 rsync
 speedtest-cli
-starship
 ttf-jetbrains-mono
 unrar
 unzip
@@ -61,8 +60,6 @@ tmux
 poetry
 python-pip
 bottom
-zoxide
-atuin
 carapace
 pipewire
 pipewire-pulse
@@ -91,3 +88,8 @@ swww
 bitwarden-cli
 qutebrowser
 cliphist
+youtube-dl-git
+ytui-git 
+aura -A ttf-meslo-nerd-font-powerlevel10k
+zsh
+exa

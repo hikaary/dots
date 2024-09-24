@@ -10,10 +10,12 @@ settings:
     https://telemost.yandex.ru: true
   content.media.audio_capture:
     https://app.zoom.us: true
+    https://telemost.yandex.ru: true
   content.media.audio_video_capture:
     https://telemost.yandex.ru: true
   content.media.video_capture:
     https://app.zoom.us: true
+    https://telemost.yandex.ru: true
   content.notifications.enabled:
     https://app.zoom.us: true
     https://gitlab.com: true

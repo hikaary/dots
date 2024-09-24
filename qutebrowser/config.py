@@ -52,7 +52,7 @@ config.bind(
 
 # Настройки отображения вкладок
 c.tabs.show = 'always'
-c.tabs.position = 'bottom'
+c.tabs.position = 'top'
 c.tabs.new_position.unrelated = 'last'
 
 # Настройка стартовой страницы

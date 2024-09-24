@@ -54,9 +54,9 @@ map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
 
 -- Term
--- map({ "n", "t" }, "<C-f>", function()
---   require("nvterm.terminal").toggle "float"
--- end)
+map({ "n", "t" }, "<C-f>", function()
+  require("nvterm.terminal").toggle "float"
+end)
 
 -- split
 map("n", "<leader>sv", "<cmd>:vsplit<CR>")

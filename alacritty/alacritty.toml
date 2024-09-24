@@ -1,4 +1,4 @@
-import = ["~/.cache/material/alacritty.toml"]
+import = ["~/.cache/material/alacritty-dark.toml"]
 
 live_config_reload = true
 
@@ -14,26 +14,18 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [window]
-opacity = 0.9
+opacity = 0.95
 
 [window.padding]
 x = 20
 y = 0
 
 [font]
+normal = { family = "MesloLGS NF", style = "Regular" }
+bold = { family = "MesloLGS NF", style = "Bold" }
+italic = { family = "MesloLGS NF", style = "Italic" }
+bold_italic = { family = "MesloLGS NF", style = "Bold Italic" }
 size = 15
-
-[font.bold]
-family = "JetBrainsMono Nerd Font"
-
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font"
-
-[font.normal]
-family = "JetBrainsMono Nerd Font"
 
 [keyboard]
 [[keyboard.bindings]]
