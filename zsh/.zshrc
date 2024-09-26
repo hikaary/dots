@@ -1,5 +1,6 @@
 # Переменные окружения
 export TERM='xterm-256color'
+export PATH="/home/hikary/.bun/bin:$PATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PYTHON_KEYRING_BACKEND='keyring.backends.null.Keyring'
