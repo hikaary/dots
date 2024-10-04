@@ -48,7 +48,7 @@ def generate_commit_message(diff):
                 'content': message,
             }
         ],
-        'max_tokens': 300,
+        'max_tokens': 1024,
         'model': 'claude-3-5-sonnet-20240620',
     }
     response = requests.post(

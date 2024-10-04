@@ -2,7 +2,7 @@ local M = {}
 
 ---@type ChadrcConfig
 M.ui = {
-  theme = "catppuccin",
+  theme = "chadracula-evondev",
   transparency = true,
 
   cmp = {

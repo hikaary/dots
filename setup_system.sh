@@ -80,6 +80,10 @@ rm -rf emptty
 # Enable emptty
 dinitctl enable emptty
 
+# Remove IPv6
+doas sysctl -w net.ipv6.conf.default.disable_ipv6=1
+doas sysctl -w net.ipv6.conf.all.disable_ipv6=1
+
 # Dont
 doas cp -r $HOME/.config/fonts/google-sans /usr/share/fonts
 doas fc-cache -f -v

@@ -4,7 +4,8 @@ require "nvchad.options"
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.autochdir = true
+
+vim.o.completeopt = "menu,menuone"
 
 vim.opt.mouse = "n"
 -- Enable break indent

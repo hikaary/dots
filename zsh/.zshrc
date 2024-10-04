@@ -1,7 +1,9 @@
 # Переменные окружения
+source ~/.bashrc
 export TERM='xterm-256color'
 export PATH="/home/hikary/.bun/bin:$PATH"
 export EDITOR='nvim'
+export RUST_BACKTRACE='full'
 export VISUAL='nvim'
 export PYTHON_KEYRING_BACKEND='keyring.backends.null.Keyring'
 export __GL_THREADED_OPTIMIZATIONS='0'
@@ -19,6 +21,7 @@ fi
 bindkey '^[ [1;5D' vi-cmd-mode
 
 # Алиасы
+alias enw='emacs -nw'
 alias v='mgraftcp --socks5 127.0.0.1:1080 nvim'
 alias proxy='mgraftcp --socks5 127.0.0.1:1080'
 alias lg='lazygit'
@@ -143,5 +146,5 @@ zinit light changyuheng/zsh-interactive-cd
 zinit light sindresorhus/pure
 
 # Vim-mode
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode

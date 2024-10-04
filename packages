@@ -86,7 +86,7 @@ network-manager-applet
 python-setproctitle
 swww
 bitwarden-cli
-qutebrowser
+google-chrome
 cliphist
 youtube-dl-git
 ytui-git 
