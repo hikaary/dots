@@ -148,3 +148,4 @@ zinit light sindresorhus/pure
 # Vim-mode
 # zinit ice depth=1
 # zinit light jeffreytse/zsh-vi-mode
+. "/home/hikary/.deno/env"

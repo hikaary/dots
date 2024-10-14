@@ -2,9 +2,6 @@ local M = {}
 
 ---@type ChadrcConfig
 M.ui = {
-  theme = "chadracula-evondev",
-  transparency = true,
-
   cmp = {
     icons = true,
     lspkind_text = true,
@@ -88,6 +85,8 @@ M.ui = {
 }
 
 M.base46 = {
+  transparency = true,
+  theme = "chadracula-evondev",
   integrations = {
     "blankline",
     "cmp",

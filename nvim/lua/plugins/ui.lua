@@ -34,4 +34,10 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
+  {
+    "nvim-neorg/neorg",
+    lazy = false,
+    version = "*",
+    config = true,
+  },
 }
