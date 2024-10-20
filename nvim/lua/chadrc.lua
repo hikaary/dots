@@ -3,17 +3,21 @@ local M = {}
 ---@type ChadrcConfig
 M.ui = {
   cmp = {
+
     icons = true,
     lspkind_text = true,
-    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
+    format_colors = {
+      tailwind = false,
+    },
   },
 
-  telescope = { style = "borderless" }, -- borderless / bordered
+  telescope = { style = "bordered" }, -- borderless / bordered
 
   ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
     theme = "minimal", -- default/vscode/vscode_colored/minimal
-    separator_style = "default",
+    separator_style = "round",
     order = nil,
     modules = nil,
   },

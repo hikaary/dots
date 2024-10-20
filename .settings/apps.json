@@ -1,6 +1,0 @@
-{
-  "browser": "qutebrowser",
-  "editor": "nvim",
-  "filemanager": "nemo",
-  "terminal": "alacritty"
-}

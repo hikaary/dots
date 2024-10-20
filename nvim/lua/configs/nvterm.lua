@@ -26,6 +26,5 @@ require("nvterm").setup {
   start_in_insert = true,
   get_starting_dir = function()
     return vim.fn.getcwd()
-    -- return project_root or vim.fn.expand "%:p:h"
   end,
 }

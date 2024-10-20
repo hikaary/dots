@@ -2,7 +2,7 @@
 
 COMMIT_MSG_FILE=$1
 
-COMMIT_MSG=$(/usr/bin/python3 ~/.config/git/hooks/generate_commit_message.py)
+COMMIT_MSG=$(/usr/bin/python3 ~/.config/git/hooks/generate_commit_message.py --openai)
 
 if [ -n "$COMMIT_MSG" ]; then
   echo "$COMMIT_MSG" >"$COMMIT_MSG_FILE"

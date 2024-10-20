@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Установка необходимых пакетов
-pacman -S --noconfirm tlp tlp-rdw tlp-dinit cpupower cpupower-dinit thermald thermald-dinit acpi
+pacman -S --noconfirm tlp tlp-dinit cpupower cpupower-dinit thermald thermald-dinit acpi
 
 # Настройка TLP
 dinitctl enable tlp

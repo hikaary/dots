@@ -6,16 +6,19 @@ return {
     require("parrot").setup {
       providers = {
         anthropic = {
-          api_key = io.open(vim.fn.expand "$HOME" .. "/anthropic_api_key.txt"):read("*all"):gsub("\n", ""),
-          endpoint = "https://api.anthropic.com/v1/messages",
-          topic_prompt = "Вы отвечаете только 3-4 словами, резюмируя прошедший разговор.",
+          api_key = os.getenv "CLAUDE_API_KEY",
           topic = {
             model = "claude-3-5-sonnet-20240620",
-            params = { max_tokens = 32 },
           },
           params = {
             chat = { max_tokens = 4096 },
             command = { max_tokens = 4096 },
+          },
+        },
+        openai = {
+          api_key = os.getenv "OPENAI_API_KEY",
+          topic = {
+            model = "gpt-4o",
           },
         },
       },
