@@ -1,0 +1,308 @@
+#!/bin/sh
+
+# Настройка переменных окружения
+set_environment() {
+  # Основные переменные окружения
+  export TERM=wezterm
+  export WEZTERM_GUI_LAUNCHER=wayland
+  export XDG_CURRENT_DESKTOP=river
+  export XDG_SESSION_TYPE=wayland
+  export XDG_SESSION_DESKTOP=river
+  export QT_QPA_PLATFORM="wayland;xcb"
+  export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+  export QT_AUTO_SCREEN_SCALE_FACTOR=1
+  export QT_QPA_PLATFORMTHEME=qt5ct
+  export MOZ_ENABLE_WAYLAND=1
+  export GDK_SCALE=1
+  export SDL_VIDEODRIVER=wayland
+  export ELECTRON_ENABLE_WAYLAND=1
+  export WINIT_UNIX_BACKEND=wayland
+  export ELECTRON_OZONE_PLATFORM_HINT=wayland
+  export QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor
+  export XCURSOR_SIZE=24
+
+  # Настройки GTK
+  gsettings set org.gnome.desktop.interface cursor-size 20
+  gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'
+  gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-mauve'
+  gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+  # Настройки шрифтов
+  gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono 12'
+  gsettings set org.gnome.desktop.interface document-font-name 'Jetbrains Mono 11'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Jetbrains Mono 10'
+  gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+  gsettings set org.gnome.desktop.wm.preferences button-layout ':'
+
+  # Установка курсора
+  riverctl xcursor-theme Bibata-Modern-Ice 20
+}
+
+# Настройка устройств ввода
+configure_input() {
+  # Раскладка клавиатуры
+  riverctl keyboard-layout -variant "" -options "grp:caps_toggle" "us,ru"
+  riverctl set-repeat 60 260
+
+  # Настройки мыши
+  riverctl focus-follows-cursor normal
+
+  # Настройка тачпада
+  for pad in $(riverctl list-inputs | grep -i touchpad); do
+    riverctl input $pad events enabled
+    riverctl input $pad tap enabled
+    riverctl input $pad natural-scroll enabled
+    riverctl input $pad disable-while-typing enabled
+    riverctl input $pad drag disabled
+    riverctl input $pad tap-and-drag disabled
+  done
+}
+
+configure_outputs() {
+  all_tags=$(((1 << 32) - 1))
+  scratch_tags=$((telegram_tag | music_tag | audio_tag | bitwarden_tag))
+  all_but_scratch_tags=$(($all_tags ^ $scratch_tags))
+
+  # Установка маски тегов для новых окон
+  riverctl spawn-tagmask ${all_but_scratch_tags}
+}
+
+# Настройка внешнего вида
+configure_appearance() {
+  # Цвета и ширина границ окон
+  riverctl border-color-focused 0xcba6f7
+  riverctl border-color-unfocused 0x6c7086
+  riverctl border-width 2
+
+  # Цвет фона
+  riverctl background-color 0x1e1e2e
+}
+
+# Определение тегов для скрытых окон (scratchpad)
+telegram_tag=$((1 << 20))  # Тег 21
+music_tag=$((1 << 21))     # Тег 22
+audio_tag=$((1 << 22))     # Тег 23
+bitwarden_tag=$((1 << 23)) # Тег 24
+
+configure_window_rules() {
+  padding_top=45
+  padding=20
+
+  # Размеры экрана
+  screen_width=2560
+  screen_height=1440
+
+  right_edge=$((screen_width - 600 - padding)) # Для Telegram
+  column_width=800                             # Ширина левой колонки
+  center_x=$((screen_width / 2 - 400))         # Для центрирования ncspot
+
+  full_height=$((screen_height - padding_top - padding))
+  half_height=$((full_height / 2))
+  bottom_start=$((half_height + padding_top + padding))
+
+  riverctl rule-add -app-id "*" ssd
+
+  # Правила для плавающих окон
+  riverctl rule-add -app-id "firefox" float
+  riverctl rule-add -app-id "iwgtk" float
+  riverctl rule-add -app-id "pavucontrol" float
+  riverctl rule-add -app-id "nm-connection-editor" float
+
+  riverctl rule-add -app-id "blueman-manager" float
+  riverctl rule-add -app-id "blueman-manager" dimensions 500 500
+  riverctl rule-add -app-id "blueman-manager" position $((screen_width / 2 - 250)) $((screen_height / 2 - 250))
+
+  riverctl rule-add -app-id "org.telegram.desktop" tags $telegram_tag
+  riverctl rule-add -app-id "org.telegram.desktop" float
+  riverctl rule-add -app-id "org.telegram.desktop" dimensions 600 $full_height
+  riverctl rule-add -app-id "org.telegram.desktop" position $right_edge $padding_top
+
+  riverctl rule-add -app-id "com.github.wwmm.easyeffects" tags $audio_tag
+  riverctl rule-add -app-id "com.github.wwmm.easyeffects" float
+  riverctl rule-add -app-id "com.github.wwmm.easyeffects" dimensions $column_width $half_height
+  riverctl rule-add -app-id "com.github.wwmm.easyeffects" position $padding $padding_top
+
+  riverctl rule-add -app-id "pulsemixer" tags $audio_tag
+  riverctl rule-add -app-id "pulsemixer" float
+  riverctl rule-add -app-id "pulsemixer" dimensions $column_width $half_height
+  riverctl rule-add -app-id "pulsemixer" position $padding $bottom_start
+
+  riverctl rule-add -app-id "ncspot" tags $music_tag
+  riverctl rule-add -app-id "ncspot" float
+  riverctl rule-add -app-id "ncspot" dimensions 800 $full_height
+  riverctl rule-add -app-id "ncspot" position $center_x $padding_top
+
+  riverctl rule-add -app-id "Bitwarden" tags $bitwarden_tag
+  riverctl rule-add -app-id "Bitwarden" float
+  riverctl rule-add -app-id "Bitwarden" dimensions 800 800
+  riverctl rule-add -app-id "Bitwarden" position $padding $((screen_height - 800 - padding))
+
+  riverctl rule-add -app-id "google-chrome" tags $((1 << 0))
+  riverctl rule-add -app-id "dev" tags $((1 << 1))
+  riverctl rule-add -app-id "vesktop" tags $((1 << 3))
+  riverctl rule-add -app-id "discord" tags $((1 << 3))
+}
+
+configure_default_layouts() {
+  # Установка размеров по умолчанию для плавающих окон
+  riverctl default-float-dimensions 800 600
+
+  # Центрирование плавающих окон по умолчанию
+  riverctl default-float-position center
+}
+
+# Настройка горячих клавиш
+configure_keybindings() {
+  # Запуск приложений
+  riverctl map normal Super Return spawn wezterm
+  riverctl map normal Super D spawn "rofi -show drun"
+  riverctl map normal Super+Shift D spawn vesktop
+  riverctl map normal Super V spawn "~/.config/scripts/proxy.sh"
+  riverctl map normal Super B spawn "blueman-manager"
+  riverctl map normal Super N spawn "swaync-client -t"
+
+  # Управление окнами
+  riverctl map normal Super Q close
+  riverctl map normal Super+Shift E exit
+  riverctl map normal Super F toggle-fullscreen
+  riverctl map normal Super Space toggle-float
+
+  # Основное управление окнами и фокусом
+  riverctl map normal Super J focus-view next                              # Фокус на следующее окно
+  riverctl map normal Super K focus-view previous                          # Фокус на предыдущее окно
+  riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05" # Уменьшить размер главного окна
+  riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.05" # Увеличить размер главного окна
+
+  # Перемещение окон
+  riverctl map normal Super+Shift J swap next
+  riverctl map normal Super+Shift K swap previous
+  riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1" # Увеличить количество главных окон
+  riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1" # Уменьшить количество главных окон
+
+  # Перемещение плавающих окон
+  riverctl map normal Super+Alt H move left 100
+  riverctl map normal Super+Alt J move down 100
+  riverctl map normal Super+Alt K move up 100
+  riverctl map normal Super+Alt L move right 100
+
+  # Изменение размера плавающих окон
+  riverctl map normal Super+Alt+Shift H resize horizontal -100
+  riverctl map normal Super+Alt+Shift J resize vertical 100
+  riverctl map normal Super+Alt+Shift K resize vertical -100
+  riverctl map normal Super+Alt+Shift L resize horizontal 100
+
+  # Привязка окон к краям экрана
+  riverctl map normal Super+Alt+Control H snap left
+  riverctl map normal Super+Alt+Control J snap down
+  riverctl map normal Super+Alt+Control K snap up
+  riverctl map normal Super+Alt+Control L snap right
+
+  # Управление мониторами
+  riverctl map normal Super Period focus-output next
+  riverctl map normal Super Comma focus-output previous
+  riverctl map normal Super+Shift Period send-to-output next
+  riverctl map normal Super+Shift Comma send-to-output previous
+
+  # Привязки мыши
+  riverctl map-pointer normal Super BTN_LEFT move-view
+  riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+  # Telegram
+  riverctl map normal Super T spawn "riverctl toggle-focused-tags ${telegram_tag}; riverctl focus-view next"
+  # Music
+  riverctl map normal Super P spawn "riverctl toggle-focused-tags ${music_tag}; riverctl focus-view next"
+  # Audio controls
+  riverctl map normal Super A spawn "riverctl toggle-focused-tags ${audio_tag}; riverctl focus-view next"
+  # Bitwarden
+  riverctl map normal Super W spawn "riverctl toggle-focused-tags ${bitwarden_tag}; riverctl focus-view next"
+
+  # Move window to/from scratchpad
+  riverctl map normal Super+Shift T set-view-tags ${telegram_tag}
+  riverctl map normal Super+Shift P set-view-tags ${music_tag}
+  riverctl map normal Super+Shift A set-view-tags ${audio_tag}
+  riverctl map normal Super+Shift W set-view-tags ${bitwarden_tag}
+
+  # Toggle floating state for scratchpad windows
+  riverctl map normal Super+Control T toggle-float
+  riverctl map normal Super+Control P toggle-float
+  riverctl map normal Super+Control A toggle-float
+  riverctl map normal Super+Control W toggle-float
+
+  # Теги (рабочие пространства)
+  for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    # При переключении на тег, сохраняем видимость scratchpad окон
+    riverctl map normal Super $i set-focused-tags $tags
+    # При перемещении окна на тег, удаляем его из scratchpad
+    riverctl map normal Super+Shift $i set-view-tags $tags
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
+    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+  done
+
+  # Мультимедийные клавиши
+  for mode in normal locked; do
+    riverctl map $mode None XF86AudioRaiseVolume spawn 'pactl set-sink-volume @DEFAULT_SINK@ +5%'
+    riverctl map $mode None XF86AudioLowerVolume spawn 'pactl set-sink-volume @DEFAULT_SINK@ -5%'
+    riverctl map $mode None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
+    riverctl map $mode None XF86AudioPlay spawn 'playerctl play-pause'
+    riverctl map $mode None XF86AudioNext spawn 'playerctl next'
+    riverctl map $mode None XF86AudioPrev spawn 'playerctl previous'
+    riverctl map $mode None XF86MonBrightnessUp spawn 'brightnessctl set +5%'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
+  done
+}
+
+# Настройка анимаций
+configure_animations() {
+  riverctl default-attach-mode bottom
+
+  riverctl float-filter-add "popup"
+  riverctl float-filter-add "dialog"
+}
+
+# Автозапуск приложений
+autostart() {
+  # Основные сервисы
+  riverctl spawn "pipewire"
+  riverctl spawn "pipewire-pulse"
+  riverctl spawn "wireplumber"
+  riverctl spawn "nm-applet"
+  riverctl spawn "easyeffects"
+  riverctl spawn "~/.config/scripts/proxy.sh"
+  riverctl spawn "~/.config/scripts/xdg-portal.sh"
+  riverctl spawn "~/.config/scripts/wallpaper.sh"
+
+  # Пользовательские сервисы
+  riverctl spawn "waybar"
+  riverctl spawn "swaync"
+  riverctl spawn "blueman-applet"
+  riverctl spawn "way-displays"
+
+  # Приложения
+  riverctl spawn "telegram-desktop"
+  riverctl spawn "wezterm start --class pulsemixer -- pulsemixer"
+  riverctl spawn "wezterm start --class dev -- tmux"
+  riverctl spawn "wezterm start --class ncspot -- ncspot"
+  riverctl spawn "bitwarden-desktop"
+  riverctl spawn "google-chrome-stable"
+}
+
+riverctl focus-output next
+
+# Инициализация всех настроек
+set_environment
+configure_input
+configure_outputs
+configure_appearance
+configure_window_rules
+configure_keybindings
+configure_animations
+configure_default_layouts
+autostart
+
+# Установка компоновщика по умолчанию
+riverctl default-layout rivertile
+
+# Запуск rivertile
+rivertile -view-padding 6 -outer-padding 6 &

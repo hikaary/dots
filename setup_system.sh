@@ -68,6 +68,13 @@ make install-dinit
 cd ..
 rm -rf emptty
 
+# Install lsr
+git clone https://github.com/jmattaa/laser.git
+cd laser
+doas make install
+cd ..
+rm -rf laser
+
 #Install theme
 cp -r .themes/ ~/
 

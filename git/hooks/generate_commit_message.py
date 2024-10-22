@@ -4,7 +4,6 @@ import subprocess
 
 import requests
 
-# Глобальное сообщение с инструкциями
 COMMIT_MESSAGE_PROMPT = """
 Создайте сообщение коммита на русском языке на основе следующего diff:
 

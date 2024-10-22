@@ -5,8 +5,8 @@ fi
 
 # Переменные окружения
 export TERM='xterm-256color'
-export PATH="$HOME/.bun/bin:$HOME/.cargo/bin:$PATH"
-export EDITOR='nvim'
+export PATH="$HOME/.bun/bin:$HOME/.cargo/bin:$PATH:$HOME/.local/bin/"
+export EDITOR='/usr/bin/nvim'
 export VISUAL='nvim'
 export OPENAI_API_KEY="$(cat ~/credentials/openai_token)"
 export CLAUDE_API_KEY="$(cat ~/credentials/claude_token)"
@@ -55,6 +55,7 @@ fi
 alias v='mgraftcp --socks5 127.0.0.1:1080 nvim'
 alias proxy='mgraftcp --socks5 127.0.0.1:1080'
 alias lg='lazygit'
+alias hx='helix'
 alias ta='tmux attach'
 alias ..='cd ..'
 alias ld='lazydocker'
@@ -85,6 +86,14 @@ hikary-update-all() {
         echo "Ошибка: временный файл не был создан"
     fi
 }
+alias ua-drop-caches='doas paccache -rk3; aura -Sc --noconfirm'
+alias hikary-update-all='export TMPFILE="$(mktemp)"; \
+    doas true; \
+    rate-mirrors --save=$TMPFILE artix \
+      && doas mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && doas mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && ua-drop-caches \
+      && aura -Ayu --noconfirm'
 
 extract() {
     if [ -z "$1" ]; then

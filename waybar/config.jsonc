@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "top", 
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["river/tags"],
     "modules-center": ["custom/music"],
-    "modules-right": ["pulseaudio", "battery", "clock", "tray"],
-    "wlr/workspaces": {
+    "modules-right": ["pulseaudio", "hyprland/language", "battery", "clock", "tray"],
+    "river/tags": {
          "disable-scroll": true,
          "format": " {icon} ",
          "format-icons": {
@@ -14,7 +14,12 @@
         "persistent-workspaces": {
           "*": 5
         }
-     },
+    },
+    "hyprland/language": {
+      "format": " {}",
+      "format-en": "EN",
+      "format-ru": "RU"
+    },
     "tray": {
         "icon-size": 21,
         "spacing": 10
@@ -31,7 +36,6 @@
       "max-length": 50
     },
     "clock": {
-        "timezone": "Asia/Dubai",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": " {:%d/%m/%Y}",
         "format": " {:%H:%M}"

@@ -17,6 +17,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+config.enable_wayland = true
 
 -- Font settings
 config.font = wezterm.font("jetbrains mono")

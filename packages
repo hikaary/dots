@@ -85,7 +85,10 @@ exa
 wezterm
 helix
 gtk-engine-murrine
-iwgtk-git
-iwd
-iwd-dinit
 swaync
+networkmanager-dinit
+networkmanager
+network-manager-applet
+nm-connection-editor 
+lsr
+river

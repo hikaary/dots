@@ -56,7 +56,7 @@ separator = "│"
 [keys.normal.space]
 "c" = { "a" = "code_action" }
 "l" = { "r" = "rename_symbol" }
-"e" = ":run-shell-command zellij run --floating --close-on-exit -- lf"
+"e" = ":sh helix-wezterm.sh explorer"
 "g" = ":run-shell-command zellij run --floating --close-on-exit -- lazygit"
 "w" = ":run-shell-command zellij run --floating --close-on-exit -- rg"
 "o" = ":open"

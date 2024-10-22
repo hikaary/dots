@@ -12,30 +12,26 @@
   margin: 5px 5px;
 }
 
-#workspaces {
+#tags {
   border-radius: 1rem;
   margin: 5px;
   background-color: @surface0;
   margin-left: 1rem;
 }
 
-#workspaces button {
+#tags button {
   color: @lavender;
   border-radius: 1rem;
   padding: 0.4rem;
 }
 
-#workspaces button.active {
+#tags button.focused {
   color: @sky;
   border-radius: 1rem;
 }
 
-#workspaces button:hover {
-  color: @sapphire;
-  border-radius: 1rem;
-}
-
 #custom-music,
+#language,
 #tray,
 #backlight,
 #clock,
@@ -54,8 +50,14 @@
   margin-right: 1rem;
 }
 
+#language {
+  color: @blue;
+  margin-right: -1rem;
+}
+
 #battery {
   color: @green;
+  margin-right: -1rem;
 }
 
 #battery.charging {
@@ -71,6 +73,7 @@
 }
 
 #backlight,
+#hyprland-language,
 #battery {
   border-radius: 0;
 }
@@ -79,6 +82,7 @@
   color: @maroon;
   border-radius: 1rem 0px 0px 1rem;
   margin-left: 1rem;
+  margin-right: -1rem;
 }
 
 #custom-music {
