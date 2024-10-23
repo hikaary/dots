@@ -1,6 +1,5 @@
 7-zip
-xdg-desktop-portal-hyprland
-wezterm-git
+foot
 aura-git
 bibata-cursor-theme
 bitwarden
@@ -20,7 +19,6 @@ go
 graftcp
 htop
 hyprland
-hyprshot
 imv
 lazydocker
 lazyzgit
@@ -82,13 +80,14 @@ ytui-git
 aura -A ttf-meslo-nerd-font-powerlevel10k
 zsh
 exa
-wezterm
-helix
 gtk-engine-murrine
 swaync
 networkmanager-dinit
 networkmanager
 network-manager-applet
 nm-connection-editor 
-lsr
 river
+wayshot-bin
+xdg-desktop-portal
+xdg-desktop-portal-wlr
+swaylock

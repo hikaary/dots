@@ -31,8 +31,20 @@ mkdir -p "$(dirname "$HISTFILE")"
 bindkey -e
 
 # Привязки клавиш
-bindkey '\e[1;5C' forward-word      # Ctrl+Right Arrow
-bindkey '\e[1;5D' backward-word     # Ctrl+Left Arrow
+bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
+bindkey '^[[3~' delete-char
+
+# Навигация по словам с ctrl+стрелки
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+# История
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Поддержка ctrl+z
+bindkey '^Z' push-input # для ctrl+z
 
 # Автодополнение
 autoload -Uz compinit

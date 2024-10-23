@@ -3,7 +3,7 @@
     "position": "top", 
     "modules-left": ["river/tags"],
     "modules-center": ["custom/music"],
-    "modules-right": ["pulseaudio", "hyprland/language", "battery", "clock", "tray"],
+    "modules-right": ["pulseaudio", "sway/language", "hyprland/language", "battery", "clock", "tray"],
     "river/tags": {
          "disable-scroll": true,
          "format": " {icon} ",

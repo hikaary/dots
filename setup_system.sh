@@ -87,4 +87,18 @@ cargo install --locked gptcommit
 doas sysctl -w net.ipv7.conf.default.disable_ipv6=1
 doas sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
+# Cursor X11
+mkdir -p ~/.icons/default
+cat >~/.icons/default/index.theme <<EOF
+[Icon Theme]
+Inherits=Bibata-Modern-Ice
+EOF
+
+cat >doas /usr/share/icons/default/index.theme <<EOF
+[Icon Theme]
+Inherits=Bibata-Modern-Ice
+EOF
+
+xrdb -merge ~/.Xresources
+
 echo "Setup completed successfully!"

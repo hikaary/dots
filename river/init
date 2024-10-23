@@ -1,10 +1,7 @@
 #!/bin/sh
 
-# Настройка переменных окружения
 set_environment() {
-  # Основные переменные окружения
-  export TERM=wezterm
-  export WEZTERM_GUI_LAUNCHER=wayland
+  export TERM=foot
   export XDG_CURRENT_DESKTOP=river
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=river
@@ -19,7 +16,9 @@ set_environment() {
   export WINIT_UNIX_BACKEND=wayland
   export ELECTRON_OZONE_PLATFORM_HINT=wayland
   export QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor
-  export XCURSOR_SIZE=24
+  export XCURSOR_THEME=Bibata-Modern-Ice
+  export XCURSOR_SIZE=20
+  export XCURSOR_PATH="/usr/share/icons:${HOME}/.local/share/icons:${HOME}/.icons"
 
   # Настройки GTK
   gsettings set org.gnome.desktop.interface cursor-size 20
@@ -41,7 +40,6 @@ set_environment() {
 
 # Настройка устройств ввода
 configure_input() {
-  # Раскладка клавиатуры
   riverctl keyboard-layout -variant "" -options "grp:caps_toggle" "us,ru"
   riverctl set-repeat 60 260
 
@@ -64,18 +62,15 @@ configure_outputs() {
   scratch_tags=$((telegram_tag | music_tag | audio_tag | bitwarden_tag))
   all_but_scratch_tags=$(($all_tags ^ $scratch_tags))
 
-  # Установка маски тегов для новых окон
   riverctl spawn-tagmask ${all_but_scratch_tags}
 }
 
 # Настройка внешнего вида
 configure_appearance() {
-  # Цвета и ширина границ окон
   riverctl border-color-focused 0xcba6f7
   riverctl border-color-unfocused 0x6c7086
   riverctl border-width 2
 
-  # Цвет фона
   riverctl background-color 0x1e1e2e
 }
 
@@ -84,23 +79,22 @@ telegram_tag=$((1 << 20))  # Тег 21
 music_tag=$((1 << 21))     # Тег 22
 audio_tag=$((1 << 22))     # Тег 23
 bitwarden_tag=$((1 << 23)) # Тег 24
+padding_top=65
+padding=20
+
+# Размеры экрана
+screen_width=2560
+screen_height=1440
+
+right_edge=$((screen_width - 600 - padding)) # Для Telegram
+column_width=800                             # Ширина левой колонки
+center_x=$((screen_width / 2 - 400))         # Для центрирования ncspot
+
+full_height=$((screen_height - padding_top - padding))
+half_height=$((full_height / 2))
+bottom_start=$((half_height + padding_top + padding))
 
 configure_window_rules() {
-  padding_top=45
-  padding=20
-
-  # Размеры экрана
-  screen_width=2560
-  screen_height=1440
-
-  right_edge=$((screen_width - 600 - padding)) # Для Telegram
-  column_width=800                             # Ширина левой колонки
-  center_x=$((screen_width / 2 - 400))         # Для центрирования ncspot
-
-  full_height=$((screen_height - padding_top - padding))
-  half_height=$((full_height / 2))
-  bottom_start=$((half_height + padding_top + padding))
-
   riverctl rule-add -app-id "*" ssd
 
   # Правила для плавающих окон
@@ -116,7 +110,7 @@ configure_window_rules() {
   riverctl rule-add -app-id "org.telegram.desktop" tags $telegram_tag
   riverctl rule-add -app-id "org.telegram.desktop" float
   riverctl rule-add -app-id "org.telegram.desktop" dimensions 600 $full_height
-  riverctl rule-add -app-id "org.telegram.desktop" position $right_edge $padding_top
+  riverctl rule-add -app-id "org.telegram.desktop" position $center_x $padding_top
 
   riverctl rule-add -app-id "com.github.wwmm.easyeffects" tags $audio_tag
   riverctl rule-add -app-id "com.github.wwmm.easyeffects" float
@@ -131,7 +125,7 @@ configure_window_rules() {
   riverctl rule-add -app-id "ncspot" tags $music_tag
   riverctl rule-add -app-id "ncspot" float
   riverctl rule-add -app-id "ncspot" dimensions 800 $full_height
-  riverctl rule-add -app-id "ncspot" position $center_x $padding_top
+  riverctl rule-add -app-id "ncspot" position $right_edge $padding_top
 
   riverctl rule-add -app-id "Bitwarden" tags $bitwarden_tag
   riverctl rule-add -app-id "Bitwarden" float
@@ -142,6 +136,7 @@ configure_window_rules() {
   riverctl rule-add -app-id "dev" tags $((1 << 1))
   riverctl rule-add -app-id "vesktop" tags $((1 << 3))
   riverctl rule-add -app-id "discord" tags $((1 << 3))
+  riverctl rule-add -app-id "DBeaver" tags $((1 << 6))
 }
 
 configure_default_layouts() {
@@ -155,12 +150,13 @@ configure_default_layouts() {
 # Настройка горячих клавиш
 configure_keybindings() {
   # Запуск приложений
-  riverctl map normal Super Return spawn wezterm
+  riverctl map normal Super Return spawn footclient
   riverctl map normal Super D spawn "rofi -show drun"
   riverctl map normal Super+Shift D spawn vesktop
   riverctl map normal Super V spawn "~/.config/scripts/proxy.sh"
   riverctl map normal Super B spawn "blueman-manager"
   riverctl map normal Super N spawn "swaync-client -t"
+  riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" - | wl-copy'
 
   # Управление окнами
   riverctl map normal Super Q close
@@ -220,6 +216,7 @@ configure_keybindings() {
   # Move window to/from scratchpad
   riverctl map normal Super+Shift T set-view-tags ${telegram_tag}
   riverctl map normal Super+Shift P set-view-tags ${music_tag}
+  riverctl map normal Super+Shift+Control P spawn "footclient --app-id ncspot -e zsh -i -c \"music\""
   riverctl map normal Super+Shift A set-view-tags ${audio_tag}
   riverctl map normal Super+Shift W set-view-tags ${bitwarden_tag}
 
@@ -264,6 +261,7 @@ configure_animations() {
 # Автозапуск приложений
 autostart() {
   # Основные сервисы
+  riverctl spawn "foot --server"
   riverctl spawn "pipewire"
   riverctl spawn "pipewire-pulse"
   riverctl spawn "wireplumber"
@@ -281,9 +279,9 @@ autostart() {
 
   # Приложения
   riverctl spawn "telegram-desktop"
-  riverctl spawn "wezterm start --class pulsemixer -- pulsemixer"
-  riverctl spawn "wezterm start --class dev -- tmux"
-  riverctl spawn "wezterm start --class ncspot -- ncspot"
+  riverctl spawn "footclient --app-id pulsemixer -- pulsemixer"
+  riverctl spawn "footclient --app-id dev -- tmux"
+  riverctl spawn "footclient --app-id ncspot -e zsh -i -c \"music\""
   riverctl spawn "bitwarden-desktop"
   riverctl spawn "google-chrome-stable"
 }

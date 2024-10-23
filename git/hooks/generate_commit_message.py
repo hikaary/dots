@@ -75,7 +75,7 @@ def generate_commit_message_claude(diff, api_key):
             }
         ],
         'max_tokens': 3000,
-        'model': 'claude-3-5-sonnet-20240620',
+        'model': 'claude-3-5-sonnet-20241022',
     }
     response = requests.post(
         'https://api.anthropic.com/v1/messages',
