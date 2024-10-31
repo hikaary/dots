@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import re
+import sys
+
+
+def should_ignore(name):
+    """Check if file or directory should be ignored."""
+    return name in [
+        '__pycache__',
+        '.venv',
+        '.git',
+        '.idea',
+        '.vscode',
+    ] or name.endswith('.env')
+
+
+def scan_project(root_dir):
+    """Scan project directory and return formatted content."""
+    result = []
+    root_dir = os.path.abspath(root_dir)
+
+    if not os.path.exists(root_dir):
+        print(f"Error: Directory '{root_dir}' does not exist", file=sys.stderr)
+        sys.exit(1)
+
+    for root, dirs, files in os.walk(root_dir):
+        # Фильтруем директории, которые следует игнорировать
+        dirs[:] = [d for d in dirs if not should_ignore(d)]
+
+        for file in files:
+            if file.endswith('.py') and not should_ignore(file):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    result.append(
+                        f"{'='*50}\nFILE: {file_path}\n{'='*50}\n{content}\n"
+                    )
+                except UnicodeDecodeError:
+                    print(
+                        f'Warning: Unable to read {file_path} - not a UTF-8 file',
+                        file=sys.stderr,
+                    )
+                except Exception as e:
+                    print(
+                        f'Error reading {file_path}: {str(e)}', file=sys.stderr
+                    )
+
+    return '\n'.join(result)
+
+
+def clean_output(text):
+    """Clean the output by removing comments and extra newlines."""
+    text = re.sub(r'#.*$', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Scan Python project and output its contents'
+    )
+    parser.add_argument(
+        'directory',
+        nargs='?',
+        default='.',
+        help='root directory to scan (default: current directory)',
+    )
+    parser.add_argument(
+        '-o',
+        '--output',
+        help='output file (if not specified, prints to stdout)',
+    )
+    parser.add_argument(
+        '--keep-comments',
+        action='store_true',
+        help='keep comments in the output',
+    )
+
+    args = parser.parse_args()
+
+    try:
+        output = scan_project(args.directory)
+
+        if not args.keep_comments:
+            output = clean_output(output)
+
+        if args.output:
+            with open(args.output, 'w', encoding='utf-8') as f:
+                f.write(output)
+            print(f'Results saved to file: {args.output}', file=sys.stderr)
+        else:
+            print(output)
+
+    except KeyboardInterrupt:
+        print('\nOperation cancelled by user', file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f'Error: {str(e)}', file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

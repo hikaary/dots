@@ -14,7 +14,7 @@ ORDER:
 
 
 # Enable scaling, overrides AUTO_SCALE and SCALE
-SCALING: TRUE
+SCALING: FALSE
 
 # The default is to scale each display by DPI.
 # This may be disabled and scale 1 will be used, unless a SCALE has been specified.
@@ -27,15 +27,17 @@ AUTO_SCALE_MIN: 1.0
 # Auto scale may be overridden for each display.
 SCALE:
   - NAME_DESC: eDP-1
-    SCALE: 1.4
+    SCALE: 1.1
 
 # Override the preferred mode.
 # WARNING: this may result in an unusable display. See https://github.com/alex-courtis/way-displays#known-issues-with-workarounds
 # for a possible workaround.
 MODE:
     # Resolution and refresh
-    - NAME_DESC: HDMI-A-1
+    - NAME_DESC: eDP-1
       HZ: 60
+      WIDTH: 2560
+      HEIGHT: 1600
 
     # Resolution with highest refresh
     - NAME_DESC: HDMI-A-1

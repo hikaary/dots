@@ -10,6 +10,8 @@ export EDITOR='/usr/bin/nvim'
 export VISUAL='nvim'
 export OPENAI_API_KEY="$(cat ~/credentials/openai_token)"
 export CLAUDE_API_KEY="$(cat ~/credentials/claude_token)"
+export ANTHROPIC_API_KEY="$(cat ~/credentials/claude_token)"
+export TAVILY_API_KEY="$(cat ~/credentials/tavily_token)"
 export GENIE_LANGUAGE="ru"
 export RUST_BACKTRACE='full'
 export PYTHON_KEYRING_BACKEND='keyring.backends.null.Keyring'
@@ -65,6 +67,7 @@ fi
 
 # Алиасы
 alias v='mgraftcp --socks5 127.0.0.1:1080 nvim'
+alias restart-foot='pkill -f "foot-server" && riverctl spawn "foot --server"'
 alias proxy='mgraftcp --socks5 127.0.0.1:1080'
 alias lg='lazygit'
 alias hx='helix'
@@ -80,6 +83,24 @@ alias doomscript='~/.config/emacs/bin/doomscript'
 alias l='exa -lah --icons'
 alias tree='exa --tree --level=2 --icons'
 alias htop='btm'
+alias kt="$HOME/.config/kitty/kitty-project-sessions"
+alias kt-py="kt python"
+alias kt-docker="kt docker"
+alias parse_dir="~/.config/scripts/parse_dir"
+
+detect-project-type() {
+    if [ -f "package.json" ]; then
+        echo "node"
+    elif [ -f "requirements.txt" ] || [ -f "Pipfile" ] || [ -f "pyproject.toml" ]; then
+        echo "python"
+    elif [ -f "docker-compose.yml" ] || [ -f "Dockerfile" ]; then
+        echo "docker"
+    else
+        echo "default"
+    fi
+}
+
+alias kt-here="kt \$(detect-project-type) ."
 
 # Функции
 hikary-update-all() {
@@ -91,6 +112,7 @@ hikary-update-all() {
         doas mv "$tmpfile" /etc/pacman.d/mirrorlist
         if [ $? -eq 0 ]; then
             aura -Ayu --noconfirm
+            aura -Syu --noconfirm
         else
             echo "Ошибка: не удалось переместить временный файл"
         fi

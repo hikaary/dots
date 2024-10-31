@@ -2,6 +2,7 @@
 
 set_environment() {
   export TERM=foot
+  export WLR_DRM_NO_ATOMIC=1
   export XDG_CURRENT_DESKTOP=river
   export XDG_SESSION_TYPE=wayland
   export XDG_SESSION_DESKTOP=river
@@ -83,8 +84,10 @@ padding_top=65
 padding=20
 
 # Размеры экрана
-screen_width=2560
-screen_height=1440
+current_mode=$(wlr-randr | grep -m1 "px.*current" | awk '{print $1}')
+
+screen_width=$(echo "$current_mode" | cut -d'x' -f1)
+screen_height=$(echo "$current_mode" | cut -d'x' -f2)
 
 right_edge=$((screen_width - 600 - padding)) # Для Telegram
 column_width=800                             # Ширина левой колонки
@@ -109,7 +112,7 @@ configure_window_rules() {
 
   riverctl rule-add -app-id "org.telegram.desktop" tags $telegram_tag
   riverctl rule-add -app-id "org.telegram.desktop" float
-  riverctl rule-add -app-id "org.telegram.desktop" dimensions 600 $full_height
+  riverctl rule-add -app-id "org.telegram.desktop" dimensions 780 $full_height
   riverctl rule-add -app-id "org.telegram.desktop" position $center_x $padding_top
 
   riverctl rule-add -app-id "com.github.wwmm.easyeffects" tags $audio_tag
@@ -150,13 +153,14 @@ configure_default_layouts() {
 # Настройка горячих клавиш
 configure_keybindings() {
   # Запуск приложений
-  riverctl map normal Super Return spawn footclient
+  riverctl map normal Super Return spawn kitty
   riverctl map normal Super D spawn "rofi -show drun"
   riverctl map normal Super+Shift D spawn vesktop
   riverctl map normal Super V spawn "~/.config/scripts/proxy.sh"
   riverctl map normal Super B spawn "blueman-manager"
   riverctl map normal Super N spawn "swaync-client -t"
   riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" - | wl-copy'
+  riverctl map normal Super+Control L spawn 'loginctl suspend && swaylock'
 
   # Управление окнами
   riverctl map normal Super Q close

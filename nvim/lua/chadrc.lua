@@ -3,7 +3,6 @@ local M = {}
 ---@type ChadrcConfig
 M.ui = {
   cmp = {
-
     icons = true,
     lspkind_text = true,
     style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
@@ -90,7 +89,7 @@ M.ui = {
 
 M.base46 = {
   transparency = true,
-  theme = "chadracula-evondev",
+  theme = "catppuccin",
   integrations = {
     "blankline",
     "cmp",
