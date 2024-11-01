@@ -79,7 +79,7 @@ def generate_commit_message_claude(diff, api_key):
     }
     response = requests.post(
         'https://api.anthropic.com/v1/messages',
-        proxies={'http': '127.0.0.1:1081', 'https': '127.0.0.1:1081'},
+        proxies={'http': '127.0.0.1:1080', 'https': '127.0.0.1:1080'},
         headers=headers,
         json=data,
     )
@@ -108,7 +108,7 @@ def generate_commit_message_openai(diff, api_key):
     }
     response = requests.post(
         'https://api.openai.com/v1/chat/completions',
-        proxies={'http': '127.0.0.1:1081', 'https': '127.0.0.1:1081'},
+        proxies={'http': '127.0.0.1:1080', 'https': '127.0.0.1:1080'},
         headers=headers,
         json=data,
     )

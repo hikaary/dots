@@ -67,6 +67,11 @@ fi
 
 # Алиасы
 alias v='mgraftcp --socks5 127.0.0.1:1080 nvim'
+alias exec-bitlbee='docker run -d --name bitlbee --restart=unless-stopped \
+-v /persistent/appdata:/bitlbee-data \
+-p 6667:6667 \
+realies/bitlbee'
+alias bitlbee-log='docker logs bitlbee'
 alias restart-foot='pkill -f "foot-server" && riverctl spawn "foot --server"'
 alias proxy='mgraftcp --socks5 127.0.0.1:1080'
 alias lg='lazygit'

@@ -4,13 +4,10 @@ aura-git
 bibata-cursor-theme
 bitwarden
 blueman
-bluez-dinit
 bluez-utils
 brightnessctl
-connman-dinit
 dbeaver
 docker-compose
-docker-dinit
 easyeffects
 fastfetch
 yazi
@@ -82,7 +79,6 @@ zsh
 exa
 gtk-engine-murrine
 swaync
-networkmanager-dinit
 networkmanager
 network-manager-applet
 nm-connection-editor 

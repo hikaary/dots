@@ -60,7 +60,7 @@ configure_input() {
 
 configure_outputs() {
   all_tags=$(((1 << 32) - 1))
-  scratch_tags=$((telegram_tag | music_tag | audio_tag | bitwarden_tag))
+  scratch_tags=$((telegram_tag | music_tag | audio_tag | bitwarden_tag | vpn_tag))
   all_but_scratch_tags=$(($all_tags ^ $scratch_tags))
 
   riverctl spawn-tagmask ${all_but_scratch_tags}
@@ -80,6 +80,7 @@ telegram_tag=$((1 << 20))  # Тег 21
 music_tag=$((1 << 21))     # Тег 22
 audio_tag=$((1 << 22))     # Тег 23
 bitwarden_tag=$((1 << 23)) # Тег 24
+vpn_tag=$((1 << 24))       # Тег 25
 padding_top=65
 padding=20
 
@@ -140,6 +141,11 @@ configure_window_rules() {
   riverctl rule-add -app-id "vesktop" tags $((1 << 3))
   riverctl rule-add -app-id "discord" tags $((1 << 3))
   riverctl rule-add -app-id "DBeaver" tags $((1 << 6))
+
+  riverctl rule-add -app-id "nekobox" tags $vpn_tag
+  riverctl rule-add -app-id "nekobox" float
+  riverctl rule-add -app-id "nekobox" dimensions 800 800
+  riverctl rule-add -app-id "nekobox" position $padding $padding_top
 }
 
 configure_default_layouts() {
@@ -156,7 +162,7 @@ configure_keybindings() {
   riverctl map normal Super Return spawn kitty
   riverctl map normal Super D spawn "rofi -show drun"
   riverctl map normal Super+Shift D spawn vesktop
-  riverctl map normal Super V spawn "~/.config/scripts/proxy.sh"
+  # riverctl map normal Super V spawn "~/.config/scripts/proxy.sh"
   riverctl map normal Super B spawn "blueman-manager"
   riverctl map normal Super N spawn "swaync-client -t"
   riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" - | wl-copy'
@@ -216,13 +222,16 @@ configure_keybindings() {
   riverctl map normal Super A spawn "riverctl toggle-focused-tags ${audio_tag}; riverctl focus-view next"
   # Bitwarden
   riverctl map normal Super W spawn "riverctl toggle-focused-tags ${bitwarden_tag}; riverctl focus-view next"
+  # VPN
+  riverctl map normal Super V spawn "riverctl toggle-focused-tags ${vpn_tag}; riverctl focus-view next"
 
   # Move window to/from scratchpad
   riverctl map normal Super+Shift T set-view-tags ${telegram_tag}
   riverctl map normal Super+Shift P set-view-tags ${music_tag}
-  riverctl map normal Super+Shift+Control P spawn "footclient --app-id ncspot -e zsh -i -c \"music\""
   riverctl map normal Super+Shift A set-view-tags ${audio_tag}
   riverctl map normal Super+Shift W set-view-tags ${bitwarden_tag}
+  riverctl map normal Super+Shift V set-view-tags ${vpn_tag}
+  riverctl map normal Super+Shift+Control P spawn "footclient --app-id ncspot -e zsh -i -c \"music\""
 
   # Toggle floating state for scratchpad windows
   riverctl map normal Super+Control T toggle-float
@@ -271,9 +280,9 @@ autostart() {
   riverctl spawn "wireplumber"
   riverctl spawn "nm-applet"
   riverctl spawn "easyeffects"
-  riverctl spawn "~/.config/scripts/proxy.sh"
   riverctl spawn "~/.config/scripts/xdg-portal.sh"
   riverctl spawn "~/.config/scripts/wallpaper.sh"
+  riverctl spawn "nekobox"
 
   # Пользовательские сервисы
   riverctl spawn "waybar"

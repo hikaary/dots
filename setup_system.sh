@@ -11,14 +11,6 @@ command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-# Function to install doas
-install_doas() {
-  echo "Installing doas..."
-  pacman -S --noconfirm opendoas
-  echo "permit persist :wheel" >/etc/doas.conf
-  chmod 0400 /etc/doas.conf
-}
-
 # Function to install Rust for the current user
 install_rust() {
   echo "Installing Rust..."
@@ -36,11 +28,6 @@ install_aura() {
   aura -Scc --noconfirm
 }
 
-# Install doas if not present
-if ! command_exists doas; then
-  install_doas
-fi
-
 # Install Rust if not present
 if ! su - $SUDO_USER -c 'command -v rustc' >/dev/null 2>&1; then
   install_rust
@@ -55,7 +42,6 @@ fi
 packages=$(grep -v '^#' packages | tr '\n' ' ')
 aura -Syu --noconfirm
 aura -A --noconfirm $packages
-
 echo "All packages have been installed successfully!"
 
 # Add user to groups
@@ -64,28 +50,21 @@ usermod -a -G video,audio,input,power,storage,optical,lp,scanner,dbus,adbusers,u
 # Install emptty
 su - $SUDO_USER -c 'git clone https://github.com/tvrzna/emptty'
 cd /home/$SUDO_USER/emptty
-make install-dinit
+make install-systemd
 cd ..
 rm -rf emptty
 
-# Install lsr
-git clone https://github.com/jmattaa/laser.git
-cd laser
-doas make install
-cd ..
-rm -rf laser
-
-#Install theme
+# Install theme
 cp -r .themes/ ~/
 
-# Enable emptty
-dinitctl enable emptty
+# Изменено: включаем emptty через systemd
+systemctl enable emptty.service
 
 cargo install --locked gptcommit
 
 # Remove IPv6
-doas sysctl -w net.ipv7.conf.default.disable_ipv6=1
-doas sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv7.conf.default.disable_ipv6=1
+sudu sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
 # Cursor X11
 mkdir -p ~/.icons/default
@@ -94,7 +73,7 @@ cat >~/.icons/default/index.theme <<EOF
 Inherits=Bibata-Modern-Ice
 EOF
 
-cat >doas /usr/share/icons/default/index.theme <<EOF
+cat >sudo /usr/share/icons/default/index.theme <<EOF
 [Icon Theme]
 Inherits=Bibata-Modern-Ice
 EOF
