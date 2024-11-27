@@ -22,7 +22,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Colum lina
--- vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80"
 
 vim.opt.guicursor = {
   "n-v-c:block", -- Normal, visual, command-line: block cursor
@@ -32,3 +32,21 @@ vim.opt.guicursor = {
   "a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
   "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
+
+-- -- Улучшения для производительности
+vim.opt.hidden = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- -- Улучшенный поиск
+vim.opt.showmatch = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.inccommand = "nosplit"
+
+-- -- Улучшения для отображения
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.wrap = false
+vim.opt.fileencoding = "utf-8"
+vim.opt.spelllang = "en,ru"

@@ -1,15 +1,45 @@
 return {
   {
     "stevearc/dressing.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
-      require("dressing").setup {}
+      require("dressing").setup {
+        nui = {
+          position = "50%",
+          size = nil,
+          relative = "editor",
+          border = {
+            style = "rounded",
+          },
+          buf_options = {
+            swapfile = false,
+            filetype = "DressingSelect",
+          },
+          win_options = {
+            winblend = 100,
+          },
+          max_width = 80,
+          max_height = 40,
+          min_width = 40,
+          min_height = 10,
+        },
+        input = {
+          win_options = {
+            winhighlight = "NormalFloat:DiagnosticError",
+          },
+        },
+      }
     end,
   },
   {
     "NvChad/nvim-colorizer.lua",
     lazy = false,
     opts = {
+      filetypes = {
+        "*", -- all filetypes
+        "!sass", -- исключить sass
+        "!scss", -- исключить scss
+      },
       user_default_options = {
         RRGGBBAA = true,
         rgb_fn = true,
@@ -21,12 +51,6 @@ return {
         virtualtext = "󱓻",
       },
     },
-  },
-  {
-    "NvChad/nvterm",
-    config = function()
-      require "configs.nvterm"
-    end,
   },
   {
     "Wansmer/treesj",

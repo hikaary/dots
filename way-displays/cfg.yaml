@@ -66,5 +66,5 @@ LOG_THRESHOLD: INFO
 
 
 DISABLED:
-  #- "eDP-1"
+  - "eDP-1"
 

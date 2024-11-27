@@ -14,6 +14,10 @@ conform.setup {
     html = { "prettier" },
     css = { "prettier" },
     sh = { "shfmt" },
+    yaml = { "prettier" },
+    markdown = { "prettier" },
+    toml = { "taplo" },
+    dockerfile = { "hadolint" },
   },
   format_on_save = {
     timeout_ms = 500,

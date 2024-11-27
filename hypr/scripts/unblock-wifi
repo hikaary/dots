@@ -1,5 +1,0 @@
-#!/bin/sh
-
-rfkill unblock wifi
-rfkill unblock bluetooth
-ip link set wlan0 up

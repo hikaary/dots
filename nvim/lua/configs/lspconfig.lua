@@ -36,6 +36,9 @@ function M.setup()
     "bashls",
     "taplo",
     "biome",
+    "yamlls",
+    "dockerls",
+    "jsonls",
   }
 
   for _, server in ipairs(servers) do

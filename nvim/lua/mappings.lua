@@ -22,6 +22,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", "file copy whole")
 map("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", "Toggle NvimTree")
+-- map("n", "<leader>e", "<cmd>Telescope fd<CR>", "Toggle NvimTree")
 
 -- GIT
 map("n", "<leader>lg", "<cmd>Neogit<CR>", "Toggle Neogit")
@@ -54,81 +55,13 @@ map("n", "<C-S-j>", "<C-w>-")
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
 
--- Term
-map({ "n", "t" }, "<C-f>", function()
-  require("nvterm.terminal").toggle "float"
-end)
-
 -- split
 map("n", "<leader>sv", "<cmd>:vsplit<CR>")
 
 -- Venv select
 map("n", "<leader>cv", "<cmd>VenvSelect<cr>")
 
--- Хоткеи для gitlab.nvim
-local gitlab = require "gitlab"
-
--- Обзор текущего MR (Merge Request)
-map("n", "<leader>gl", gitlab.choose_merge_request, "Выбор MR")
-
--- Обзор текущего MR (Merge Request)
-map("n", "<leader>gr", gitlab.review, "Обзор текущего MR")
-
--- Показать сводку MR
-map("n", "<leader>gs", gitlab.summary, "Показать сводку MR")
-
--- Одобрить текущий MR
-map("n", "<leader>ga", gitlab.approve, "Одобрить MR")
-
--- Отозвать одобрение MR
-map("n", "<leader>gR", gitlab.revoke, "Отозвать одобрение MR")
-
--- Создать комментарий
-map("n", "<leader>gc", gitlab.create_comment, "Создать комментарий")
-
--- Создать многострочный комментарий (в визуальном режиме)
-map(
-  "v",
-  "<leader>gC",
-  gitlab.create_multiline_comment,
-  "Создать многострочный комментарий"
-)
-
--- Создать предложение изменения (в визуальном режиме)
-map("v", "<leader>gS", gitlab.create_comment_suggestion, "Создать предложение изменения")
-
--- Создать новый MR
-map("n", "<leader>gn", gitlab.create_mr, "Создать новый MR")
-
--- Переключить отображение обсуждений
-map("n", "<leader>gd", gitlab.toggle_discussions, "Переключить отображение обсуждений")
-
--- Опубликовать все черновики
-map("n", "<leader>gp", gitlab.publish_all_drafts, "Опубликовать все черновики")
-
--- Переключить режим черновика
-map("n", "<leader>gt", gitlab.toggle_draft_mode, "Переключить режим черновика")
-
--- Добавить рецензента
-map("n", "<leader>gA", gitlab.add_reviewer, "Добавить рецензента")
-
--- Удалить рецензента
-map("n", "<leader>gD", gitlab.delete_reviewer, "Удалить рецензента")
-
--- Показать информацию о pipeline
-map("n", "<leader>gP", gitlab.pipeline, "Показать информацию о pipeline")
-
--- Открыть MR в браузере
-map("n", "<leader>go", gitlab.open_in_browser, "Открыть MR в браузере")
-
--- Скопировать URL текущего MR
-map("n", "<leader>gy", gitlab.copy_mr_url, "Скопировать URL MR")
-
--- Объединить (merge) текущий MR
-map("n", "<leader>gm", gitlab.merge, "Объединить текущий MR")
-
 -- parrot (AI)
-
 -- Переключить текущий чат
 map("n", "<leader>pc", ":PrtChatToggle<CR>")
 

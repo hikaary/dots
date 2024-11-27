@@ -21,14 +21,6 @@ end)
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.5
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.argc() == 0 and vim.fn.line2byte "$" == -1 then
-      require("nvim-tree.api").tree.open()
-    end
-  end,
-})
-
 nvtree.setup {
   on_attach = custom_on_attach,
   update_focused_file = {
@@ -54,6 +46,10 @@ nvtree.setup {
     change_dir = {
       enable = false,
       global = false,
+    },
+    open_file = {
+      quit_on_open = true, -- Закрывать tree при открытии файла
+      resize_window = true,
     },
   },
   renderer = {

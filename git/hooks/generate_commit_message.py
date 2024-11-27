@@ -51,7 +51,9 @@ def get_api_key(api_type):
     if api_type == 'openai':
         return os.getenv('OPENAI_API_KEY')
     elif api_type == 'claude':
-        return os.getenv('CLAUDE_API_KEY')
+        return os.getenv('ANTHROPIC_API_KEY')
+    elif api_type == 'operouter':
+        return os.getenv('OPENROUTER_API_KEY')
     else:
         raise ValueError(f'Неизвестный тип API: {api_type}')
 
@@ -79,7 +81,31 @@ def generate_commit_message_claude(diff, api_key):
     }
     response = requests.post(
         'https://api.anthropic.com/v1/messages',
-        proxies={'http': '127.0.0.1:1080', 'https': '127.0.0.1:1080'},
+        proxies={'http': '127.0.0.1:2080', 'https': '127.0.0.1:2080'},
+        headers=headers,
+        json=data,
+    )
+    completion = response.json().get('content', [{}])[0].get('text', '').strip()
+    return completion
+
+
+def generate_commit_message_openrouter(diff, api_key):
+    headers = {
+        # 'Content-Type': 'application/json',
+        'Authorization': f'Bearer {api_key}',
+    }
+    data = {
+        'messages': [
+            {
+                'role': 'user',
+                'content': COMMIT_MESSAGE_PROMPT.format(diff=diff),
+            }
+        ],
+        'max_tokens': 3000,
+        'model': 'anthropic/claude-3.5-haiku-20241022:beta',
+    }
+    response = requests.post(
+        'https://openrouter.ai/api/v1/chat/completions',
         headers=headers,
         json=data,
     )
@@ -108,7 +134,7 @@ def generate_commit_message_openai(diff, api_key):
     }
     response = requests.post(
         'https://api.openai.com/v1/chat/completions',
-        proxies={'http': '127.0.0.1:1080', 'https': '127.0.0.1:1080'},
+        proxies={'http': '127.0.0.1:2080', 'https': '127.0.0.1:2080'},
         headers=headers,
         json=data,
     )
@@ -130,6 +156,11 @@ if __name__ == '__main__':
         action='store_true',
         help='Использовать OpenAI API вместо Claude',
     )
+    parser.add_argument(
+        '--operouter',
+        action='store_true',
+        help='Использовать OpenRouter API',
+    )
     args = parser.parse_args()
 
     diff = get_git_diff()
@@ -139,6 +170,9 @@ if __name__ == '__main__':
         if args.openai:
             api_key = get_api_key('openai')
             commit_message = generate_commit_message_openai(diff, api_key)
+        elif args.operouter:
+            api_key = get_api_key('operouter')
+            commit_message = generate_commit_message_openrouter(diff, api_key)
         else:
             api_key = get_api_key('claude')
             commit_message = generate_commit_message_claude(diff, api_key)
