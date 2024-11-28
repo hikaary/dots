@@ -101,8 +101,8 @@ def generate_commit_message_openrouter(diff, api_key):
             }
         ],
         'max_tokens': 3000,
-        'model': 'anthropic/claude-3.5-haiku-20241022',
-        # 'model': 'qwen/qwq-32b-preview',
+        # 'model': 'anthropic/claude-3.5-haiku-20241022',
+        'model': 'google/learnlm-1.5-pro-experimental:free',
     }
     response = requests.post(
         'https://openrouter.ai/api/v1/chat/completions',
