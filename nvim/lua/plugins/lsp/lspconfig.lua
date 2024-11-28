@@ -1,9 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-  },
   config = function()
     local lspconfig = require "lspconfig"
 
@@ -18,7 +15,6 @@ return {
 
       config = vim.tbl_deep_extend("force", {
         on_attach = function(client, bufnr)
-          -- Настройка Lspsaga
           local keymap = vim.keymap.set
           keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { buffer = bufnr })
           keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = bufnr })
@@ -26,13 +22,13 @@ return {
           keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { buffer = bufnr })
           keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { buffer = bufnr })
         end,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities),
       }, config)
 
       lspconfig[server].setup(config)
     end
 
-    -- Настройка серверов
     local servers = {
       "html",
       "cssls",
@@ -49,7 +45,6 @@ return {
       setup_server(server, {})
     end
 
-    -- Специфичные настройки для некоторых серверов
     setup_server("lua_ls", {
       settings = {
         Lua = {
@@ -84,11 +79,7 @@ return {
 
     setup_server("ruff_lsp", {
       init_options = {
-        settings = {
-          -- args = {
-          --   "--config=~/.config/nvim/ruff.toml",
-          -- },
-        },
+        settings = {},
       },
     })
 

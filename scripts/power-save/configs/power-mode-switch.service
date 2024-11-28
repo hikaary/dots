@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatic Power Mode Switching
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/power-mode-switch
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

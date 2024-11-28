@@ -15,7 +15,8 @@ map("n", "<C-c>", "<cmd>%y+<CR>", "Copy whole file to clipboard")
 map("n", "<Esc>", "<cmd>noh<CR>", "Clear search highlights")
 
 -- File Explorer
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", "Toggle NvimTree")
+-- map("n", "<leader>e", "<cmd>Neotree toggle<cr>", "Toggle Neotree")
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree")
 
 -- Git
 map("n", "<leader>lg", "<cmd>Neogit<CR>", "Toggle Neogit")

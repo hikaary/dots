@@ -13,6 +13,7 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
+  enabled = false,
   opts = function()
     local config = require "nvchad.configs.cmp"
     local cmp = require "cmp"
