@@ -91,7 +91,6 @@ def generate_commit_message_claude(diff, api_key):
 
 def generate_commit_message_openrouter(diff, api_key):
     headers = {
-        # 'Content-Type': 'application/json',
         'Authorization': f'Bearer {api_key}',
     }
     data = {
@@ -102,14 +101,21 @@ def generate_commit_message_openrouter(diff, api_key):
             }
         ],
         'max_tokens': 3000,
-        'model': 'anthropic/claude-3.5-haiku-20241022:beta',
+        # 'model': 'anthropic/claude-3.5-haiku-20241022',
+        'model': 'google/learnlm-1.5-pro-experimental:free',
     }
     response = requests.post(
         'https://openrouter.ai/api/v1/chat/completions',
         headers=headers,
         json=data,
     )
-    completion = response.json().get('content', [{}])[0].get('text', '').strip()
+    completion = (
+        response.json()
+        .get('choices', [{}])[0]
+        .get('message', '')
+        .get('content', '')
+        .strip()
+    )
     return completion
 
 

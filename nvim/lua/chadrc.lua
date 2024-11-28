@@ -10,19 +10,12 @@ M.ui = {
       tailwind = false,
     },
   },
-
   telescope = { style = "bordered" }, -- borderless / bordered
-
-  ------------------------------- nvchad_ui modules -----------------------------
-  tabufline = {
-    enabled = false,
-  },
+  tabufline = { enabled = false },
   statusline = {
     -- enabled = false,
   },
-
   cheatsheet = { theme = "simple" }, -- simple/grid
-
   lsp = {
     signature = true,
     semantic_tokens = true,
@@ -104,42 +97,5 @@ M.base46 = {
     "whichkey",
   },
 }
-
-vim.api.nvim_create_augroup("TimewarriorTracking", { clear = true })
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = "TimewarriorTracking",
-  callback = function()
-    local cwd = vim.fn.getcwd()
-    local project = vim.fn.fnamemodify(cwd, ":t")
-    if string.find(cwd, "/dev/") or string.find(cwd, "/projects/") then
-      vim.fn.system "timew stop"
-      vim.fn.system('timew start "' .. project .. '" @coding')
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd("VimLeave", {
-  group = "TimewarriorTracking",
-  callback = function()
-    vim.fn.system "timew stop"
-  end,
-})
-
--- Добавляем команды
-vim.api.nvim_create_user_command("TimeStart", function()
-  local cwd = vim.fn.getcwd()
-  local project = vim.fn.fnamemodify(cwd, ":t")
-  vim.fn.system('timew start "' .. project .. '" @coding')
-end, {})
-
-vim.api.nvim_create_user_command("TimeStop", function()
-  vim.fn.system "timew stop"
-end, {})
-
-vim.api.nvim_create_user_command("TimeStatus", function()
-  local output = vim.fn.system "timew"
-  vim.api.nvim_echo({ { output, "Normal" } }, true, {})
-end, {})
 
 return M

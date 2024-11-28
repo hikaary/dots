@@ -8,7 +8,7 @@ if [ -f "$pid_file" ]; then
   kill -SIGINT "$pid"
   notify-send "Запись экрана" "Запись остановлена" -a "Screen Recorder"
 else
-  wf-recorder -f ~/media/screen_$(date +%Y%m%d_%H%M%S).mp4 -c libx264 -r 60 --audio-output &
+  wf-recorder -f ~/media/screen_$(date +%Y%m%d_%H%M%S).mp4 -c libx264 -r 60 --audio="easyeffects_sink.monitor" &
   echo $! >"$pid_file"
   notify-send "Запись экрана" "Запись начата" -a "Screen Recorder"
 fi

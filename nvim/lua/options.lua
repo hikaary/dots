@@ -1,29 +1,13 @@
 require "nvchad.options"
--- [[ Setting options ]]
 
+-- UI and Display
 vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-
-vim.o.completeopt = "menu,menuone"
-
-vim.opt.mouse = "n"
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
-
--- Colum lina
 vim.opt.colorcolumn = "80"
 
+-- Cursor Styles
 vim.opt.guicursor = {
   "n-v-c:block", -- Normal, visual, command-line: block cursor
   "i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
@@ -33,20 +17,28 @@ vim.opt.guicursor = {
   "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
 
--- -- Улучшения для производительности
+-- Editing Behavior
+vim.opt.mouse = "n"
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.hidden = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- -- Улучшенный поиск
+-- Search Enhancements
 vim.opt.showmatch = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.inccommand = "nosplit"
 
--- -- Улучшения для отображения
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+-- Display Improvements
+vim.opt.scrolloff = 31
+vim.opt.sidescrolloff = 31
 vim.opt.wrap = false
 vim.opt.fileencoding = "utf-8"
 vim.opt.spelllang = "en,ru"
+
+-- Completion Options
+vim.o.completeopt = "menu,menuone"

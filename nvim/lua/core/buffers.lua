@@ -13,27 +13,6 @@ function M.setup()
         and vim.bo[buf].buftype == ""
         and vim.api.nvim_buf_get_name(buf) ~= ""
       then
-        if vim.bo[buf].modified then
-          vim.api.nvim_buf_call(buf, function()
-            vim.cmd "write"
-          end)
-        end
-        vim.api.nvim_buf_delete(buf, { force = false })
-      end
-    end
-  end
-
-  local function close_other_file_buffers()
-    local current = vim.fn.bufnr "%"
-    local buffers = vim.api.nvim_list_bufs()
-
-    for _, buf in ipairs(buffers) do
-      if
-        vim.api.nvim_buf_is_loaded(buf)
-        and buf ~= current
-        and vim.bo[buf].buftype == ""
-        and vim.api.nvim_buf_get_name(buf) ~= ""
-      then
         -- Сохраняем файл в истории перед закрытием
         local fname = vim.api.nvim_buf_get_name(buf)
         vim.fn.setpos("'\"", { buf, 1, 1, 0 })
@@ -55,17 +34,6 @@ function M.setup()
     end
   end
 
-  -- Автоматическое скрытие других буферов при открытии нового файла
-  vim.api.nvim_create_autocmd("BufEnter", {
-    callback = function()
-      if vim.bo.buftype == "" and vim.fn.expand "%" ~= "" then
-        vim.schedule(function()
-          close_other_file_buffers()
-        end)
-      end
-    end,
-  })
-
   -- Периодическая очистка скрытых буферов
   local function cleanup_hidden_buffers()
     local buffers = vim.api.nvim_list_bufs()
@@ -82,6 +50,7 @@ function M.setup()
   vim.defer_fn(function()
     vim.schedule_wrap(cleanup_hidden_buffers)
   end, 300000)
+
   -- Автоматическое закрытие других буферов при открытии нового файла
   vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
@@ -122,4 +91,5 @@ function M.setup()
     end,
   })
 end
+
 return M
