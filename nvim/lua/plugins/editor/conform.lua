@@ -1,27 +1,27 @@
 return {
-  "stevearc/conform.nvim",
-  event = "BufWritePre",
+  'stevearc/conform.nvim',
+  event = 'BufWritePre',
   config = function()
-    local conform = require "conform"
+    local conform = require 'conform'
 
     conform.formatters.ruff_format = {
-      prepend_args = { "format", "--config", "~/.config/nvim/ruff.toml" },
+      prepend_args = { 'format', '--config', '~/.config/nvim/ruff.toml' },
     }
 
     conform.setup {
       formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "ruff_organize_imports", "ruff_format", "ruff_fix" },
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        json = { "prettier" },
-        html = { "prettier" },
-        css = { "prettier" },
-        sh = { "shfmt" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        toml = { "taplo" },
-        dockerfile = { "hadolint" },
+        lua = { 'stylua' },
+        python = { 'ruff_organize_imports', 'ruff_format', 'ruff_fix' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        json = { 'jq' },
+        html = { 'prettier' },
+        css = { 'prettier' },
+        sh = { 'shfmt' },
+        yaml = { 'prettier' },
+        markdown = { 'prettier' },
+        toml = { 'taplo' },
+        dockerfile = { 'hadolint' },
       },
       format_on_save = {
         timeout_ms = 500,

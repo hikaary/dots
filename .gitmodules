@@ -1,0 +1,3 @@
+[submodule "HyprPanel"]
+	path = HyprPanel
+	url = https://github.com/Jas-SinghFSU/HyprPanel.git

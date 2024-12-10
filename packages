@@ -1,7 +1,17 @@
-7-zip lrzip unrar unzip unace p7zip squashfs-tools base-devel bash wget tar git pacman-contrib
-slurp
-rofi-lbonn-wayland-git
-waybar
+7-zip
+lrzip
+unrar
+unzip
+unace
+p7zip
+squashfs-tools
+base-devel
+bash
+wget
+tar
+git
+pacman-contrib
+wofi
 xdg-desktop-portal-hyprland
 bibata-cursor-theme
 bluez-utils
@@ -14,7 +24,6 @@ go
 graftcp
 htop
 imv
-lxappearance
 mpd
 nemo
 neovim
@@ -23,9 +32,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 otf-daddytimemono-git
 pamixer
-pulsemixer
 qbittorrent
-rate-mirrors
 rsync
 ttf-jetbrains-mono
 zip
@@ -39,20 +46,15 @@ uv
 python-setuptools
 socat
 tmpmail
-w3m
 xclip
 swww
 google-chrome
 ttf-meslo-nerd-font-powerlevel10k
 zsh
 eza
-swaync
 xdg-desktop-portal
-swaylock
-grim
 bc
 npm
-kitty
 nekoray sing-geoip-common sing-geoip-db sing-geoip-rule-set sing-geosite-common sing-geosite-db sing-geosite-rule-set
 docker docker-compose
 starship
@@ -60,15 +62,30 @@ alsa-utils
 ripgrep
 wl-clipboard
 less
-iwmenu-git
-bluetuith-bin
 dockerfile-language-server-bin
-hyprland-git
-hyprlock-git
-hyprland-protocols-git
+hyprland
+hyprland-protocols
 telegram-desktop-bin
 atuin
 zoxide
 python-pipx
-wf-recorder ffmpeg x264
 wezterm-git
+hyprpaper
+lsp-plugins
+libgtop
+networkmanager
+gnome-bluetooth-3.0
+dart-sass
+power-profiles-daemon
+gvfs
+grimblast-git
+gpu-screen-recorder
+hyprpicker
+matugen-bin
+python-gpustat
+hyprsunset-git
+aylurs-gtk-shell-git
+btop
+hyprlock
+hurl
+jql

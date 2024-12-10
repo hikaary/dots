@@ -125,6 +125,56 @@ class SystemSetup:
         else:
             self.logger.warning('%s is already installed', helper)
 
+    def setup_hyprpanel(self) -> None:
+        """Установка и настройка HyprPanel."""
+        self.logger.info('Setting up HyprPanel...')
+
+        config_dir = self.home_dir / '.config'
+        config_dir.mkdir(exist_ok=True)
+
+        ags_dir = config_dir / 'ags'
+        if ags_dir.exists():
+            backup_dir = config_dir / 'ags.bkup'
+            if backup_dir.exists():
+                shutil.rmtree(backup_dir)
+            shutil.move(ags_dir, backup_dir)
+            self.logger.info(
+                'Existing ags configuration backed up to %s', backup_dir
+            )
+
+        try:
+            self.run_as_user(
+                'git clone https://github.com/Jas-SinghFSU/HyprPanel.git '
+                f'{ags_dir}',
+            )
+
+            custom_options = self.home_dir / '.config/hyprpanel/options.ts'
+            if custom_options.exists():
+                shutil.copy2(custom_options, ags_dir / 'options.ts')
+                self.logger.info('Custom options.ts copied successfully')
+            else:
+                self.logger.warning(
+                    'Custom options.ts not found in %s', custom_options
+                )
+
+            self.run_as_user(f'cd {ags_dir} && ./install_fonts.sh')
+
+            if self.command_exists('bun'):
+                self.run_as_user('bun install -g sass')
+            else:
+                self.logger.error('bun is not installed, cannot install sass')
+
+            subprocess.run(
+                ['chown', '-R', f'{self.sudo_user}:{self.sudo_user}', ags_dir],
+                check=True,
+            )
+
+            self.logger.info('HyprPanel setup completed successfully')
+
+        except subprocess.CalledProcessError as e:
+            self.logger.error('Failed to setup HyprPanel: %s', e)
+            sys.exit(1)
+
     def install_packages(self) -> None:
         """Установка пакетов из файла."""
         packages_file = Path('packages')

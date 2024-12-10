@@ -50,3 +50,6 @@ if (($+commands[atuin])); then
 	}
 	# ZSH_AUTOSUGGEST_STRATEGY=(atuin_currentdir atuin_top completion)
 fi
+
+# bun completions
+[ -s "/home/hikary/.bun/_bun" ] && source "/home/hikary/.bun/_bun"

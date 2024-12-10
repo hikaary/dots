@@ -1,21 +1,28 @@
 return {
-  "lukas-reineke/indent-blankline.nvim",
-  init = function()
-    local map = vim.keymap.set
+  'lukas-reineke/indent-blankline.nvim',
+  event = 'BufRead',
+  config = function()
+    local highlight = {
+      'RainbowRed',
+      'RainbowYellow',
+      'RainbowBlue',
+      'RainbowOrange',
+      'RainbowGreen',
+      'RainbowViolet',
+      'RainbowCyan',
+    }
 
-    map("n", "<leader>cc", function()
-      local config = { scope = {} }
-      config.scope.exclude = { language = {}, node_type = {} }
-      config.scope.include = { node_type = {} }
-      local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
+    local hooks = require 'ibl.hooks'
+    hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+      vim.api.nvim_set_hl(0, 'RainbowRed', { fg = '#E06C75' })
+      vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = '#E5C07B' })
+      vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = '#61AFEF' })
+      vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = '#D19A66' })
+      vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = '#98C379' })
+      vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = '#C678DD' })
+      vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = '#56B6C2' })
+    end)
 
-      if node then
-        local start_row, _, end_row, _ = node:range()
-        if start_row ~= end_row then
-          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
-          vim.api.nvim_feedkeys("_", "n", true)
-        end
-      end
-    end, { desc = "Blankline Jump to current context" })
+    require('ibl').setup { indent = { highlight = highlight } }
   end,
 }

@@ -40,6 +40,9 @@ COMMIT_MESSAGE_PROMPT = """
 Если в diff присутствуют изменения, относящиеся к нескольким типам, включите их все в детальное описание, каждый на отдельной строке.
 Пожалуйста, создайте сообщение коммита, соответствующее этим критериям и основанное на предоставленном diff.
 
+Пример:
+feat(fix): исправление ошибки ...
+
 Формат ответа должен быть следующим:
 <заголовок коммита>
 
@@ -100,23 +103,25 @@ def generate_commit_message_openrouter(diff, api_key):
                 'content': COMMIT_MESSAGE_PROMPT.format(diff=diff),
             }
         ],
-        'max_tokens': 3000,
-        # 'model': 'anthropic/claude-3.5-haiku-20241022',
-        'model': 'google/learnlm-1.5-pro-experimental:free',
+        'model': 'google/gemini-flash-1.5-8b',
     }
     response = requests.post(
         'https://openrouter.ai/api/v1/chat/completions',
         headers=headers,
         json=data,
     )
-    completion = (
-        response.json()
-        .get('choices', [{}])[0]
-        .get('message', '')
-        .get('content', '')
-        .strip()
-    )
-    return completion
+    try:
+        completion = (
+            response.json()
+            .get('choices', [{}])[0]
+            .get('message', '')
+            .get('content', '')
+            .strip()
+        )
+        return completion
+    except Exception as e:
+        print(f'Ошибка при генерации сообщения коммита: {e}')
+        return ''
 
 
 def generate_commit_message_openai(diff, api_key):
@@ -151,7 +156,7 @@ def generate_commit_message_openai(diff, api_key):
 def format_commit_message(message):
     lines = message.split('\n')
     title = lines[0].replace('TITLE: ', '')
-    body = '\n'.join(lines[2:])  # Пропускаем пустую строку после TITLE
+    body = '\n'.join(lines[2:])
     return f'{title}\n\n{body}'
 
 

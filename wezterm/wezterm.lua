@@ -3,6 +3,7 @@ local wez = require "wezterm"
 local appearance = require "lua.appearance"
 local bar = wez.plugin.require "https://github.com/adriankarlen/bar.wezterm"
 local mappings = require "lua.mappings"
+local modal = require "lua.modal"
 
 wez.plugin.require "https://github.com/MLFlexer/resurrect.wezterm"
 
@@ -14,13 +15,6 @@ end
 
 -- General configurations
 c.font = wez.font "Monaspace Neon"
--- c.font_rules = {
---   {
---     italic = true,
---     intensity = "Half",
---     font = wez.font("JetBrains Mono", { weight = "Medium", italic = true }),
---   },
--- }
 c.font_size = 12
 c.adjust_window_size_when_changing_font_size = false
 c.audible_bell = "Disabled"
@@ -31,6 +25,9 @@ c.enable_wayland = true
 c.enable_kitty_keyboard = false
 c.use_ime = true
 
+-- modal config
+modal.apply_to_config(c)
+
 -- appearance
 appearance.apply_to_config(c)
 
@@ -38,6 +35,6 @@ appearance.apply_to_config(c)
 mappings.apply_to_config(c)
 
 -- bar
-bar.apply_to_config(c, { enabled_modules = { hostname = false } })
+bar.apply_to_config(c, { enabled_modules = { hostname = false }, position = "top" })
 
 return c
