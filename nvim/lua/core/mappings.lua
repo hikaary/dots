@@ -9,6 +9,7 @@ map('n', ';', ':', 'Enter command mode')
 map('n', '<C-s>', ':write<CR>', 'Save file')
 map('n', '<C-c>', '<cmd>%y+<CR>', 'Copy whole file to clipboard')
 map('n', '<Esc>', '<cmd>noh<CR>', 'Clear search highlights')
+map('n', 'v$', 'v$h')
 
 -- File Explorer
 map('n', '<leader>e', '<cmd>Neotree toggle<CR>', 'Toggle Neo-tree')

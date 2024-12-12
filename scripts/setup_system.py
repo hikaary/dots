@@ -106,6 +106,20 @@ class SystemSetup:
         else:
             self.logger.warning('Rust is already installed')
 
+    def install_atuin(self) -> None:
+        """Установка Atuin."""
+        self.logger.info('Installing Atuin (NuShell)...')
+        try:
+            self.run_as_user(
+                '/usr/bin/nu -e "mkdir ~/.local/share/atuin/"',
+            )
+            self.run_as_user(
+                '/usr/bin/nu -e "atuin init nu | save ~/.local/share/atuin/init.nu"'
+            )
+        except subprocess.CalledProcessError as e:
+            self.logger.error('Failed to install Atuin: %s', e)
+            sys.exit(1)
+
     def install_aur_helper(self, helper: str, install_cmd: str) -> None:
         """Установка AUR helper."""
         self.logger.info('Installing %s...', helper)
@@ -306,6 +320,7 @@ class SystemSetup:
                     check=True,
                 )
 
+            self.install_atuin()
             self.configure_user_groups()
             self.configure_cursor_theme()
             self.setup_iwd()

@@ -103,12 +103,13 @@ def generate_commit_message_openrouter(diff, api_key):
                 'content': COMMIT_MESSAGE_PROMPT.format(diff=diff),
             }
         ],
-        'model': 'google/gemini-flash-1.5-8b',
+        'model': 'qwen/qwen-2.5-72b-instruct',
     }
     response = requests.post(
         'https://openrouter.ai/api/v1/chat/completions',
         headers=headers,
         json=data,
+        proxies={'http': '127.0.0.1:2080', 'https': '127.0.0.1:2080'},
     )
     try:
         completion = (
