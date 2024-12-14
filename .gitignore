@@ -154,5 +154,14 @@ lsp-plugins
 Noi
 carapace/bridge/zsh
 environment.d
-home-manager
-home-manager.bach
+carapace/bridge/bash
+fontconfig/conf.d
+forge/stylesheet/forge
+gtk-3.0
+gtk-4.0
+kitty
+nemo
+stylix
+gtk-4.0
+gtk-4.0
+gtk-3.0

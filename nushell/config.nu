@@ -950,6 +950,7 @@ alias kc = kubectx
 alias kns = kubens
 alias kl = kubectl logs -f
 alias ke = kubectl exec -it
+alias proxy = mgraftcp --socks5 127.0.0.1:2080
 
 source ~/.config/nushell/env.nu
 source ~/.zoxide.nu
