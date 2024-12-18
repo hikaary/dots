@@ -1,7 +1,1 @@
-return {
-  'petertriho/nvim-scrollbar',
-  event = 'VeryLazy',
-  config = function()
-    require('scrollbar').setup()
-  end,
-}
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/plugins/tools/scrollbar.lua

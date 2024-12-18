@@ -1,8 +1,4 @@
 #!/bin/zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # make paths unique
 typeset -U PATH FPATH path fpath
 
@@ -18,7 +14,7 @@ setopt INC_APPEND_HISTORY # autosuggestions should work better
 setopt EXTENDED_GLOB # required for the rebuild function to work, plus it's nice !
 
 # python go brrr
-export PATH="$HOME/.bun/bin:$HOME/.cargo/bin:$PATH:$HOME/.local/bin/"
+export PATH="$HOME/.bun/bin:$HOME/.cargo/bin:$PATH:$HOME/.local/bin/:$HOME"
 
 export PROMPT_EOL_MARK=""
 export EDITOR="nvim"
@@ -39,7 +35,6 @@ bindkey '^Z' push-input
 # init zoxide
 _evalcache zoxide init zsh
 
-# atuin + zsh_autosuggest = <3
 if (($+commands[atuin])); then
 	_evalcache atuin init zsh --disable-up-arrow
 	_zsh_autosuggest_strategy_atuin_top() {
@@ -48,8 +43,9 @@ if (($+commands[atuin])); then
 	_zsh_autosuggest_strategy_atuin_currentdir() {
 		suggestion=$(ATUIN_QUERY="$1" atuin search --cmd-only -e 0 --limit 1 -c "$PWD" --search-mode prefix)
 	}
-	# ZSH_AUTOSUGGEST_STRATEGY=(atuin_currentdir atuin_top completion)
 fi
 
 # bun completions
 [ -s "/home/hikary/.bun/_bun" ] && source "/home/hikary/.bun/_bun"
+
+eval "$(starship init zsh)"

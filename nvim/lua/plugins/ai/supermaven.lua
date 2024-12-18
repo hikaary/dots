@@ -1,9 +1,1 @@
-return {
-  {
-    'supermaven-inc/supermaven-nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('supermaven-nvim').setup {}
-    end,
-  },
-}
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/plugins/ai/supermaven.lua

@@ -1,16 +1,1 @@
--- Initialize core configuration
-local M = {}
-
-function M.setup()
-  -- Load core modules
-  require 'core.options'
-  require 'core.mappings'
-
-  -- Setup autocmds if they exist
-  local ok, _ = pcall(require, 'core.autocmds')
-  if ok then
-    require('core.autocmds').setup()
-  end
-end
-
-return M
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/core/init.lua

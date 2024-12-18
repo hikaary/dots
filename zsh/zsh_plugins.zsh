@@ -11,8 +11,6 @@ function rebuild() {
 	echo "starting compile"
 	# Compile Powerlevel10k package
 	make -sC $ZDOTDIR/plugins/powerlevel10k pkg zwc &
-	zcompile-many $ZDOTDIR/.p10k.zsh &
-	zcompile-many $XDG_CACHE_HOME/p10k-instant-prompt-*.zsh &
 
 	# Move and compile Fast Syntax Highlighting scripts
 	zcompile-many $ZDOTDIR/plugins/fast-syntax-highlighting/{fast*,.fast*,**/*.ch,**/*.zsh} &
@@ -82,12 +80,6 @@ if ((${+requires_rebuild})); then
 	rebuild
 fi
 
-# Activate Powerlevel10k Instant Prompt.
-# Try to move all possible commands below this (make sure there is no output by the commands).
-if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-	source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Load plugins.
 # https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#install -> fzf-tab after compinit, before zsh plugins which warp widgets
 fpath=($ZDOTDIR/plugins/zsh-completions/src $fpath)
@@ -135,5 +127,3 @@ if [[ $TERM = "xterm-kitty" ]] && [[ -n $KITTY_INSTALLATION_DIR ]]; then
 elif [[ $TERM_PROGRAM = "iTerm.app" ]]; then
 	source "$ZDOTDIR/plugins/iTerm2-shell-integration/shell_integration/zsh"
 fi
-
-source $ZDOTDIR/.p10k.zsh ; source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme

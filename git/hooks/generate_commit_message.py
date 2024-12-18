@@ -103,7 +103,7 @@ def generate_commit_message_openrouter(diff, api_key):
                 'content': COMMIT_MESSAGE_PROMPT.format(diff=diff),
             }
         ],
-        'model': 'qwen/qwen-2.5-72b-instruct',
+        'model': 'anthropic/claude-3.5-haiku:beta',
     }
     response = requests.post(
         'https://openrouter.ai/api/v1/chat/completions',
@@ -121,7 +121,9 @@ def generate_commit_message_openrouter(diff, api_key):
         )
         return completion
     except Exception as e:
-        print(f'Ошибка при генерации сообщения коммита: {e}')
+        print(
+            f'Ошибка при генерации сообщения коммита: {e}.\n\n{response.json()}'
+        )
         return ''
 
 

@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# source the plugins first, so that p10k instant prompt kicks in
 source $ZDOTDIR/zsh_plugins.zsh
 
 # XDG

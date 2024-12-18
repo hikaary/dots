@@ -1,9 +1,1 @@
-return {
-  'windwp/nvim-autopairs',
-  event = 'InsertEnter',
-  config = function()
-    require('nvim-autopairs').setup {
-      map_cr = false,
-    }
-  end,
-}
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/plugins/editor/autopairs.lua

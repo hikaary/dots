@@ -1,6 +1,1 @@
-return {
-  'MeanderingProgrammer/render-markdown.nvim',
-  event = 'VeryLazy',
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-  opts = {},
-}
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/plugins/ui/render-markdown.lua

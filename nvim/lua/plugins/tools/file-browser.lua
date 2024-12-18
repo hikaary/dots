@@ -1,4 +1,1 @@
-return {
-  'nvim-telescope/telescope-file-browser.nvim',
-  dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-}
+/nix/store/slym09ksyx26c9y6xgsi3m54fri3bdlq-home-manager-files/.config/nvim/lua/plugins/tools/file-browser.lua
